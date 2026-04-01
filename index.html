@@ -3,12 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raymart Gomez | Portfolio</title>
+  <title>Raymart Gomez | Customer Support & VA Portfolio</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    :root {
+      --bg: #0b1120;
+      --panel: rgba(255, 255, 255, 0.06);
+      --panel-strong: rgba(255, 255, 255, 0.1);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --accent: #22d3ee;
+      --accent-2: #38bdf8;
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      --radius: 22px;
+      --max: 1150px;
     }
 
     html {
@@ -17,8 +32,11 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #ffffff;
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.14), transparent 25%),
+        linear-gradient(180deg, #0b1120 0%, #0f172a 100%);
+      color: var(--text);
       line-height: 1.6;
     }
 
@@ -27,45 +45,104 @@
       color: inherit;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      width: 90%;
-      max-width: 1100px;
+      width: min(92%, var(--max));
       margin: 0 auto;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
-      padding: 80px 0;
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 17, 32, 0.72);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .hero {
+      padding: 82px 0 54px;
     }
 
     .hero-content {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 40px;
-      align-items: center;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .hero-left,
+    .hero-right,
+    .highlight-box,
+    .experience-card,
+    .project-card,
+    .resume-box,
+    .contact-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left,
+    .hero-right {
+      padding: 34px;
     }
 
     .badge {
       display: inline-block;
       background: rgba(34, 211, 238, 0.12);
-      border: 1px solid rgba(34, 211, 238, 0.25);
-      color: #a5f3fc;
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      color: #cffafe;
       padding: 8px 16px;
       border-radius: 999px;
-      font-size: 14px;
-      margin-bottom: 18px;
+      font-size: 13px;
+      margin-bottom: 16px;
     }
 
     h1 {
-      font-size: 52px;
-      line-height: 1.1;
-      margin-bottom: 18px;
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.05;
+      margin-bottom: 16px;
     }
 
     h2 {
-      font-size: 34px;
-      margin-bottom: 18px;
+      font-size: clamp(28px, 4vw, 38px);
+      margin-bottom: 14px;
     }
 
     h3 {
@@ -74,12 +151,37 @@
     }
 
     p {
-      color: #cbd5e1;
+      color: var(--muted);
     }
 
     .hero p.main-text {
       font-size: 18px;
-      max-width: 650px;
+      max-width: 700px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stat small {
+      display: block;
+      color: var(--soft);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .stat strong {
+      font-size: 17px;
     }
 
     .buttons {
@@ -98,54 +200,51 @@
     }
 
     .btn-primary {
-      background: #22d3ee;
-      color: #0f172a;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #082f49;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
+    .btn-primary:hover,
+    .project-card:hover,
+    .experience-card:hover,
+    .contact-card:hover,
+    .highlight-box:hover {
+      transform: translateY(-4px);
     }
 
     .btn-secondary {
       border: 1px solid rgba(255, 255, 255, 0.18);
       color: white;
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .card,
-    .project-card,
-    .experience-card,
-    .highlight-box {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 24px;
-    }
-
-    .hero-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      padding: 24px;
+      background: rgba(255, 255, 255, 0.08);
     }
 
     section {
-      padding: 70px 0;
+      padding: 26px 0 76px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 22px;
     }
 
     .two-column {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+    }
+
+    .highlight-box,
+    .resume-box,
+    .contact-card {
+      padding: 28px;
+      transition: 0.25s ease;
     }
 
     .skills-list,
@@ -161,35 +260,40 @@
       padding: 10px 14px;
       border-radius: 999px;
       font-size: 14px;
+      transition: 0.2s ease;
     }
 
     .skill {
       background: rgba(34, 211, 238, 0.12);
       color: #cffafe;
-      border: 1px solid rgba(34, 211, 238, 0.18);
+      border: 1px solid rgba(34, 211, 238, 0.22);
+    }
+
+    .skill:hover,
+    .tag:hover {
+      transform: scale(1.03);
     }
 
     .tag {
-      background: #1e293b;
+      background: rgba(255, 255, 255, 0.08);
       color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .experience-list,
+    .project-grid {
+      display: grid;
+      gap: 18px;
     }
 
     .project-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 28px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .project-card:hover {
-      transform: translateY(-4px);
+    .experience-card,
+    .project-card {
+      padding: 24px;
       transition: 0.25s ease;
-    }
-
-    .experience-list {
-      display: grid;
-      gap: 20px;
-      margin-top: 24px;
     }
 
     .experience-top {
@@ -206,12 +310,8 @@
       font-weight: bold;
     }
 
-    .resume-box {
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(59, 130, 246, 0.12));
-    }
-
-    .contact-info p,
-    .quick-info p {
+    .quick-info p,
+    .contact-info p {
       margin-bottom: 10px;
     }
 
@@ -220,106 +320,147 @@
       font-weight: bold;
     }
 
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
     footer {
       text-align: center;
-      padding: 26px 0 40px;
+      padding: 10px 0 40px;
       color: #94a3b8;
       font-size: 14px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .hero-content,
       .two-column,
-      .project-grid,
-      .card-grid {
+      .contact-grid,
+      .project-grid {
         grid-template-columns: 1fr;
       }
 
-      h1 {
-        font-size: 40px;
-      }
-
-      h2 {
-        font-size: 28px;
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
-    @media (max-width: 600px) {
-      .container {
-        width: 92%;
-      }
-
+    @media (max-width: 680px) {
       .hero {
-        padding: 60px 0;
+        padding: 58px 0 30px;
       }
 
       section {
-        padding: 55px 0;
+        padding: 16px 0 56px;
       }
 
-      h1 {
-        font-size: 34px;
+      .hero-left,
+      .hero-right,
+      .highlight-box,
+      .experience-card,
+      .project-card,
+      .resume-box,
+      .contact-card {
+        padding: 22px;
       }
 
-      .btn {
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons .btn {
         width: 100%;
         text-align: center;
+      }
+
+      .nav-links {
+        gap: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="container hero-content">
-      <div>
-        <div class="badge">Virtual Assistant • Automation Builder • Appointment Setter</div>
-        <h1>Raymart Gomez</h1>
-        <p class="main-text">
-          I help businesses save time and close more opportunities through workflow automation,
-          lead follow-up, customer support, and reliable virtual assistance.
-        </p>
-        <div class="buttons">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
-        </div>
-      </div>
-
-      <div class="hero-box">
-        <div class="card-grid">
-          <div class="card">
-            <p>Target Role</p>
-            <h3>VA / Automation Specialist</h3>
-          </div>
-          <div class="card">
-            <p>Main Strength</p>
-            <h3>n8n + AI Workflows</h3>
-          </div>
-          <div class="card">
-            <p>Focus</p>
-            <h3>Leads, Support, Scheduling</h3>
-          </div>
-          <div class="card">
-            <p>Work Style</p>
-            <h3>Organized & Reliable</h3>
-          </div>
-        </div>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">Raymart<span>.</span></div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Training</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
-  </header>
+  </nav>
+  <header class="hero">
+    <div class="container hero-content">
+      <div class="hero-left">
+        <div class="badge">Customer Service • Virtual Assistance • Technical Support</div>
+        <h1>Raymart Gomez</h1>
+        <p class="main-text">
+          Top-performing Customer Service Representative with experience in phone, email, and chat support. Skilled in problem-solving, communication, and handling high-pressure situations while maintaining customer satisfaction.
+        </p>
+        <div class="buttons">
+          <a href="#experience" class="btn btn-primary">View Experience</a>
+          <a href="#contact" class="btn btn-secondary">Hire Me</a>
+        </div>
+      </div>
 
-  <section id="about">
+      <div class="hero-right">
+        <h3>Professional Snapshot</h3>
+        <p>Strong background in customer support, Airbnb account assistance, loan file review, logistics support, AutoCAD drafting, and site engineering. Comfortable working with customers, teams, and technical documents.</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <small>Support Channels</small>
+            <strong>Phone, Email, Chat</strong>
+          </div>
+          <div class="stat">
+            <small>Core Strength</small>
+            <strong>Problem Solving</stron<section id="about">
     <div class="container two-column">
       <div class="highlight-box">
-        <h2>About Me</h2>
+        <div class="section-head">
+          <div>
+            <h2>About Me</h2>
+            <p>Reliable, adaptable, and customer-focused.</p>
+          </div>
+        </div>
         <p>
-          I am a detail-oriented freelancer focused on virtual assistance, customer communication,
-          and automation. I enjoy building practical systems that reduce manual work, improve response
-          time, and help businesses stay organized. My goal is to bring both efficiency and professionalism
-          to every workflow I handle.
+          I have hands-on experience supporting customers, resolving issues, reviewing documents, assisting with bookings, and handling technical and administrative tasks. My work background combines customer service, coordination, technical drafting, and field support, which helps me adjust quickly to different roles and responsibilities.
         </p>
       </div>
 
       <div class="highlight-box quick-info">
+        <div class="section-head">
+          <div>
+            <h2>Quick Info</h2>
+            <p>At-a-glance details.</p>
+          </div>
+        </div>
+        <p><span class="label">Email:</span> rrgomez0000@gmail.com</p>
+        <p><span class="label">Phone:</span> 0951-725-5895</p>
+        <p><span class="label">Availability:</span> Remote / Freelance / Contract</p>
+        <p><span class="label">Education:</span> BS in Civil Engineering</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">nfo">
         <h2>Quick Info</h2>
         <p><span class="label">Location:</span> Philippines</p>
         <p><span class="label">Availability:</span> Remote / Freelance / Contract</p>
@@ -330,18 +471,48 @@
 
   <section id="skills">
     <div class="container highlight-box">
-      <h2>Skills</h2>
+      <div class="section-head">
+        <div>
+          <h2>Skills</h2>
+          <p>Customer service, technical, and operational strengths.</p>
+        </div>
+      </div>
       <div class="skills-list">
-        <span class="skill">n8n Workflow Automation</span>
-        <span class="skill">AI Chatbots</span>
-        <span class="skill">Appointment Setting</span>
-        <span class="skill">Cold Calling</span>
-        <span class="skill">Lead Generation</span>
-        <span class="skill">Customer Support</span>
-        <span class="skill">Google Workspace</span>
-        <span class="skill">CRM Tools</span>
-        <span class="skill">Virtual Assistance</span>
-        <span class="skill">Basic Web Setup</span>
+        <span class="skill">Communication Skills</span>
+        <span class="skill">Problem-Solving</span>
+        <span class="skill">Active Listening</span>
+        <span class="skill">Adaptability</span>
+        <span class="skill">Time Management</span>
+        <span class="skill">Phone Support</span>
+        <span class="skill">Email Support</span>
+        <span class="skill">Chat Support</span>
+        <span class="skill">Customer Service</span>
+        <span class="skill">Customer Issue Resolution</span>
+        <span class="skill">Booking Support</span>
+        <span class="skill">Dispute Resolution</span>
+        <span class="skill">Calendar Management</span>
+        <span class="skill">Social Media Support</span>
+        <span class="skill">High-Level Negotiation</span>
+        <span class="skill">Loan Verification</span>
+        <span class="skill">Document Review</span>
+        <span class="skill">Applicant Information Validation</span>
+        <span class="skill">Workflow Documentation</span>
+        <span class="skill">Portal Assistance</span>
+        <span class="skill">Password Reset Support</span>
+        <span class="skill">Ticket Trend Analysis</span>
+        <span class="skill">User Guide Creation</span>
+        <span class="skill">Team Mentoring</span>
+        <span class="skill">Shipment Tracking</span>
+        <span class="skill">Logistics Data Entry</span>
+        <span class="skill">Shipping Documents Processing</span>
+        <span class="skill">Technical Support</span>
+        <span class="skill">AutoCAD Drafting</span>
+        <span class="skill">As-Built Drawings</span>
+        <span class="skill">Structural Drawings</span>
+        <span class="skill">Construction Markup Updates</span>
+        <span class="skill">Surveying Instruments</span>
+        <span class="skill">Total Station Use</span>
+        <span class="skill">Line and Grade Engineering</span>
       </div>
     </div>
   </section>
@@ -353,29 +524,78 @@
         <div class="experience-card">
           <div class="experience-top">
             <div>
-              <h3>Virtual Assistant / Automation Builder</h3>
-              <p>Freelance</p>
+              <h3>Autocad | Technical Assistant</h3>
+              <p>401 Dev. & Const. Corp. | Construction</p>
             </div>
-            <div class="period">2025 – Present</div>
+            <div class="period">November 2024 – March 2026</div>
           </div>
-          <p>
-            Support businesses with admin tasks, lead management, customer communication,
-            and workflow automation using practical no-code tools.
-          </p>
+          <p>Produced detailed as-built, shop, and structural drawings for construction, updated drawings based on markups and calculations, and translated rough sketches and team instructions into technical plans.</p>
         </div>
 
         <div class="experience-card">
           <div class="experience-top">
             <div>
-              <h3>Appointment Setter / Customer Support</h3>
-              <p>Remote / Freelance Projects</p>
+              <h3>Line and Grade Engineer</h3>
+              <p>New San Jose Builders Inc. | Construction</p>
             </div>
-            <div class="period">2024 – Present</div>
+            <div class="period">June 2024 – November 2024</div>
           </div>
-          <p>
-            Handled outreach, follow-ups, customer inquiries, and scheduling while keeping
-            communication professional and organized.
-          </p>
+          <p>Established building control lines, grid lines, floor elevations, and excavation layouts while ensuring structural elements were installed according to approved plans and tolerances using total stations and surveying tools.</p>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Line and Grade Engineer</h3>
+              <p>Metro Stonerich Corporation | Construction</p>
+            </div>
+            <div class="period">September 2023 – May 2024</div>
+          </div>
+          <p>Handled site layout work, control lines, and elevations, ensuring structural accuracy and compliance with project plans through surveying and field coordination.</p>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Support Ambassador</h3>
+              <p>Intouch CX | Airbnb</p>
+            </div>
+            <div class="period">January 2023 – September 2023</div>
+          </div>
+          <p>Managed booking problems, disputes, and safety concerns, assisted hosts with listings and calendars, and supported users through phone, email, chat, and social media while mediating fair agreements.</p>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Customer Service Representative</h3>
+              <p>WNS Global Services | Pennymac</p>
+            </div>
+            <div class="period">February 2020 – August 2022</div>
+          </div>
+          <p>Confirmed applicant income, employment history, and assets, reviewed loan files for completeness, and coordinated with borrowers, loan officers, and underwriters to resolve missing information.</p>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Customer Service Representative</h3>
+              <p>Sitel | Metlife</p>
+            </div>
+            <div class="period">March 2019 – September 2019</div>
+          </div>
+          <p>Responded to chat, email, and phone inquiries, analyzed ticket trends, documented solutions, created user guides, mentored team members, and helped customers navigate the portal and reset passwords.</p>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Customer Service Representative</h3>
+              <p>Alta Resources | Adidas</p>
+            </div>
+            <div class="period">October 2018 – February 2019</div>
+          </div>
+          <p>Tracked shipments, maintained logistics records, resolved delivery issues, processed shipping documents, and helped customers with product and service concerns.</p>
         </div>
       </div>
     </div>
@@ -383,75 +603,47 @@
 
   <section id="projects">
     <div class="container">
-      <h2>Projects</h2>
-      <p>Sample portfolio projects you can show to clients or employers.</p>
+      <div class="section-head">
+        <div>
+          <h2>Seminars and Training</h2>
+          <p>Additional involvement and learning background.</p>
+        </div>
+      </div>
 
       <div class="project-grid">
         <div class="project-card">
-          <h3>AI Appointment Setter Workflow</h3>
-          <p>
-            Built an automation workflow that captures leads, sends instant responses,
-            and schedules appointments using forms, Google Sheets, Gmail, and calendar tools.
-          </p>
+          <h3>Red Cross 143</h3>
+          <p>Volunteer experience with West Rizal Branch, San Mateo, showing community involvement and teamwork.</p>
           <div class="tags">
-            <span class="tag">n8n</span>
-            <span class="tag">Google Sheets</span>
-            <span class="tag">Gmail</span>
-            <span class="tag">Google Calendar</span>
+            <span class="tag">Volunteer</span>
+            <span class="tag">Teamwork</span>
+            <span class="tag">Community Support</span>
           </div>
         </div>
 
         <div class="project-card">
-          <h3>Customer Booking Assistant</h3>
-          <p>
-            Created a booking flow for service businesses that collects customer details,
-            confirms appointments, and organizes records automatically.
-          </p>
-          <div class="tags">
-            <span class="tag">n8n</span>
-            <span class="tag">Webhook</span>
-            <span class="tag">Google Calendar</span>
-            <span class="tag">Sheets</span>
+          <h3>Junior Philippine Institute of Civil Engineers</h3>
+          <p>Participated in activities under the Metro Manila Chapter, strengthening technical exposure and professional<section id="resume">
+    <div class="container">
+      <div class="resume-box">
+        <div class="section-head">
+          <div>
+            <h2>Why Work With Me</h2>
+            <p>A practical and dependable support professional.</p>
           </div>
         </div>
-
-        <div class="project-card">
-          <h3>AI Chat Support Agent</h3>
-          <p>
-            Designed a chatbot flow for handling common customer questions, collecting inquiries,
-            and routing important concerns for follow-up.
-          </p>
-          <div class="tags">
-            <span class="tag">AI Agent</span>
-            <span class="tag">n8n</span>
-            <span class="tag">FAQ Logic</span>
-            <span class="tag">Automation</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Lead Follow-Up System</h3>
-          <p>
-            Automated lead tracking and follow-up messages to reduce missed opportunities
-            and improve response speed for prospects.
-          </p>
-          <div class="tags">
-            <span class="tag">n8n</span>
-            <span class="tag">CRM</span>
-            <span class="tag">Email</span>
-            <span class="tag">Automation</span>
-          </div>
+        <p>
+          I bring a mix of customer service experience, technical understanding, and organized execution. I can communicate well with customers, coordinate with teams, follow processes carefully, and adapt to fast-changing work environments.
+        </p>
+        <div class="buttons">
+          <a href="mailto:rrgomez0000@gmail.com" class="btn btn-primary">Email Me</a>
+          <a href="#contact" class="btn btn-secondary">Contact Details</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="resume">
-    <div class="container">
-      <div class="highlight-box resume-box">
-        <h2>Resume Section</h2>
-        <p>
-          Add your downloadable resume link here, plus certifications, achievements,
+  <section id="contact">ications, achievements,
           tools you use, and a short summary of your work results.
         </p>
         <div class="buttons">
@@ -462,21 +654,32 @@
   </section>
 
   <section id="contact">
-    <div class="container two-column">
-      <div>
-        <h2>Let’s Work Together</h2>
+    <div class="container contact-grid">
+      <div class="contact-card">
+        <div class="section-head">
+          <div>
+            <h2>Let’s Work Together</h2>
+            <p>Open to customer service, virtual assistant, and support roles.</p>
+          </div>
+        </div>
         <p>
-          I am open to virtual assistant, appointment setting, customer support,
-          and automation-related opportunities.
+          I am available for remote opportunities where I can contribute through strong communication, reliability, and customer-focused support.
         </p>
       </div>
 
-      <div class="highlight-box contact-info">
-        <h2>Contact Info</h2>
-        <p><span class="label">Email:</span> yourname@email.com</p>
-        <p><span class="label">Phone:</span> +63 xxx xxx xxxx</p>
-        <p><span class="label">LinkedIn:</span> linkedin.com/in/yourname</p>
-        <p><span class="label">GitHub:</span> github.com/yourname</p>
+      <div class="contact-card contact-info">
+        <div class="section-head">
+          <div>
+            <h2>Contact Info</h2>
+            <p>Reach me directly.</p>
+          </div>
+        </div>
+        <div class="contact-list">
+          <div class="contact-item"><span class="label">Email:</span> rrgomez0000@gmail.com</div>
+          <div class="contact-item"><span class="label">Phone:</span> 0951-725-5895</div>
+          <div class="contact-item"><span class="label">LinkedIn:</span> linkedin.com/in/raymart-gomez</div>
+          <div class="contact-item"><span class="label">GitHub:</span> github.com/RG-aiautomation</div>
+        </div>
       </div>
     </div>
   </section>
