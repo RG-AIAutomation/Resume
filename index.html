@@ -12,11 +12,11 @@ body{font-family:Arial;background:#020617;color:#fff;overflow-x:hidden}
 /* CURSOR LIGHT */
 .cursor{
  position:fixed;
- width:70px;height:70px;
+ width:45px;height:45px;
  border-radius:50%;
- background:rgba(99,102,241,0.6);
+ background:rgba(255, 221, 87, 0.6);
  pointer-events:none;
- filter:blur(25px);
+ filter:blur(18px);
  transform:translate(-50%,-50%);
  z-index:9999;
  transition:0.2s;
@@ -91,7 +91,7 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:12px}
 
 <div class="cursor" id="cursor"></div>
 
-<nav>Raymart Gomez</nav>
+<nav></nav>
 
 <div class="hero">
 <img src="profile.jpg" class="profile">
@@ -119,15 +119,56 @@ n8n Workflows • Messenger Bot • WhatsApp Agent • Appointment & Booking Aut
 </section>
 
 <section>
-<h2>Experience</h2>
+<h2>🏆 Experience (Results & Achievements)</h2>
 <div class="grid">
-<div class="card"><b>AutoCAD Technical Assistant</b><br>401 Dev & Const Corp (2024–2026)<br>Produced as-built, shop, and structural drawings, updated plans, collaborated with engineers.</div>
-<div class="card"><b>Line & Grade Engineer</b><br>New San Jose Builders (2024)<br>Handled building layouts, elevations, surveying tools.</div>
-<div class="card"><b>Line & Grade Engineer</b><br>Metro Stonerich (2023–2024)<br>Ensured structural alignment and accuracy.</div>
-<div class="card"><b>Support Ambassador</b><br>Airbnb | Intouch CX (2023)<br>Managed bookings, disputes, listings, customer communication.</div>
-<div class="card"><b>Customer Service Representative</b><br>WNS (2020–2022)<br>Loan verification, document checks, coordination.</div>
-<div class="card"><b>Customer Service Representative</b><br>Sitel (2019)<br>Handled calls, chats, tickets, training support.</div>
-<div class="card"><b>Customer Service Representative</b><br>Adidas (2018–2019)<br>Shipment tracking, logistics, customer issues.</div>
+
+<div class="card">
+<b>AutoCAD Technical Assistant — 401 Dev & Const Corp (2024–2026)</b><br>
+• Delivered accurate <b>as-built, shop, and structural drawings</b> used in active construction projects<br>
+• Reduced revision cycles by <b>translating markups clearly</b> into updated plans<br>
+• Collaborated with engineers to ensure <b>on-site alignment with drawings</b>
+</div>
+
+<div class="card">
+<b>Line & Grade Engineer — New San Jose Builders (2024)</b><br>
+• Set precise <b>grid lines, elevations, and layouts</b> using surveying tools<br>
+• Helped maintain <b>construction accuracy</b> within tolerances across site works
+</div>
+
+<div class="card">
+<b>Line & Grade Engineer — Metro Stonerich (2023–2024)</b><br>
+• Ensured <b>structural alignment</b> and correct positioning of elements on-site<br>
+• Coordinated field data with plans to avoid <b>rework and delays</b>
+</div>
+
+<div class="card">
+<b>Support Ambassador — Airbnb (Intouch CX, 2023)</b><br>
+• Resolved <b>booking issues and disputes</b> across phone, chat, and email<br>
+• Mediated between guests and hosts to reach <b>fair resolutions</b><br>
+• Maintained high-quality support during <b>high-volume queues</b>
+</div>
+
+<div class="card">
+<b>Customer Service Representative — WNS (2020–2022)</b><br>
+• Verified <b>loan applications</b> (income, employment, assets) for accuracy
+• Reduced processing delays by <b>identifying missing documents early</b>
+• Coordinated with borrowers and underwriters to <b>complete files faster</b>
+</div>
+
+<div class="card">
+<b>Customer Service Representative — Sitel (2019)</b><br>
+• Handled <b>multi-channel support</b> (phone, chat, email)
+• Created <b>user guides</b> and supported teammates (mentoring)
+• Improved resolution speed through <b>ticket analysis</b>
+</div>
+
+<div class="card">
+<b>Customer Service Representative — Adidas (2018–2019)</b><br>
+• Managed <b>shipment tracking and logistics issues</b>
+• Resolved delivery concerns and processed <b>shipping documents</b>
+• Maintained accurate records for <b>operations and reporting</b>
+</div>
+
 </div>
 </section>
 
@@ -144,7 +185,7 @@ n8n Workflows • Messenger Bot • WhatsApp Agent • Appointment & Booking Aut
 <section>
 <h2>Education</h2>
 <div class="card">
-Bachelor of Science in Civil Engineering – University of Manila (2016–2022)<br>
+Bachelor of Science in AutoCADing – University of Manila (2016–2022)<br>
 AutoCAD Drafting – Marikina Polytechnic College (2014–2015)
 </div>
 </section>
@@ -153,7 +194,17 @@ AutoCAD Drafting – Marikina Polytechnic College (2014–2015)
 <h2>Seminars & Training</h2>
 <div class="card">
 Red Cross 143 Volunteer – West Rizal Branch<br>
-Junior Philippine Institute of Civil Engineers – Metro Manila Chapter
+Junior Philippine Institute of AutoCADs – Metro Manila Chapter
+</div>
+</section>
+
+<section>
+<h2>Trust & Credibility</h2>
+<div class="grid">
+<div class="card"><b>Multi-Industry Experience</b><br>Background in customer support, finance, logistics, hospitality, and construction.</div>
+<div class="card"><b>Strong Communication</b><br>Experienced in phone, email, and chat support with a calm and professional approach.</div>
+<div class="card"><b>Technical + Support Skills</b><br>Combines civil engineering knowledge with workflow automation and customer service.</div>
+<div class="card"><b>Dependable Under Pressure</b><br>Used to handling urgent concerns, customer issues, and structured documentation.</div>
 </div>
 </section>
 
@@ -171,16 +222,50 @@ Address: Sta. Barbara Villas 1, San Mateo Rizal
 <script>
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove',e=>{
-cursor.style.left=e.clientX+'px';
-cursor.style.top=e.clientY+'px';
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
 });
 
 function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});} 
-// cursor hover effect
-const btn=document.querySelector('.btn');
-btn.addEventListener('mouseenter',()=>cursor.classList.add('active'));
-btn.addEventListener('mouseleave',()=>cursor.classList.remove('active'));
 
+const btn=document.querySelector('.btn');
+btn.addEventListener('mouseenter',()=>{
+  cursor.classList.add('active');
+  document.body.style.cursor='pointer';
+});
+btn.addEventListener('mouseleave',()=>{
+  cursor.classList.remove('active');
+  document.body.style.cursor='default';
+});
+
+const face=document.getElementById('face');
+let mouseX=window.innerWidth/2;
+let mouseY=window.innerHeight/2;
+let faceX=mouseX;
+let faceY=mouseY;
+
+function animateFace(){
+  faceX += (mouseX - faceX) * 0.12;
+  faceY += (mouseY - faceY) * 0.12;
+
+  const offsetX = (mouseX - window.innerWidth/2) / window.innerWidth;
+  const offsetY = (mouseY - window.innerHeight/2) / window.innerHeight;
+  const rotateY = offsetX * 18;
+  const rotateX = -offsetY * 14;
+
+  face.style.left = (faceX - 41) + 'px';
+  face.style.top = (faceY - 105) + 'px';
+  face.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1)`;
+
+  requestAnimationFrame(animateFace);
+}
+
+document.addEventListener('mousemove',e=>{
+  mouseX=e.clientX;
+  mouseY=e.clientY;
+});
+
+animateFace();
 </script>
 
 </body>
