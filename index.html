@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raymart Gomez | Portfolio</title>
+<title>Raymart Gomez | Elite Portfolio</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,23 +14,34 @@ body{
   overflow-x:hidden;
 }
 
-/* NAV */
-nav{
+/* CURSOR GLOW */
+.cursor{
   position:fixed;
-  width:100%;
-  top:0;
-  backdrop-filter:blur(12px);
+  width:20px;height:20px;
+  border-radius:50%;
+  background:#6366f1;
+  pointer-events:none;
+  mix-blend-mode:screen;
+  filter:blur(10px);
+  z-index:9999;
+}
+
+/* BACKGROUND PARTICLES */
+canvas{
+  position:fixed;
+  top:0;left:0;
+  z-index:-1;
+}
+
+nav{
+  position:fixed;width:100%;top:0;
+  backdrop-filter:blur(10px);
   background:rgba(0,0,0,0.6);
   padding:15px 30px;
-  display:flex;
-  justify-content:space-between;
+  display:flex;justify-content:space-between;
   z-index:1000;
 }
-nav h2{color:#8b5cf6}
-nav a{margin-left:15px;color:#cbd5e1;font-size:14px}
-nav a:hover{color:#fff}
 
-/* HERO */
 .hero{
   height:100vh;
   display:flex;
@@ -38,30 +49,26 @@ nav a:hover{color:#fff}
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:radial-gradient(circle at center,#6366f1 0%,#020617 70%);
 }
 
 .hero h1{
-  font-size:clamp(36px,6vw,70px);
+  font-size:clamp(40px,6vw,90px);
 }
 
-.typing{
-  color:#8b5cf6;
-  font-size:20px;
-  margin-top:10px;
-}
+.typing{color:#8b5cf6;font-size:22px}
 
 .btn{
   margin-top:20px;
   padding:12px 25px;
   border-radius:30px;
   background:linear-gradient(45deg,#6366f1,#8b5cf6);
-  border:none;
-  color:#fff;
+  border:none;color:#fff;
   cursor:pointer;
+  transition:0.3s;
 }
 
-/* SECTIONS */
+.btn:hover{transform:scale(1.15)}
+
 section{padding:80px 20px;max-width:1100px;margin:auto}
 
 .card{
@@ -71,127 +78,123 @@ section{padding:80px 20px;max-width:1100px;margin:auto}
   margin-top:20px;
   transition:0.3s;
 }
-.card:hover{transform:translateY(-5px)}
 
-/* GRID */
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 0 40px rgba(99,102,241,0.6);
+}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
 }
 
-.skill{
-  background:rgba(99,102,241,0.2);
-  padding:8px 14px;
-  border-radius:20px;
-  display:inline-block;
-  margin:5px;
-  font-size:13px;
+/* FLOAT BUTTON */
+.whatsapp{
+  position:fixed;
+  bottom:20px;right:20px;
+  background:#25D366;
+  padding:15px;border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
 }
 
-/* FOOTER */
 footer{text-align:center;padding:30px;color:#94a3b8}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  nav{flex-direction:column;gap:10px}
-}
 </style>
 </head>
 
 <body>
 
+<canvas id="particles"></canvas>
+<div class="cursor" id="cursor"></div>
+
 <nav>
-  <h2>Raymart</h2>
-  <div>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </div>
+<h2 style="color:#8b5cf6">Raymart</h2>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <h1>Raymart Gomez</h1>
-  <div class="typing" id="typing"></div>
-  <button class="btn" onclick="scrollToSection('contact')">Hire Me</button>
+<h1>Raymart Gomez</h1>
+<div class="typing" id="typing"></div>
+<button class="btn" onclick="scrollToSection('contact')">Hire Me</button>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
-  <h2>About Me</h2>
-  <div class="card">
-    Top-performing Customer Service Representative skilled in phone, chat, and email support. Strong in problem-solving and communication.
-  </div>
+<h2>About Me</h2>
+<div class="card">Elite-level customer support + technical professional ready to help businesses scale.</div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="card">
-    <div class="skill">Communication</div>
-    <div class="skill">Problem Solving</div>
-    <div class="skill">Customer Support</div>
-    <div class="skill">AutoCAD</div>
-    <div class="skill">Technical Support</div>
-    <div class="skill">Email/Chat</div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
 <section id="experience">
-  <h2>Experience</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Support Ambassador</h3>
-      <p>Airbnb - handled bookings & disputes</p>
-    </div>
-    <div class="card">
-      <h3>Customer Service</h3>
-      <p>WNS / Sitel / Adidas</p>
-    </div>
-    <div class="card">
-      <h3>Engineer</h3>
-      <p>Construction & AutoCAD</p>
-    </div>
-  </div>
+<h2>Experience</h2>
+<div class="grid">
+<div class="card">Customer Service Expert</div>
+<div class="card">Airbnb Support</div>
+<div class="card">Engineering + AutoCAD</div>
+</div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-  <h2>Contact</h2>
-  <div class="card">
-    Email: rrgomez0000@gmail.com<br>
-    Phone: 0951-725-5895
-  </div>
+<h2>Contact</h2>
+<div class="card">
+Email: rrgomez0000@gmail.com<br>
+Phone: 0951-725-5895
+</div>
 </section>
 
-<footer>
-  © 2026 Raymart Gomez
-</footer>
+<div class="whatsapp">💬</div>
+
+<footer>© 2026 Raymart Gomez</footer>
 
 <script>
-// typing effect
-const text = ["Customer Support","Virtual Assistant","Tech Support"];
+// typing
+const text=["Elite Support","Automation","Tech Pro"];
 let i=0,j=0,current="",isDeleting=false;
 function type(){
-  current=text[i];
-  document.getElementById("typing").textContent=current.substring(0,j);
-
-  if(!isDeleting && j<current.length){j++;}
-  else if(isDeleting && j>0){j--;}
-  else{
-    isDeleting=!isDeleting;
-    if(!isDeleting) i=(i+1)%text.length;
-  }
-  setTimeout(type,isDeleting?50:100);
+current=text[i];
+document.getElementById("typing").textContent=current.substring(0,j);
+if(!isDeleting&&j<current.length){j++;}
+else if(isDeleting&&j>0){j--;}
+else{isDeleting=!isDeleting;if(!isDeleting)i=(i+1)%text.length;}
+setTimeout(type,isDeleting?50:100);
 }
 type();
 
+// smooth scroll
 function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
+
+// cursor glow
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.top=e.clientY+"px";
+cursor.style.left=e.clientX+"px";
+});
+
+// particles
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="#6366f1";
+particles.forEach(p=>{
+p.y+=0.3;
+if(p.y>canvas.height)p.y=0;
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
 </script>
 
 </body>
