@@ -19,6 +19,12 @@ body{font-family:Arial;background:#020617;color:#fff;overflow-x:hidden}
  filter:blur(25px);
  transform:translate(-50%,-50%);
  z-index:9999;
+ transition:0.2s;
+}
+
+.cursor.active{
+ width:90px;height:90px;
+ background:rgba(139,92,246,0.8);
 }
 
 nav{position:fixed;width:100%;top:0;background:#020617;padding:10px 20px;z-index:1000;font-size:14px}
@@ -33,13 +39,39 @@ nav{position:fixed;width:100%;top:0;background:#020617;padding:10px 20px;z-index
  border:3px solid transparent;
  background:linear-gradient(#020617,#020617) padding-box,
  linear-gradient(45deg,#6366f1,#8b5cf6,#22d3ee) border-box;
- margin-bottom:12px;
+ margin-bottom:6px;
+}
+
+.name{
+ font-size:16px;
+ margin-bottom:8px;
+ font-weight:bold;
 }
 
 h1{font-size:24px}
 p{color:#94a3b8;font-size:13px}
 
-.btn{margin-top:10px;padding:8px 18px;border-radius:20px;background:#6366f1;color:#fff;border:none}
+.btn{
+  margin-top:10px;
+  padding:8px 18px;
+  border-radius:20px;
+  background:#6366f1;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#4f46e5;
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
 
 section{padding:40px 15px;max-width:900px;margin:auto}
 
@@ -63,6 +95,7 @@ footer{text-align:center;padding:20px;color:#94a3b8;font-size:12px}
 
 <div class="hero">
 <img src="profile.jpg" class="profile">
+<div class="name">Raymart Gomez</div>
 
 <p>Customer Support • Virtual Assistant • AutoCAD • Automation</p>
 <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
@@ -143,6 +176,11 @@ cursor.style.top=e.clientY+'px';
 });
 
 function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});} 
+// cursor hover effect
+const btn=document.querySelector('.btn');
+btn.addEventListener('mouseenter',()=>cursor.classList.add('active'));
+btn.addEventListener('mouseleave',()=>cursor.classList.remove('active'));
+
 </script>
 
 </body>
