@@ -599,7 +599,7 @@
 
       let mouseX = window.innerWidth / 2;
       let mouseY = window.innerHeight / 2;
-      let trailX = mouseX;
+      let  = mouseX;
       let trailY = mouseY;
 
       document.addEventListener('mousemove', function(e) {
@@ -631,9 +631,9 @@
       });
 
       function animateTrail() {
-        trailX += (mouseX - trailX) * 0.16;
-        trailY += (mouseY - trailY) * 0.16;
-        trail.style.left = trailX + 'px';
+         += (mouseX - ) * 0.08;
+        trailY += (mouseY - trailY) * 0.08;
+        trail.style.left =  + 'px';
         trail.style.top = trailY + 'px';
         requestAnimationFrame(animateTrail);
       }
