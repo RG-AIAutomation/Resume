@@ -268,9 +268,9 @@
       box-shadow: 0 0 20px rgba(82,182,255,0.35);
     }
 
-    .grid-2 {
+.grid-2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.25fr 0.75fr;
   gap: 22px;
 }
 
@@ -492,22 +492,21 @@
       font-size: 0.96rem;
     }
 
-    @media (max-width: 980px) {
-      .hero-card,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
+@media (max-width: 700px) {
+  .hero-card,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
 
-      .photo-wrap {
-        max-width: 220px;
-      }
+  .photo-wrap {
+    max-width: 220px;
+  }
 
-      .quick-info,
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+  .quick-info,
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
     @media (max-width: 700px) {
       .nav-inner {
         align-items: flex-start;
