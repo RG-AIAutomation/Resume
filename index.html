@@ -6,7 +6,7 @@
   <title>Raymart Gomez | Resume Website</title>
   <style>
     :root {
-      --bg: #0b1020;
+      --bg: #000000;
       --panel: rgba(255,255,255,0.08);
       --panel-strong: rgba(255,255,255,0.12);
       --text: #eef2ff;
@@ -38,19 +38,13 @@
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(82,182,255,0.22), transparent 28%),
-        radial-gradient(circle at top right, rgba(255,139,61,0.18), transparent 24%),
-        linear-gradient(180deg, #09101f 0%, #0d1430 100%);
+      background: #000000;
       line-height: 1.6;
       transition: background 0.35s ease, color 0.35s ease;
     }
 
     body.light-theme {
-      background:
-        radial-gradient(circle at top left, rgba(63,140,255,0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(255,139,61,0.14), transparent 24%),
-        linear-gradient(180deg, #eef4fb 0%, #dfe9f7 100%);
+      background: #000000;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -118,7 +112,7 @@
       grid-template-columns: 290px 1fr;
       gap: 34px;
       align-items: center;
-      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 30px;
       box-shadow: var(--shadow);
@@ -128,15 +122,6 @@
       transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -70px -70px auto;
-      width: 230px;
-      height: 230px;
-      background: radial-gradient(circle, rgba(255,139,61,0.18), transparent 65%);
-      pointer-events: none;
-    }
 
     .photo-wrap {
       position: relative;
@@ -204,7 +189,7 @@
     .btn:hover { transform: translateY(-2px); }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #ffb16f);
+      background: var(--accent);
       color: #1f1208;
       box-shadow: 0 12px 26px rgba(255,139,61,0.28);
     }
@@ -239,7 +224,7 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: var(--accent);
       box-shadow: 0 0 20px rgba(82,182,255,0.35);
     }
 
@@ -256,7 +241,7 @@
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+      background: rgba(255,255,255,0.06);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 24px;
@@ -479,73 +464,11 @@
 
     .typing-quote {
       font-size: 18px;
-      font-style: italic;
-      background: linear-gradient(90deg, #00ff99, #00cc66);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-style: normal;
+      color: var(--muted);
       opacity: 0.95;
-      text-shadow: 0 0 10px rgba(0,255,153,0.35);
       white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #00ff99;
-      padding-right: 6px;
-      animation: blinkCursor 0.8s infinite;
-      transition: opacity 0.8s ease, transform 0.8s ease;
       max-width: 100%;
-    }
-
-    .typing-quote.fade-out {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-
-    .typing-quote.fade-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes blinkCursor {
-      0%, 50% { border-color: #00ff99; }
-      51%, 100% { border-color: transparent; }
-    }
-
-    .cursor-glow {
-      position: fixed;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(
-        circle,
-        rgba(0, 255, 170, 1) 0%,
-        rgba(0, 255, 140, 0.6) 40%,
-        rgba(0, 200, 120, 0.3) 65%,
-        transparent 85%
-      );
-      filter: blur(10px);
-      opacity: 1;
-      transition: width 0.2s ease, height 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
-    }
-
-    .cursor-trail {
-      position: fixed;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(
-        circle,
-        rgba(0, 255, 170, 0.35),
-        rgba(0, 255, 140, 0.2) 50%,
-        transparent 75%
-      );
-      filter: blur(25px);
-      opacity: 0.9;
-      transition: all 0.3s ease;
     }
 
     a:hover,
@@ -625,136 +548,16 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const glow = document.createElement('div');
-      glow.className = 'cursor-glow';
-
-      const trail = document.createElement('div');
-      trail.className = 'cursor-trail';
-
-      document.body.appendChild(trail);
-      document.body.appendChild(glow);
-
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let trailX = mouseX;
-      let trailY = mouseY;
-
-      document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        glow.style.left = mouseX + 'px';
-        glow.style.top = mouseY + 'px';
-      });
-
-      document.addEventListener('mouseover', function(e) {
-        const hovering = !!e.target.closest('a, button, .btn, .project-card');
-
-        if (hovering) {
-          glow.style.width = '74px';
-          glow.style.height = '74px';
-          glow.style.filter = 'blur(10px)';
-
-          trail.style.width = '110px';
-          trail.style.height = '110px';
-          trail.style.filter = 'blur(22px)';
-          trail.style.opacity = '1';
-        } else {
-          glow.style.width = '50px';
-          glow.style.height = '50px';
-          glow.style.filter = 'blur(8px)';
-
-          trail.style.width = '90px';
-          trail.style.height = '90px';
-          trail.style.filter = 'blur(20px)';
-          trail.style.opacity = '0.9';
-        }
-      });
-
-      document.addEventListener('click', () => {
-        glow.style.width = '120px';
-        glow.style.height = '120px';
-        glow.style.opacity = '0.6';
-
-        setTimeout(() => {
-          glow.style.width = '50px';
-          glow.style.height = '50px';
-          glow.style.opacity = '1';
-        }, 200);
-      });
-
-      function animateTrail() {
-        trailX += (mouseX - trailX) * 0.07;
-        trailY += (mouseY - trailY) * 0.07;
-
-        trail.style.left = trailX + 'px';
-        trail.style.top = trailY + 'px';
-
-        requestAnimationFrame(animateTrail);
-      }
-
-      animateTrail();
-
       const themeToggle = document.getElementById('themeToggle');
-      const savedTheme = localStorage.getItem('theme');
+      const quoteEl = document.getElementById('typing-quote');
 
-      if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
-        themeToggle.textContent = 'Dark Mode';
+      if (quoteEl) {
+        quoteEl.textContent = 'All rights reserved.';
       }
 
-      themeToggle.addEventListener('click', function () {
-        document.body.classList.toggle('light-theme');
-
-        if (document.body.classList.contains('light-theme')) {
-          localStorage.setItem('theme', 'light');
-          themeToggle.textContent = 'Dark Mode';
-        } else {
-          localStorage.setItem('theme', 'dark');
-          themeToggle.textContent = 'Light Mode';
-        }
-      });
-
-      const quoteText = "“Whether you think you can or you can’t — you’re right.”";
-      const quoteEl = document.getElementById("typing-quote");
-
-      let charIndex = 0;
-      let isDeleting = false;
-
-      function typeQuote() {
-        if (!quoteEl) return;
-
-        if (!isDeleting) {
-          quoteEl.textContent = quoteText.slice(0, charIndex + 1);
-          charIndex++;
-
-          if (charIndex === quoteText.length) {
-            quoteEl.classList.add("fade-out");
-            setTimeout(() => {
-              isDeleting = true;
-              quoteEl.classList.remove("fade-out");
-              typeQuote();
-            }, 1800);
-            return;
-          }
-        } else {
-          quoteEl.textContent = quoteText.slice(0, charIndex - 1);
-          charIndex--;
-
-          if (charIndex === 0) {
-            quoteEl.classList.add("fade-in");
-            setTimeout(() => {
-              isDeleting = false;
-              quoteEl.classList.remove("fade-in");
-              typeQuote();
-            }, 400);
-            return;
-          }
-        }
-
-        setTimeout(typeQuote, isDeleting ? 35 : 65);
+      if (themeToggle) {
+        themeToggle.style.display = 'none';
       }
-
-      typeQuote();
     });
   </script>
 </head>
@@ -1221,7 +1024,7 @@
   <footer class="footer">
     <div class="container">
       <div class="quote-wrap">
-        <p id="typing-quote" class="typing-quote"></p>
+        <p id="typing-quote" class="typing-quote">All rights reserved.</p>
       </div>
     </div>
   </footer>
