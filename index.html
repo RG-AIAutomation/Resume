@@ -1125,6 +1125,616 @@
       .contact-pill { width: 100%; justify-content: center; }
       .tool-grid { grid-template-columns: 1fr; }
     }
+  
+
+    /* --- Services redesign: reference-inspired cards --- */
+    #services {
+      scroll-margin-top: 96px;
+    }
+
+    #services .services-showcase {
+      position: relative;
+      padding: 16px 0 0;
+    }
+
+    #services .services-head {
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    #services .services-head-inner {
+      width: min(920px, 100%);
+      margin: 0 auto;
+    }
+
+    #services .services-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      margin: 0 auto 14px;
+      padding: 0 16px;
+      border: 1px solid rgba(255,79,154,0.28);
+      border-radius: 999px;
+      background: rgba(22, 6, 18, 0.86);
+      color: #ff4f9a;
+      box-shadow: inset 0 0 0 1px rgba(255,79,154,0.06);
+    }
+
+    #services h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      text-transform: none;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+    }
+
+    #services h2 span {
+      color: #ff4f9a;
+    }
+
+    #services .services-subtitle {
+      margin: 12px auto 0;
+      max-width: 720px;
+      color: #aeb5c3;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    #services .showcase-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    #services .ui-card {
+      min-height: 232px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.95fr;
+      gap: 12px;
+      padding: 14px 14px 12px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 88% 0%, rgba(255,79,154,0.10), transparent 25%),
+        radial-gradient(circle at 0% 100%, rgba(83,216,255,0.08), transparent 24%),
+        linear-gradient(180deg, rgba(14,15,26,0.98), rgba(7,8,16,0.98));
+      border: 1px solid rgba(117, 86, 255, 0.28);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 40px rgba(0,0,0,0.34);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    #services .ui-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,79,154,0.42);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03), 0 22px 46px rgba(0,0,0,0.42);
+    }
+
+    #services .service-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    #services .service-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    #services .service-number {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      margin: 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: linear-gradient(180deg, rgba(255,79,154,0.96), rgba(121,44,255,0.96));
+      font-size: 0.84rem;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset;
+    }
+
+    #services .booking .service-number,
+    #services .voice .service-number { background: linear-gradient(180deg, #5a73ff, #612dff); }
+    #services .leadcapture .service-number,
+    #services .sheets .service-number { background: linear-gradient(180deg, #ff9133, #ff4f9a); }
+    #services .scraping .service-number { background: linear-gradient(180deg, #2c84ff, #1cc4ff); }
+    #services .social .service-number { background: linear-gradient(180deg, #0ed17d, #1796ff); }
+    #services .cleanup .service-number { background: linear-gradient(180deg, #8a46ff, #4f69ff); }
+
+    #services .service-card h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.08;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    #services .service-card p {
+      margin: 0;
+      color: #aeb5c3;
+      font-size: 0.86rem;
+      line-height: 1.58;
+      max-width: 260px;
+    }
+
+    #services .service-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    #services .service-icons span {
+      display: inline-grid;
+      place-items: center;
+      min-width: 27px;
+      height: 27px;
+      padding: 0 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.07);
+      color: #fff;
+      font-size: 0.63rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    #services .service-link {
+      margin-top: 10px;
+      color: #ff9a3d;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: none;
+    }
+
+    #services .service-link::after {
+      content: '→';
+      font-size: 0.92rem;
+      transform: translateY(-1px);
+    }
+
+    #services .service-visual {
+      position: relative;
+      min-height: 168px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    #services .service-visual::before,
+    #services .service-visual::after,
+    #services .service-visual span {
+      position: absolute;
+      content: '';
+      box-sizing: border-box;
+    }
+
+    /* chatbot */
+    #services .visual-chatbot .chip {
+      width: 70px;
+      height: 28px;
+      border: 1px solid rgba(255,79,154,0.45);
+      border-radius: 8px;
+      background: rgba(255,20,95,0.10);
+      box-shadow: 0 0 24px rgba(255,79,154,0.16);
+      left: 18px;
+    }
+    #services .visual-chatbot .chip::after {
+      content: '';
+      position: absolute;
+      inset: 8px 14px 8px 10px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(255,79,154,0.9), rgba(255,79,154,0.15));
+    }
+    #services .visual-chatbot .chip.one { top: 18px; left: 38px; width: 68px; }
+    #services .visual-chatbot .chip.two { top: 54px; left: 22px; width: 82px; }
+    #services .visual-chatbot .chip.three { top: 92px; left: 34px; width: 58px; }
+    #services .visual-chatbot .chatbot-face {
+      left: 95px; top: 63px; width: 50px; height: 40px;
+      border: 1px solid rgba(255,79,154,0.65);
+      border-radius: 14px;
+      background: radial-gradient(circle at 50% 35%, rgba(255,255,255,0.12), transparent 45%), rgba(16,12,22,0.96);
+      box-shadow: 0 0 25px rgba(255,79,154,0.22);
+    }
+    #services .visual-chatbot .chatbot-face::before,
+    #services .visual-chatbot .chatbot-face::after {
+      content:''; position:absolute; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: #fff;
+    }
+    #services .visual-chatbot .chatbot-face::before { left: 14px; }
+    #services .visual-chatbot .chatbot-face::after { right: 14px; }
+    #services .visual-chatbot .signal { border: 1px solid rgba(255,79,154,0.35); }
+    #services .visual-chatbot .signal.a { right: 18px; top: 24px; width: 22px; height: 22px; border-radius: 6px; }
+    #services .visual-chatbot .signal.b { right: 28px; bottom: 20px; width: 12px; height: 12px; border-radius: 50%; background: rgba(255,79,154,0.95); box-shadow: 0 0 16px rgba(255,79,154,0.46); }
+    #services .visual-chatbot .signal.c { inset: auto 10px 12px auto; width: 86px; height: 86px; border-left: 1px solid rgba(255,79,154,0.2); border-bottom: 1px solid rgba(255,79,154,0.2); border-radius: 0 0 0 16px; }
+
+    /* booking */
+    #services .visual-booking .calendar-grid {
+      left: 42px; top: 28px; width: 96px; height: 106px;
+      border: 1px solid rgba(109,86,255,0.5);
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(109,86,255,0.18);
+      background:
+        linear-gradient(to right, transparent 0 12px, rgba(105,82,255,0.24) 12px 24px, transparent 24px 36px, rgba(105,82,255,0.24) 36px 48px, transparent 48px 60px, rgba(105,82,255,0.24) 60px 72px, transparent 72px),
+        linear-gradient(to bottom, transparent 0 20px, rgba(105,82,255,0.24) 20px 32px, transparent 32px 44px, rgba(105,82,255,0.24) 44px 56px, transparent 56px 68px, rgba(105,82,255,0.24) 68px 80px, transparent 80px);
+    }
+    #services .visual-booking .calendar-ring { top: 18px; width: 10px; height: 16px; border-radius: 6px; background: #8a6cff; box-shadow: 0 0 12px rgba(138,108,255,0.42); }
+    #services .visual-booking .calendar-ring.left { left: 56px; }
+    #services .visual-booking .calendar-ring.right { left: 98px; }
+    #services .visual-booking .check-badge {
+      right: 20px; bottom: 28px; width: 44px; height: 44px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 30%), linear-gradient(180deg, #6f42ff, #8f58ff); box-shadow: 0 0 20px rgba(111,66,255,0.5);
+    }
+    #services .visual-booking .check-badge::after {
+      content: ''; position:absolute; left: 13px; top: 12px; width: 15px; height: 9px; border-left: 3px solid white; border-bottom: 3px solid white; transform: rotate(-45deg);
+    }
+
+    /* leads */
+    #services .visual-leads .funnel-head {
+      top: 28px; left: 56px; width: 80px; height: 30px; border: 1px solid rgba(255,114,38,0.55); border-radius: 50%; background: rgba(255,102,0,0.08); box-shadow: 0 0 20px rgba(255,114,38,0.18);
+    }
+    #services .visual-leads .funnel-neck {
+      top: 44px; left: 77px; width: 38px; height: 70px; clip-path: polygon(0 0,100% 0,70% 100%,30% 100%); background: linear-gradient(180deg, rgba(255,115,0,0.52), rgba(255,65,120,0.18)); border: 1px solid rgba(255,114,38,0.38);
+    }
+    #services .visual-leads .funnel-base {
+      bottom: 24px; left: 82px; width: 28px; height: 38px; border-radius: 0 0 50% 50%; border: 1px solid rgba(255,114,38,0.5); background: rgba(255,114,38,0.08);
+    }
+    #services .visual-leads .lead-dot { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(180deg, #ff6f61, #ff4f9a); box-shadow: 0 0 16px rgba(255,79,154,0.45); }
+    #services .visual-leads .lead-dot::after { content:''; position:absolute; inset: 6px; border-radius: 50%; background: rgba(255,255,255,0.9); }
+    #services .visual-leads .d1 { top: 12px; left: 54px; }
+    #services .visual-leads .d2 { top: 12px; left: 114px; }
+    #services .visual-leads .d3 { top: 34px; left: 84px; }
+    #services .visual-leads .d4 { top: 2px; left: 84px; }
+
+    /* scraping */
+    #services .visual-scraping .list-panel {
+      left: 22px; top: 22px; width: 94px; height: 112px; border: 1px solid rgba(43,128,255,0.5); border-radius: 12px; background: rgba(10,22,44,0.7); box-shadow: 0 0 20px rgba(43,128,255,0.18);
+    }
+    #services .visual-scraping .list-panel::before { content:''; position:absolute; left: 16px; right: 16px; top: 22px; height: 2px; background: #4bc3ff; box-shadow: 0 18px 0 #4bc3ff, 0 36px 0 #4bc3ff, 0 54px 0 #4bc3ff; }
+    #services .visual-scraping .list-panel::after { content:''; position:absolute; left: 8px; top: 17px; width: 8px; height: 8px; border-radius: 50%; background: #4bc3ff; box-shadow: 0 18px 0 #4bc3ff, 0 36px 0 #4bc3ff, 0 54px 0 #4bc3ff; }
+    #services .visual-scraping .magnify {
+      right: 24px; bottom: 22px; width: 58px; height: 58px; border: 5px solid #35a1ff; border-radius: 50%; box-shadow: 0 0 20px rgba(53,161,255,0.4);
+    }
+    #services .visual-scraping .magnify::after { content:''; position:absolute; right: -12px; bottom: -22px; width: 8px; height: 34px; border-radius: 8px; background: #35a1ff; transform: rotate(-43deg); transform-origin: top center; }
+
+    /* routing */
+    #services .visual-routing .route-card {
+      left: 24px; width: 76px; height: 26px; border-radius: 8px; border: 1px solid rgba(255,79,154,0.45); background: rgba(255,79,154,0.12);
+    }
+    #services .visual-routing .route-card::after { content:''; position:absolute; left: 8px; right: 18px; top: 9px; height: 8px; border-radius: 8px; background: linear-gradient(90deg, rgba(255,79,154,0.95), rgba(255,79,154,0.1)); }
+    #services .visual-routing .rc1 { top: 18px; }
+    #services .visual-routing .rc2 { top: 58px; }
+    #services .visual-routing .rc3 { top: 98px; }
+    #services .visual-routing .route-avatar { right: 18px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); }
+    #services .visual-routing .route-avatar::before { content:''; position:absolute; left: 8px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.85); }
+    #services .visual-routing .route-avatar::after { content:''; position:absolute; left: 5px; bottom: 4px; width: 16px; height: 8px; border-radius: 8px 8px 4px 4px; background: rgba(255,255,255,0.85); }
+    #services .visual-routing .a1 { top: 18px; }
+    #services .visual-routing .a2 { top: 58px; }
+    #services .visual-routing .a3 { top: 98px; }
+    #services .visual-routing .route-mail { left: 94px; bottom: 24px; width: 34px; height: 24px; border-radius: 6px; border: 1px solid rgba(255,79,154,0.5); background: rgba(255,79,154,0.12); }
+    #services .visual-routing .route-mail::after { content:''; position:absolute; left: 4px; right: 4px; top: 4px; height: 10px; border-left: 2px solid rgba(255,255,255,0.9); border-bottom: 2px solid rgba(255,255,255,0.9); border-right: 2px solid rgba(255,255,255,0.9); transform: skewY(-20deg); border-radius: 1px; }
+
+    /* social */
+    #services .visual-social .paper-plane {
+      left: 44px; top: 54px; width: 0; height: 0; border-top: 26px solid transparent; border-bottom: 16px solid transparent; border-left: 70px solid #37d598; filter: drop-shadow(0 0 16px rgba(55,213,152,0.28)); transform: rotate(-18deg);
+    }
+    #services .visual-social .paper-plane::after { content:''; position:absolute; left: -68px; top: -10px; width: 54px; height: 2px; background: linear-gradient(90deg, rgba(55,213,152,0.1), rgba(55,213,152,0.9)); transform: rotate(18deg); }
+    #services .visual-social .social-badge {
+      width: 26px; height: 26px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.08);
+    }
+    #services .visual-social .social-badge::after { content:''; position:absolute; inset: 6px; border-radius: 4px; background: rgba(255,255,255,0.9); }
+    #services .visual-social .s1 { right: 26px; top: 18px; }
+    #services .visual-social .s2 { right: 62px; top: 52px; }
+    #services .visual-social .s3 { right: 22px; top: 88px; }
+    #services .visual-social .s4 { right: 70px; top: 112px; }
+
+    /* sheets */
+    #services .visual-sheets .sheet-box {
+      left: 36px; top: 24px; width: 52px; height: 70px; border-radius: 12px; background: linear-gradient(180deg, #2ebd6d, #1b8f53); box-shadow: 0 0 20px rgba(46,189,109,0.28);
+    }
+    #services .visual-sheets .sheet-box::before { content:''; position:absolute; inset: 16px 12px; background: linear-gradient(90deg, transparent 0 10px, rgba(255,255,255,0.9) 10px 12px, transparent 12px), linear-gradient(transparent 0 10px, rgba(255,255,255,0.9) 10px 12px, transparent 12px); }
+    #services .visual-sheets .mail-box {
+      left: 96px; top: 66px; width: 62px; height: 42px; border-radius: 10px; background: linear-gradient(180deg, #f7b539, #f08b19); box-shadow: 0 0 20px rgba(240,139,25,0.28);
+    }
+    #services .visual-sheets .mail-box::after { content:''; position:absolute; left: 8px; right: 8px; top: 8px; height: 14px; border-left: 2px solid rgba(255,255,255,0.92); border-bottom: 2px solid rgba(255,255,255,0.92); border-right: 2px solid rgba(255,255,255,0.92); transform: skewY(-17deg); }
+    #services .visual-sheets .orbit { left: 34px; bottom: 16px; width: 122px; height: 26px; border-radius: 50%; border: 1px solid rgba(240,139,25,0.25); }
+
+    /* voice */
+    #services .visual-voice .voice-rings {
+      left: 46px; top: 44px; width: 78px; height: 78px; border-radius: 50%; border: 1px solid rgba(0,183,255,0.48); box-shadow: 0 0 0 14px rgba(0,183,255,0.08), 0 0 0 28px rgba(0,183,255,0.05);
+    }
+    #services .visual-voice .mic-core {
+      left: 71px; top: 62px; width: 28px; height: 44px; border-radius: 16px; background: linear-gradient(180deg, #11b6ff, #0f6cff); box-shadow: 0 0 20px rgba(17,182,255,0.32);
+    }
+    #services .visual-voice .mic-core::after { content:''; position:absolute; left: 10px; bottom: -12px; width: 8px; height: 18px; border-radius: 6px; background: #0f6cff; box-shadow: -14px 10px 0 -3px rgba(17,182,255,0.9), 14px 10px 0 -3px rgba(17,182,255,0.9); }
+    #services .visual-voice .wave { height: 16px; border-top: 2px solid rgba(17,182,255,0.75); border-radius: 999px; }
+    #services .visual-voice .w1 { left: 18px; top: 28px; width: 36px; }
+    #services .visual-voice .w2 { right: 18px; top: 28px; width: 36px; }
+    #services .visual-voice .w3 { left: 44px; top: 18px; width: 80px; }
+
+    /* cleanup */
+    #services .visual-cleanup .doc-panel {
+      left: 26px; top: 34px; width: 82px; height: 88px; border-radius: 12px; border: 1px solid rgba(124,78,255,0.5); background: rgba(104,64,255,0.10); box-shadow: 0 0 20px rgba(124,78,255,0.18);
+    }
+    #services .visual-cleanup .doc-panel::before { content:''; position:absolute; left: 14px; right: 16px; top: 18px; height: 2px; background: #7d56ff; box-shadow: 0 14px 0 #7d56ff, 0 28px 0 #7d56ff, 0 42px 0 #7d56ff; }
+    #services .visual-cleanup .doc-panel::after { content:''; position:absolute; left: 14px; top: 14px; width: 8px; height: 8px; border-radius: 2px; background: #27d37e; box-shadow: 0 14px 0 #27d37e, 0 28px 0 #27d37e, 0 42px 0 #27d37e; }
+    #services .visual-cleanup .flow-box {
+      width: 34px; height: 22px; border-radius: 7px; border: 1px solid rgba(124,78,255,0.44); background: rgba(124,78,255,0.12);
+    }
+    #services .visual-cleanup .flow-box::after { content:''; position:absolute; left: 8px; right: 8px; top: 8px; height: 6px; border-radius: 6px; background: linear-gradient(90deg, rgba(124,78,255,0.95), rgba(124,78,255,0.12)); }
+    #services .visual-cleanup .b1 { right: 24px; top: 34px; }
+    #services .visual-cleanup .b2 { right: 56px; top: 72px; }
+    #services .visual-cleanup .b3 { right: 24px; top: 110px; }
+
+    #services .services-benefits {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      margin-top: 12px;
+      border: 1px solid rgba(117, 86, 255, 0.24);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(12,13,22,0.98), rgba(7,8,16,0.98));
+      overflow: hidden;
+    }
+
+    #services .benefit-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 72px;
+      padding: 16px 18px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    #services .benefit-card:last-child { border-right: 0; }
+
+    #services .benefit-icon {
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    #services .benefit-card strong {
+      display: block;
+      font-size: 0.96rem;
+      line-height: 1.1;
+    }
+
+    #services .benefit-card p {
+      margin: 4px 0 0;
+      color: #aeb5c3;
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1100px) {
+      #services .showcase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #services .services-benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #services .benefit-card:nth-child(2) { border-right: 0; }
+    }
+
+    @media (max-width: 900px) {
+      #services .showcase-grid { grid-template-columns: 1fr; }
+      #services .ui-card { grid-template-columns: 1fr; min-height: auto; }
+      #services .service-card p { max-width: none; }
+      #services .service-visual { min-height: 160px; }
+    }
+
+    @media (max-width: 640px) {
+      #services .services-benefits { grid-template-columns: 1fr; }
+      #services .benefit-card { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      #services .benefit-card:last-child { border-bottom: 0; }
+    }
+
+  
+
+    /* --- Services text-only cleanup --- */
+    #services .text-only-services .ui-card {
+      grid-template-columns: 1fr;
+      min-height: 238px;
+      padding: 18px;
+    }
+
+    #services .text-only-services .service-visual,
+    #services .text-only-services .service-icons {
+      display: none;
+    }
+
+    #services .text-only-services .service-copy {
+      height: 100%;
+    }
+
+    #services .text-only-services .service-top {
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    #services .text-only-services .service-card h3 {
+      font-size: 1.08rem;
+      line-height: 1.12;
+      max-width: 260px;
+    }
+
+    #services .text-only-services .service-card p {
+      max-width: 100%;
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    #services .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    #services .service-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 25px;
+      padding: 0 9px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.055);
+      color: #dce3ef;
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    #services .text-only-services .service-link {
+      margin-top: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      #services .text-only-services .ui-card {
+        min-height: 225px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      #services .text-only-services .ui-card {
+        min-height: auto;
+      }
+    }
+
+  
+
+    /* --- Tools section logos update --- */
+    #tools .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+    }
+
+    #tools .tool-logo {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    #tools .tool-chip .tool-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+    }
+
+    #tools .tool-logo img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display: block;
+    }
+
+    #tools .tool-chip .tool-logo img {
+      width: 18px;
+      height: 18px;
+    }
+
+    #tools .fallback-logo {
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    #tools .tool-chip span:last-child {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #eef2f7;
+      white-space: nowrap;
+    }
+
+    #tools .tool-grid-logos {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    #tools .tool-card {
+      align-items: flex-start;
+      gap: 10px;
+      padding: 16px 14px;
+    }
+
+    #tools .tool-card strong {
+      margin-top: 2px;
+    }
+
+    #tools .tool-card span:last-child {
+      line-height: 1.4;
+    }
+
+    @media (max-width: 980px) {
+      #tools .tool-grid-logos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      #tools .tool-grid-logos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+  
+
+    /* Guaranteed visible badges for tools without reliable public logo URLs */
+    #tools .logo-openai,
+    #tools .logo-openrouter,
+    #tools .logo-ghl {
+      color: #fff;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+      text-align: center;
+      line-height: 1;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.14), transparent 34%),
+        linear-gradient(135deg, rgba(131,56,236,0.95), rgba(255,79,154,0.78));
+      box-shadow: 0 0 18px rgba(131,56,236,0.22), inset 0 1px 0 rgba(255,255,255,0.18);
+    }
+
+    #tools .logo-openai {
+      font-size: 1.45rem;
+      font-family: Georgia, serif;
+    }
+
+    #tools .tool-chip .logo-openai {
+      font-size: 1.05rem;
+    }
+
+    #tools .logo-openrouter,
+    #tools .logo-ghl {
+      font-size: 0.78rem;
+    }
+
+    #tools .tool-chip .logo-openrouter,
+    #tools .tool-chip .logo-ghl {
+      font-size: 0.62rem;
+    }
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -1187,58 +1797,176 @@
     </section>
 
     <section id="services" class="section shell reveal">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Services</p>
-          <h2>Automation skills I can build for you.</h2>
+      <div class="services-showcase">
+        <div class="section-head services-head">
+          <div class="services-head-inner">
+            <p class="kicker services-kicker">Services</p>
+            <h2>Automation Solutions That <span>Save Time &amp; Drive Results</span></h2>
+            <p class="services-subtitle">n8n-powered workflows to automate tasks, connect systems, and grow your business.</p>
+          </div>
         </div>
-      </div>
-      <div class="service-grid">
-        <article class="service-card">
-          <span class="service-number">01</span>
-          <h3>AI Chat Bot Automation</h3>
-          <p>Build Messenger, Telegram, and WhatsApp chatbot flows that answer common questions, collect customer details, and send leads to the right place.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">02</span>
-          <h3>Booking & Appointment Systems</h3>
-          <p>Create appointment workflows that capture requests, organize schedules, send email or chat confirmations, and log bookings for follow-up.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">03</span>
-          <h3>Lead Capture Workflows</h3>
-          <p>Connect forms, webhooks, Facebook leads, Gmail, Telegram, Google Sheets, and Calendar so every new lead is recorded and routed automatically.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">04</span>
-          <h3>Lead Data Scraping</h3>
-          <p>Collect business names, phone numbers, websites, and lead details from online sources, then organize the data into clean Excel files.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">05</span>
-          <h3>Ticket Routing Automation</h3>
-          <p>Use AI classification to read customer messages, detect the request type, notify the correct team, and send automatic customer replies.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">06</span>
-          <h3>Social Media Posting Flows</h3>
-          <p>Automate content drafting, Telegram approval alerts, scheduled posting, and Facebook Page publishing for consistent social media activity.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">07</span>
-          <h3>Google Sheets & Email Automation</h3>
-          <p>Turn manual tracking into organized Sheets, email notifications, status updates, reminders, and simple dashboards for daily operations.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">08</span>
-          <h3>AI Voice Agent Concepts</h3>
-          <p>Design voice-agent workflows for lead qualification, appointment setting, call routing, and customer follow-up logic.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-number">09</span>
-          <h3>Workflow Cleanup & Documentation</h3>
-          <p>Map repetitive tasks, simplify messy handoffs, document the process, and build beginner-friendly automation that teams can understand.</p>
-        </article>
+
+        <div class="service-grid showcase-grid text-only-services">
+          <article class="service-card ui-card chatbot">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">01</span>
+                <h3>AI Chat Bot Automation</h3>
+              </div>
+              <p>Build chatbot flows that answer common questions, collect customer details, qualify leads, and send inquiries to the right place.</p>
+              <div class="service-tags">
+                <span>Messenger</span>
+                <span>Telegram</span>
+                <span>WhatsApp</span>
+                <span>Customer FAQs</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card booking">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">02</span>
+                <h3>Booking &amp; Appointment Systems</h3>
+              </div>
+              <p>Create booking workflows that capture appointment requests, organize schedules, send confirmations, and log every booking for follow-up.</p>
+              <div class="service-tags">
+                <span>Google Calendar</span>
+                <span>Gmail</span>
+                <span>Google Sheets</span>
+                <span>Reminders</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card leadcapture">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">03</span>
+                <h3>Lead Capture Workflows</h3>
+              </div>
+              <p>Connect forms, ads, websites, webhooks, email, Sheets, and team alerts so every new lead is recorded and routed automatically.</p>
+              <div class="service-tags">
+                <span>Facebook Leads</span>
+                <span>Web Forms</span>
+                <span>Gmail</span>
+                <span>CRM</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card scraping">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">04</span>
+                <h3>Lead Data Scraping</h3>
+              </div>
+              <p>Collect business names, emails, phone numbers, websites, and contact details from online sources, then organize them into clean files.</p>
+              <div class="service-tags">
+                <span>Web Research</span>
+                <span>Google Maps</span>
+                <span>Excel</span>
+                <span>CSV</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card routing">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">05</span>
+                <h3>Ticket Routing Automation</h3>
+              </div>
+              <p>Use AI classification to read customer messages, detect the request type, notify the correct team, and send automatic replies.</p>
+              <div class="service-tags">
+                <span>Email</span>
+                <span>Support Tickets</span>
+                <span>AI Classification</span>
+                <span>Team Alerts</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card social">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">06</span>
+                <h3>Social Media Posting Flows</h3>
+              </div>
+              <p>Automate content drafting, approval alerts, scheduled posting, and publishing so social media stays consistent without manual tracking.</p>
+              <div class="service-tags">
+                <span>Facebook Page</span>
+                <span>Telegram Approval</span>
+                <span>Content Calendar</span>
+                <span>Scheduling</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card sheets">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">07</span>
+                <h3>Google Sheets &amp; Email Automation</h3>
+              </div>
+              <p>Turn manual tracking into organized Sheets, email notifications, status updates, reminders, and simple dashboards for daily operations.</p>
+              <div class="service-tags">
+                <span>Google Sheets</span>
+                <span>Gmail</span>
+                <span>Reports</span>
+                <span>Status Updates</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card voice">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">08</span>
+                <h3>AI Voice Agent Concepts</h3>
+              </div>
+              <p>Design voice-agent workflow concepts for lead qualification, appointment setting, call routing, and customer follow-up logic.</p>
+              <div class="service-tags">
+                <span>Voice Agent</span>
+                <span>Call Routing</span>
+                <span>Lead Qualification</span>
+                <span>Follow-up</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+
+          <article class="service-card ui-card cleanup">
+            <div class="service-copy">
+              <div class="service-top">
+                <span class="service-number">09</span>
+                <h3>Workflow Cleanup &amp; Documentation</h3>
+              </div>
+              <p>Map repetitive tasks, simplify messy handoffs, document the process, and build beginner-friendly automations teams can understand.</p>
+              <div class="service-tags">
+                <span>Documentation</span>
+                <span>Process Mapping</span>
+                <span>Workflow Fixes</span>
+                <span>Handoff Guides</span>
+              </div>
+              <a class="service-link" href="#contact">View details</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="services-benefits">
+          <div class="benefit-card"><span class="benefit-icon">⏱</span><div><strong>Save Time</strong><p>Automate repetitive tasks and focus on what really matters.</p></div></div>
+          <div class="benefit-card"><span class="benefit-icon">📈</span><div><strong>Increase Productivity</strong><p>Streamline workflows and get more done in less time.</p></div></div>
+          <div class="benefit-card"><span class="benefit-icon">🛡</span><div><strong>Reduce Errors</strong><p>Minimize manual work and improve accuracy.</p></div></div>
+          <div class="benefit-card"><span class="benefit-icon">🚀</span><div><strong>Scale Effortlessly</strong><p>Build systems that grow with your business.</p></div></div>
+        </div>
       </div>
     </section>
 
@@ -1249,72 +1977,82 @@
           <h2>Automation tools I can use.</h2>
         </div>
       </div>
+
       <div class="tool-marquee" aria-label="Moving automation tool logos">
         <div class="tool-track">
-          <div class="tool-chip"><span class="tool-fallback">n8n</span>n8n</div>
-          <div class="tool-chip"><span class="tool-fallback">TG</span>Telegram</div>
-          <div class="tool-chip"><span class="tool-fallback">WA</span>WhatsApp</div>
-          <div class="tool-chip"><span class="tool-fallback">FB</span>Facebook</div>
-          <div class="tool-chip"><span class="tool-fallback">GM</span>Gmail</div>
-          <div class="tool-chip"><span class="tool-fallback">GS</span>Sheets</div>
-          <div class="tool-chip"><span class="tool-fallback">GC</span>Calendar</div>
-          <div class="tool-chip"><span class="tool-fallback">AI</span>OpenAI</div>
-          <div class="tool-chip"><span class="tool-fallback">OR</span>OpenRouter</div>
-          <div class="tool-chip"><span class="tool-fallback">API</span>Postman</div>
-          <div class="tool-chip"><span class="tool-fallback">AT</span>Airtable</div>
-          <div class="tool-chip"><span class="tool-fallback">{ }</span>JSON</div>
-          <div class="tool-chip"><span class="tool-fallback logo-wide">GHL</span>GoHighLevel</div>
-          <div class="tool-chip"><span class="tool-fallback">n8n</span>n8n</div>
-          <div class="tool-chip"><span class="tool-fallback">TG</span>Telegram</div>
-          <div class="tool-chip"><span class="tool-fallback">WA</span>WhatsApp</div>
-          <div class="tool-chip"><span class="tool-fallback">FB</span>Facebook</div>
-          <div class="tool-chip"><span class="tool-fallback">GM</span>Gmail</div>
-          <div class="tool-chip"><span class="tool-fallback">GS</span>Sheets</div>
-          <div class="tool-chip"><span class="tool-fallback">GC</span>Calendar</div>
-          <div class="tool-chip"><span class="tool-fallback">AI</span>OpenAI</div>
-          <div class="tool-chip"><span class="tool-fallback">OR</span>OpenRouter</div>
-          <div class="tool-chip"><span class="tool-fallback">API</span>Postman</div>
-          <div class="tool-chip"><span class="tool-fallback">AT</span>Airtable</div>
-          <div class="tool-chip"><span class="tool-fallback">{ }</span>JSON</div>
-          <div class="tool-chip"><span class="tool-fallback logo-wide">GHL</span>GoHighLevel</div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo"></span><span>n8n</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo"></span><span>Telegram</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo"></span><span>WhatsApp</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/messenger/00B2FF" alt="Messenger logo"></span><span>Messenger</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook logo"></span><span>Facebook</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo"></span><span>Gmail</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo"></span><span>Google Sheets</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="Google Calendar logo"></span><span>Google Calendar</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googledrive/34A853" alt="Google Drive logo"></span><span>Google Drive</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googleforms/7248B9" alt="Google Forms logo"></span><span>Google Forms</span></div>
+          <div class="tool-chip"><span class="tool-logo logo-openai" aria-label="OpenAI logo">◎</span><span>OpenAI</span></div>
+          <div class="tool-chip"><span class="tool-logo logo-openrouter" aria-label="OpenRouter logo">OR</span><span>OpenRouter</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman logo"></span><span>Postman</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/airtable/18BFFF" alt="Airtable logo"></span><span>Airtable</span></div>
+          <div class="tool-chip"><span class="tool-logo logo-ghl" aria-label="GoHighLevel logo">GHL</span><span>GoHighLevel</span></div>
+          <div class="tool-chip"><span class="tool-logo fallback-logo">{ }</span><span>JSON</span></div>
+
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo"></span><span>n8n</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo"></span><span>Telegram</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo"></span><span>WhatsApp</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/messenger/00B2FF" alt="Messenger logo"></span><span>Messenger</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook logo"></span><span>Facebook</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo"></span><span>Gmail</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo"></span><span>Google Sheets</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="Google Calendar logo"></span><span>Google Calendar</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googledrive/34A853" alt="Google Drive logo"></span><span>Google Drive</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googleforms/7248B9" alt="Google Forms logo"></span><span>Google Forms</span></div>
+          <div class="tool-chip"><span class="tool-logo logo-openai" aria-label="OpenAI logo">◎</span><span>OpenAI</span></div>
+          <div class="tool-chip"><span class="tool-logo logo-openrouter" aria-label="OpenRouter logo">OR</span><span>OpenRouter</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman logo"></span><span>Postman</span></div>
+          <div class="tool-chip"><span class="tool-logo"><img src="https://cdn.simpleicons.org/airtable/18BFFF" alt="Airtable logo"></span><span>Airtable</span></div>
+          <div class="tool-chip"><span class="tool-logo logo-ghl" aria-label="GoHighLevel logo">GHL</span><span>GoHighLevel</span></div>
+          <div class="tool-chip"><span class="tool-logo fallback-logo">{ }</span><span>JSON</span></div>
         </div>
       </div>
 
       <div class="tools-layout">
         <div class="panel">
           <p class="muted">
-            These are the platforms and technical pieces I use for automation work: n8n workflows, GoHighLevel CRM/funnels, chatbot channels, lead capture, API calls, webhooks, Google workspace tools, AI routing, API testing, and data logging.
+            These are the platforms and technical pieces I use for automation work: n8n workflows, GoHighLevel CRM and funnels, chatbot channels, lead capture, API calls, webhooks, Google Workspace tools, AI routing, API testing, and data logging.
           </p>
           <div class="integration-list">
-            <div class="integration-item"><strong>API Integration</strong><span>Connect apps through HTTP requests, webhooks, JSON payloads, triggers, and routing logic.</span></div>
-            <div class="integration-item"><strong>Lead & Customer Data</strong><span>Capture form/chat/Facebook leads and organize them into Google Sheets, email, Telegram, or calendar workflows.</span></div>
-            <div class="integration-item"><strong>AI Workflow Logic</strong><span>Use AI classification, reply drafting, lead scoring, ticket routing, and automated follow-up messages.</span></div>
-            <div class="integration-item"><strong>GoHighLevel CRM & Funnels</strong><span>Support CRM setup, lead intake, funnel handoffs, appointment flows, and campaign follow-up systems.</span></div>
-            <div class="integration-item"><strong>AI Models & API Testing</strong><span>Connect OpenRouter or AI APIs, test endpoints in Postman, and prepare clean JSON payloads for automation flows.</span></div>
-            <div class="integration-item"><strong>Customer Support Automation</strong><span>Build auto-replies, ticket logs, follow-up reminders, and customer handoff flows based on phone, email, chat, and social media support experience.</span></div>
+            <div class="integration-item"><strong>Workflow Automation</strong><span>Build automations in n8n using triggers, conditions, routing logic, loops, and connected actions.</span></div>
+            <div class="integration-item"><strong>Chat & Messaging Tools</strong><span>Work with Telegram, WhatsApp, Messenger, and Facebook for chatbot flows, lead routing, and customer follow-up.</span></div>
+            <div class="integration-item"><strong>Google Workspace Stack</strong><span>Use Gmail, Google Sheets, Google Calendar, Google Drive, and Google Forms for intake, scheduling, tracking, and reports.</span></div>
+            <div class="integration-item"><strong>AI & API Connections</strong><span>Connect OpenAI or OpenRouter models, prepare JSON payloads, and test API endpoints with Postman.</span></div>
+            <div class="integration-item"><strong>CRM & Database Tools</strong><span>Support GoHighLevel and Airtable for CRM organization, lead database management, and workflow handoff systems.</span></div>
+            <div class="integration-item"><strong>Automation Support Work</strong><span>Handle webhooks, notifications, logging, follow-up reminders, and operational automations for daily business tasks.</span></div>
           </div>
         </div>
         <div class="panel">
-          <div class="tool-grid">
-            <div class="tool-card"><span class="tool-fallback">n8n</span><strong>n8n</strong><span>workflow automation</span></div>
-            <div class="tool-card"><span class="tool-fallback">TG</span><strong>Telegram</strong><span>bot notifications</span></div>
-            <div class="tool-card"><span class="tool-fallback">WA</span><strong>WhatsApp</strong><span>chat automation</span></div>
-            <div class="tool-card"><span class="tool-fallback">FB</span><strong>Facebook</strong><span>leads and posting</span></div>
-            <div class="tool-card"><span class="tool-fallback">GM</span><strong>Gmail</strong><span>email workflows</span></div>
-            <div class="tool-card"><span class="tool-fallback">GS</span><strong>Sheets</strong><span>data logging</span></div>
-            <div class="tool-card"><span class="tool-fallback">GC</span><strong>Calendar</strong><span>booking reminders</span></div>
-            <div class="tool-card"><span class="tool-fallback">AI</span><strong>AI APIs</strong><span>classification and replies</span></div>
-            <div class="tool-card"><span class="tool-fallback">OR</span><strong>OpenRouter</strong><span>AI model routing</span></div>
-            <div class="tool-card"><span class="tool-fallback">API</span><strong>Postman</strong><span>API testing</span></div>
-            <div class="tool-card"><span class="tool-fallback">{ }</span><strong>JSON</strong><span>payload handling</span></div>
-            <div class="tool-card"><span class="tool-fallback">GD</span><strong>Drive</strong><span>file handoffs</span></div>
-            <div class="tool-card"><span class="tool-fallback">GF</span><strong>Forms</strong><span>lead intake</span></div>
-            <div class="tool-card"><span class="tool-fallback logo-wide">GHL</span><strong>GHL / HighLevel</strong><span>CRM and funnels</span></div>
-            <div class="tool-card"><span class="tool-fallback">AT</span><strong>Airtable</strong><span>lead database</span></div>
+          <div class="tool-grid tool-grid-logos">
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo"></span><strong>n8n</strong><span>workflow automation</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo"></span><strong>Telegram</strong><span>bot notifications</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp logo"></span><strong>WhatsApp</strong><span>chat automation</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/messenger/00B2FF" alt="Messenger logo"></span><strong>Messenger</strong><span>messaging flows</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook logo"></span><strong>Facebook</strong><span>leads and posting</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo"></span><strong>Gmail</strong><span>email workflows</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo"></span><strong>Google Sheets</strong><span>data logging</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="Google Calendar logo"></span><strong>Google Calendar</strong><span>booking reminders</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googledrive/34A853" alt="Google Drive logo"></span><strong>Google Drive</strong><span>file handoffs</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/googleforms/7248B9" alt="Google Forms logo"></span><strong>Google Forms</strong><span>lead intake</span></div>
+            <div class="tool-card"><span class="tool-logo logo-openai" aria-label="OpenAI logo">◎</span><strong>OpenAI</strong><span>AI logic</span></div>
+            <div class="tool-card"><span class="tool-logo logo-openrouter" aria-label="OpenRouter logo">OR</span><strong>OpenRouter</strong><span>model routing</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/postman/FF6C37" alt="Postman logo"></span><strong>Postman</strong><span>API testing</span></div>
+            <div class="tool-card"><span class="tool-logo"><img src="https://cdn.simpleicons.org/airtable/18BFFF" alt="Airtable logo"></span><strong>Airtable</strong><span>lead database</span></div>
+            <div class="tool-card"><span class="tool-logo logo-ghl" aria-label="GoHighLevel logo">GHL</span><strong>GoHighLevel</strong><span>CRM and funnels</span></div>
+            <div class="tool-card"><span class="tool-logo fallback-logo">{ }</span><strong>JSON</strong><span>payload handling</span></div>
           </div>
         </div>
       </div>
     </section>
+
 
     <section id="projects" class="section shell reveal">
       <div class="section-head">
