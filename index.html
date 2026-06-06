@@ -1796,39 +1796,39 @@
 
 
 
-    /* --- Global black + red-orange portfolio theme override --- */
+    /* --- Global 4-color palette override: #020403 #5F2E1B #1A2324 #141413 --- */
     :root {
-      --bg: #050505;
-      --text: #f3f3ee;
-      --muted: #b8b2aa;
-      --soft: #7e7770;
-      --line: rgba(255, 42, 0, 0.28);
-      --panel: rgba(255, 255, 255, 0.035);
-      --purple: #ff2a00;
-      --pink: #ff2a00;
-      --orange: #ff3b00;
-      --cyan: #f3f3ee;
+      --bg: #020403;
+      --text: #f2efe8;
+      --muted: #c9c0b4;
+      --soft: #98867a;
+      --line: rgba(95, 46, 27, 0.30);
+      --panel: rgba(255, 255, 255, 0.03);
+      --purple: #5F2E1B;
+      --pink: #5F2E1B;
+      --orange: #5F2E1B;
+      --cyan: #c9c0b4;
     }
 
     body {
       color: var(--text) !important;
-      background: #050505 !important;
+      background: #020403 !important;
     }
 
     body::before {
       background:
-        linear-gradient(90deg, rgba(255,42,0,0.88) 0%, rgba(255,42,0,0.88) 3.5%, transparent 3.5%),
-        radial-gradient(circle at 14% 18%, rgba(255,42,0,0.20), transparent 22%),
-        radial-gradient(circle at 84% 18%, rgba(255,42,0,0.16), transparent 20%),
-        radial-gradient(circle at 18% 78%, rgba(255,42,0,0.13), transparent 24%),
-        linear-gradient(180deg, #111111 0%, #050505 42%, #050505 100%) !important;
+        radial-gradient(circle at 16% 14%, rgba(95, 46, 27, 0.18), transparent 24%),
+        radial-gradient(circle at 84% 16%, rgba(95, 46, 27, 0.14), transparent 22%),
+        radial-gradient(circle at 20% 78%, rgba(26, 35, 36, 0.45), transparent 24%),
+        radial-gradient(circle at 82% 80%, rgba(20, 20, 19, 0.55), transparent 22%),
+        linear-gradient(180deg, #141413 0%, #020403 42%, #020403 100%) !important;
     }
 
     body::after {
       opacity: 0.10 !important;
       background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,42,0,0.07) 1px, transparent 1px) !important;
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(95,46,27,0.08) 1px, transparent 1px) !important;
     }
 
     .brand,
@@ -1844,13 +1844,13 @@
     .top-contact,
     .nav a:hover,
     strong {
-      color: #f3f3ee !important;
+      color: #f2efe8 !important;
     }
 
     p, li, .muted, .service-card p, .benefit-card p, .integration-item span,
     .services-subtitle, .nav a, .tool-card span, .tool-chip span:last-child,
     .contact-card span, .contact-card a, .service-tags span {
-      color: #b8b2aa !important;
+      color: #c9c0b4 !important;
     }
 
     .kicker,
@@ -1867,13 +1867,13 @@
     .contact-note,
     .highlight,
     .tool-card em {
-      color: #ff2a00 !important;
+      color: #b36c4c !important;
     }
 
     .topbar {
-      border-color: rgba(255, 42, 0, 0.34) !important;
-      background: rgba(5, 5, 5, 0.84) !important;
-      box-shadow: 0 0 28px rgba(255, 42, 0, 0.14) !important;
+      border-color: rgba(95, 46, 27, 0.34) !important;
+      background: rgba(2, 4, 3, 0.86) !important;
+      box-shadow: 0 0 28px rgba(95, 46, 27, 0.12) !important;
     }
 
     .top-contact,
@@ -1883,10 +1883,10 @@
     .download-btn,
     .resume-btn,
     .chip-active {
-      background: linear-gradient(90deg, #cc2100, #ff2a00, #ff5a1f) !important;
-      border-color: rgba(255,255,255,0.16) !important;
-      color: #ffffff !important;
-      box-shadow: 0 0 24px rgba(255, 42, 0, 0.28) !important;
+      background: linear-gradient(90deg, #5F2E1B, #7b4128, #9a5537) !important;
+      border-color: rgba(255,255,255,0.14) !important;
+      color: #f2efe8 !important;
+      box-shadow: 0 0 24px rgba(95, 46, 27, 0.25) !important;
     }
 
     .panel,
@@ -1903,8 +1903,8 @@
     .tool-logo,
     .contact-box,
     .info-card {
-      border-color: rgba(255, 42, 0, 0.24) !important;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 34px rgba(0,0,0,0.42) !important;
+      border-color: rgba(95, 46, 27, 0.24) !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 34px rgba(0,0,0,0.34) !important;
     }
 
     .panel,
@@ -1921,9 +1921,9 @@
     .contact-box,
     .info-card {
       background:
-        radial-gradient(circle at 88% 0%, rgba(255,42,0,0.13), transparent 24%),
-        radial-gradient(circle at 0% 100%, rgba(255,255,255,0.035), transparent 24%),
-        linear-gradient(180deg, rgba(17,17,17,0.97), rgba(5,5,5,0.98)) !important;
+        radial-gradient(circle at 88% 0%, rgba(95,46,27,0.13), transparent 24%),
+        radial-gradient(circle at 0% 100%, rgba(26,35,36,0.16), transparent 28%),
+        linear-gradient(180deg, rgba(26,35,36,0.96), rgba(20,20,19,0.98)) !important;
     }
 
     .service-number,
@@ -1932,10 +1932,10 @@
     .count-badge,
     .social-pill,
     .metric-icon {
-      background: linear-gradient(180deg, #ff2a00, #ff5a1f) !important;
-      color: #ffffff !important;
-      border-color: rgba(255,255,255,0.15) !important;
-      box-shadow: 0 0 18px rgba(255, 42, 0, 0.28) !important;
+      background: linear-gradient(180deg, #5F2E1B, #7b4128) !important;
+      color: #f2efe8 !important;
+      border-color: rgba(255,255,255,0.14) !important;
+      box-shadow: 0 0 18px rgba(95, 46, 27, 0.24) !important;
     }
 
     .service-tags span,
@@ -1945,26 +1945,26 @@
     .tool-logo,
     .kicker,
     .services-kicker {
-      border-color: rgba(255, 42, 0, 0.28) !important;
-      background-color: rgba(255,42,0,0.045) !important;
+      border-color: rgba(95, 46, 27, 0.28) !important;
+      background-color: rgba(255,255,255,0.035) !important;
     }
 
     .tool-marquee .tool-chip,
     .service-tags span,
     .service-icons span {
-      color: #f3f3ee !important;
+      color: #f2efe8 !important;
     }
 
     .service-link::after,
     .project-link::after {
-      color: #ff2a00 !important;
+      color: #b36c4c !important;
     }
 
     #services .service-visual,
     #services .service-visual::before,
     #services .service-visual::after,
     #services .service-visual span {
-      filter: hue-rotate(330deg) saturate(1.35) brightness(0.88);
+      filter: sepia(0.55) hue-rotate(330deg) saturate(0.55) brightness(0.72);
     }
 
     .contact .kicker,
@@ -1974,8 +1974,8 @@
     }
 
     ::selection {
-      background: rgba(255, 42, 0, 0.36);
-      color: #ffffff;
+      background: rgba(95, 46, 27, 0.36);
+      color: #f2efe8;
     }
 
   </style>
