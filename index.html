@@ -3,32 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raymart Gomez | Resume Website</title>
+  <title>Raymart Gomez | Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23000000'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='24' font-family='Arial' font-weight='900' fill='%23ffffff'%3ERG%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
-      --bg: #000000;
-      --panel: rgba(255,255,255,0.08);
-      --panel-strong: rgba(255,255,255,0.12);
-      --text: #eef2ff;
-      --muted: #b9c3e3;
-      --line: rgba(255,255,255,0.14);
-      --accent: #ff8b3d;
-      --accent-2: #52b6ff;
-      --shadow: 0 18px 45px rgba(0,0,0,0.28);
-      --radius: 22px;
-      --max: 1180px;
-    }
-
-    body.light-theme {
-      --bg: #f4f7fb;
-      --panel: rgba(255,255,255,0.82);
-      --panel-strong: rgba(255,255,255,0.95);
-      --text: #182033;
-      --muted: #52607a;
-      --line: rgba(24,32,51,0.12);
-      --accent: #ff8b3d;
-      --accent-2: #3f8cff;
-      --shadow: 0 18px 45px rgba(30,41,59,0.10);
+      --bg: #000;
+      --text: #f5f7fb;
+      --muted: #aeb5c3;
+      --soft: #707887;
+      --line: rgba(255, 255, 255, 0.12);
+      --panel: rgba(255, 255, 255, 0.045);
+      --purple: #8338ec;
+      --pink: #ff4f9a;
+      --orange: #ff9a3d;
+      --cyan: #53d8ff;
+      --max: 1160px;
     }
 
     * { box-sizing: border-box; }
@@ -36,1049 +25,1318 @@
 
     body {
       margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100vh;
       color: var(--text);
-      background: #000000;
-      line-height: 1.6;
-      transition: background 0.35s ease, color 0.35s ease;
+      background: var(--bg);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
     }
 
-    body.light-theme {
-      background: #000000;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 25%, rgba(57, 80, 128, 0.28), transparent 33%),
+        radial-gradient(circle at 84% 38%, rgba(255, 79, 154, 0.12), transparent 22%),
+        radial-gradient(circle at 19% 70%, rgba(83, 216, 255, 0.12), transparent 24%),
+        linear-gradient(180deg, #080a10 0%, #000 36%, #000 100%);
+      z-index: -3;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to bottom, #000, transparent 72%);
+      z-index: -2;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    img { display: block; max-width: 100%; }
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
+    .shell {
+      width: min(var(--max), calc(100% - 34px));
       margin: 0 auto;
     }
 
+    .topbar {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      width: min(var(--max), calc(100% - 34px));
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(12px);
-      background: rgba(9, 16, 31, 0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: background 0.35s ease, border-color 0.35s ease;
-    }
-
-    body.light-theme .nav {
-      background: rgba(255,255,255,0.75);
-      border-bottom: 1px solid rgba(24,32,51,0.08);
-    }
-
-    .nav-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 14px 0;
+      justify-content: center;
+      gap: clamp(12px, 3vw, 58px);
     }
 
-    .brand { display: none; }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .nav a,
+    .top-contact {
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #c8ced8;
     }
 
-    .nav-links a {
-      font-size: 0.96rem;
-      color: var(--muted);
-      padding: 8px 12px;
+    .nav a:hover { color: #fff; }
+
+    .top-contact {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 14px;
+      border: 1px solid rgba(255,255,255,0.16);
       border-radius: 999px;
-      transition: 0.25s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-      background: rgba(255,255,255,0.08);
-    }
-
-    body.light-theme .nav-links a:hover {
-      background: rgba(24,32,51,0.08);
+      background: linear-gradient(90deg, rgba(131,56,236,0.86), rgba(255,79,154,0.9), rgba(255,154,61,0.95));
+      color: #fff;
+      box-shadow: 0 0 24px rgba(255, 79, 154, 0.24);
     }
 
     .hero {
-      padding: 72px 0 28px;
-    }
-
-    .hero-card {
+      min-height: 100svh;
       display: grid;
-      grid-template-columns: 290px 1fr;
-      gap: 34px;
       align-items: center;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 34px;
-      overflow: hidden;
+      padding: 98px 0 44px;
       position: relative;
-      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-    }
-
-
-    .photo-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 260px;
-      aspect-ratio: 1 / 1;
-      border-radius: 28px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow);
-      background: rgba(255,255,255,0.06);
-      transition: transform 0.3s ease;
     }
 
-    .photo-wrap:hover {
-      transform: scale(1.03);
+    .hero-stage {
+      position: relative;
+      min-height: min(680px, calc(100svh - 142px));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.055), transparent 7%),
+        radial-gradient(circle at 50% 62%, rgba(83,216,255,0.08), transparent 28%),
+        rgba(0,0,0,0.66);
+      box-shadow: 0 36px 120px rgba(0,0,0,0.78);
+      overflow: hidden;
     }
 
-    .photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .hero-stage::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 10px;
+      right: 10px;
+      height: 11px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #bfc6d5, #eef2fb 50%, #687180);
+      opacity: 0.92;
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2.3rem, 4vw, 4.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-
-    .title {
-      color: #ffd0b4;
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .summary {
-      color: var(--muted);
-      max-width: 760px;
-      font-size: 1.02rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
+    .hero-inner {
+      position: relative;
+      min-height: inherit;
+      padding: 62px clamp(18px, 4vw, 56px) 46px;
+      display: grid;
+      grid-template-columns: 0.74fr 1.25fr 0.74fr;
       align-items: center;
+      gap: 18px;
     }
 
-    .btn {
+    .hero-title {
+      position: absolute;
+      top: clamp(74px, 14vh, 128px);
+      left: clamp(18px, 4vw, 56px);
+      right: clamp(18px, 4vw, 56px);
+      margin: 0;
+      font-size: clamp(3.4rem, 10.1vw, 9.15rem);
+      line-height: 0.76;
+      letter-spacing: -0.055em;
+      font-weight: 1000;
+      text-transform: uppercase;
+      color: transparent;
+      background:
+        linear-gradient(180deg, #fff 0%, #bfc8d4 35%, #5e6875 68%, #f8fbff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 8px 46px rgba(255,255,255,0.16);
+      z-index: 1;
+    }
+
+    .intro-copy {
+      position: relative;
+      z-index: 4;
+      align-self: end;
+      max-width: 240px;
+      margin-bottom: 120px;
+      color: #e7ebf2;
+      font-size: 0.79rem;
+      line-height: 1.45;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .intro-copy span {
+      color: var(--orange);
+    }
+
+    .avatar-wrap {
+      position: relative;
+      z-index: 3;
+      align-self: end;
+      display: grid;
+      place-items: center;
+      min-height: 510px;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      width: min(440px, 78vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.18), transparent 35%),
+        radial-gradient(circle at 42% 30%, rgba(255,154,61,0.26), transparent 35%),
+        radial-gradient(circle at 70% 55%, rgba(83,216,255,0.22), transparent 42%);
+      filter: blur(20px);
+      transform: translateY(54px);
+      opacity: 0.9;
+    }
+
+    .hero-avatar {
+      position: relative;
+      width: min(430px, 78vw);
+      filter: drop-shadow(0 34px 58px rgba(0,0,0,0.78));
+      transform: translateY(58px);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .avatar-shadow {
+      position: absolute;
+      bottom: 18px;
+      width: min(360px, 70vw);
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(0,0,0,0.8), transparent 70%);
+      filter: blur(12px);
+    }
+
+    .hero-cta {
+      position: relative;
+      z-index: 4;
+      justify-self: end;
+      align-self: center;
+      transform: translateY(22px);
+    }
+
+    .contact-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
-      padding: 13px 18px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-      border: 1px solid transparent;
+      min-height: 46px;
+      padding: 0 21px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      background: linear-gradient(90deg, #160024, #5b2dff 15%, #ff4f9a 62%, #ff9a3d);
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 1000;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 0 24px rgba(255,79,154,0.34), inset 0 1px 0 rgba(255,255,255,0.26);
+      transition: transform 0.22s ease, filter 0.22s ease;
     }
 
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #1f1208;
-      box-shadow: 0 12px 26px rgba(255,139,61,0.28);
+    .contact-pill:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
     }
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.12);
-      color: var(--text);
-    }
-
-    body.light-theme .btn-secondary {
-      background: rgba(255,255,255,0.78);
-      border-color: rgba(24,32,51,0.12);
-      color: var(--text);
-    }
-
-    section {
-      padding: 20px 0 8px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 18px;
-      font-size: 1.7rem;
-      letter-spacing: -0.02em;
-    }
-
-    .section-title::before {
+    .contact-pill::after {
       content: "";
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 20px rgba(82,182,255,0.35);
+      width: 7px;
+      height: 7px;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      transform: rotate(45deg);
     }
 
-    .grid-2 {
+    .scroll-note {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      z-index: 5;
+      color: var(--soft);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(58px); }
+      50% { transform: translateY(42px); }
+    }
+
+    .section {
+      padding: 64px 0;
+      scroll-margin-top: 110px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .kicker {
+      margin: 0 0 7px;
+      color: var(--orange);
+      font-size: 0.76rem;
+      font-weight: 1000;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .panel,
+    .item,
+    .project-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+    }
+
+    .panel {
+      border-radius: 20px;
+      padding: clamp(20px, 3vw, 34px);
+    }
+
+    #tools .panel {
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    #tools .panel::before {
+      content: "";
+      position: absolute;
+      inset: -34% -20%;
+      z-index: -1;
+      background: conic-gradient(from 130deg, transparent, rgba(83,216,255,0.12), transparent, rgba(255,79,154,0.14), transparent);
+      opacity: 0.24;
+      animation: panelOrbit 12s linear infinite;
+    }
+
+    .about-grid,
+    .tools-layout {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
+      gap: 18px;
+      perspective: 1200px;
+      isolation: isolate;
     }
 
-    #education .grid-2 {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
+    .tools-layout::before,
+    .tools-layout::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      display: none;
     }
 
-    .card {
-      background: rgba(255,255,255,0.06);
+    .tools-layout::before {
+      inset: -42px -30px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 18% 84%, rgba(83,216,255,0.18), transparent 24%),
+        radial-gradient(circle at 82% 22%, rgba(255,79,154,0.2), transparent 24%),
+        linear-gradient(135deg, rgba(255,255,255,0.06), transparent 44%);
+      filter: blur(8px);
+      animation: toolsDepth 10s ease-in-out infinite;
+    }
+
+    .tools-layout::after {
+      right: -12px;
+      bottom: -34px;
+      width: min(360px, 45vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 32px;
+      background:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(135deg, rgba(83,216,255,0.11), rgba(255,79,154,0.1));
+      background-size: 28px 28px, 28px 28px, auto;
+      opacity: 0.58;
+      transform: rotateX(62deg) rotateZ(-18deg) translateZ(-80px);
+      animation: gridFloat 7s ease-in-out infinite;
+    }
+
+    #tools {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .fact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .fact {
+      padding: 16px;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .fact span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
     }
 
     .timeline {
       display: grid;
+      gap: 14px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
 
-    .item {
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      border-radius: 20px;
-      padding: 18px;
-      transition: background 0.35s ease, border-color 0.35s ease;
+    .service-card {
+      position: relative;
+      min-height: 248px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 78% 16%, rgba(255, 79, 154, 0.16), transparent 30%),
+        radial-gradient(circle at 16% 90%, rgba(83, 216, 255, 0.12), transparent 28%),
+        rgba(255,255,255,0.045);
+      overflow: hidden;
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
     }
 
-    body.light-theme .item {
-      border: 1px solid rgba(24,32,51,0.10);
-      background: rgba(255,255,255,0.55);
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.24);
+      background:
+        radial-gradient(circle at 78% 16%, rgba(255, 79, 154, 0.22), transparent 30%),
+        radial-gradient(circle at 16% 90%, rgba(83, 216, 255, 0.16), transparent 28%),
+        rgba(255,255,255,0.065);
+    }
+
+    .service-number {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 42px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(131,56,236,0.85), rgba(255,154,61,0.92));
+      font-size: 0.82rem;
+      font-weight: 1000;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.58;
+      font-size: 0.94rem;
+    }
+
+    .item {
+      border-radius: 18px;
+      padding: 18px;
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .item:hover,
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.24);
     }
 
     .item-top {
       display: flex;
       justify-content: space-between;
       gap: 16px;
-      align-items: flex-start;
       margin-bottom: 8px;
     }
 
-    .role {
-      font-size: 1.1rem;
-      font-weight: 800;
+    h3 {
       margin: 0;
+      font-size: 1.08rem;
     }
 
     .company {
-      color: #ffd0b4;
-      font-weight: 700;
       margin: 3px 0 0;
+      color: #ffd0b2;
+      font-weight: 800;
     }
 
     .date {
+      flex: 0 0 auto;
+      color: #d7deea;
+      font-size: 0.88rem;
+      font-weight: 900;
       white-space: nowrap;
-      color: #d6defc;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    body.light-theme .date {
-      color: #52607a;
     }
 
     ul {
       margin: 10px 0 0 18px;
       padding: 0;
       color: var(--muted);
+      line-height: 1.65;
     }
 
-    .training-list, .contact-list {
+    .cards-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tool-marquee {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.045);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+
+    .tool-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      padding: 14px;
+      animation: logoSlide 22s linear infinite;
+    }
+
+    .tool-track:hover {
+      animation-play-state: paused;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(150px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .tool-card,
+    .tool-chip {
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 72% 12%, rgba(255,79,154,0.16), transparent 28%),
+        rgba(255,255,255,0.05);
+    }
+
+    .tool-card {
+      align-content: center;
+      justify-items: center;
+      min-height: 142px;
+      min-width: 0;
+      padding: 18px 12px;
+      border-radius: 18px;
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+      transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.22s ease;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .tools-visible .tool-card {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .tools-visible .tool-card:nth-child(2) { transition-delay: 0.05s; }
+    .tools-visible .tool-card:nth-child(3) { transition-delay: 0.1s; }
+    .tools-visible .tool-card:nth-child(4) { transition-delay: 0.15s; }
+    .tools-visible .tool-card:nth-child(5) { transition-delay: 0.2s; }
+    .tools-visible .tool-card:nth-child(6) { transition-delay: 0.25s; }
+    .tools-visible .tool-card:nth-child(7) { transition-delay: 0.3s; }
+    .tools-visible .tool-card:nth-child(8) { transition-delay: 0.35s; }
+    .tools-visible .tool-card:nth-child(9) { transition-delay: 0.4s; }
+    .tools-visible .tool-card:nth-child(10) { transition-delay: 0.45s; }
+    .tools-visible .tool-card:nth-child(11) { transition-delay: 0.5s; }
+    .tools-visible .tool-card:nth-child(12) { transition-delay: 0.55s; }
+    .tools-visible .tool-card:nth-child(13) { transition-delay: 0.6s; }
+    .tools-visible .tool-card:nth-child(14) { transition-delay: 0.65s; }
+    .tools-visible .tool-card:nth-child(15) { transition-delay: 0.7s; }
+    .tools-visible .tool-card:nth-child(16) { transition-delay: 0.75s; }
+
+    .tool-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .tool-chip {
+      grid-auto-flow: column;
+      gap: 10px;
+      min-width: 164px;
+      min-height: 70px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .tool-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      padding: 7px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.92);
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.42));
+    }
+
+    .tool-card .tool-logo {
+      width: 54px;
+      height: 54px;
+      margin-bottom: 12px;
+    }
+
+    .tool-logo.logo-wide {
+      width: min(92px, 100%);
+      height: 42px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      object-fit: contain;
+    }
+
+    .tool-card .tool-logo.logo-wide {
+      width: min(96px, 100%);
+      height: 50px;
+      margin-bottom: 16px;
+    }
+
+    .tool-card strong {
+      display: block;
+      text-align: center;
+      font-size: 0.94rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      max-width: 100%;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      word-break: normal;
+      line-height: 1.15;
+    }
+
+    .tool-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      line-height: 1.25;
+    }
+
+    .integration-list {
       display: grid;
       gap: 12px;
-      padding: 0;
-      margin: 0;
-      list-style: none;
+      margin-top: 18px;
     }
 
-    .pill-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .integration-item {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.045);
     }
 
-    .pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-weight: 600;
-      transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+    .integration-item strong {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    body.light-theme .pill {
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(24,32,51,0.10);
-    }
-
-    .edu-item h3,
-    .contact-list strong {
-      margin: 0 0 4px;
-      font-size: 1.02rem;
-    }
-
-    .muted {
+    .integration-item span {
+      display: block;
+      margin-top: 5px;
       color: var(--muted);
+      line-height: 1.55;
     }
 
-    .project-section-header {
+    @keyframes logoSlide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes toolsDepth {
+      0%, 100% { transform: rotateX(0deg) rotateY(0deg) translateZ(-60px); opacity: 0.76; }
+      50% { transform: rotateX(4deg) rotateY(-5deg) translateZ(-25px); opacity: 1; }
+    }
+
+    @keyframes gridFloat {
+      0%, 100% { transform: rotateX(62deg) rotateZ(-18deg) translate3d(0, 0, -80px); }
+      50% { transform: rotateX(62deg) rotateZ(-18deg) translate3d(-18px, -18px, -40px); }
+    }
+
+    @keyframes panelOrbit {
+      to { transform: rotate(360deg); }
+    }
+
+    .filters {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      gap: 8px;
     }
 
-    .project-category {
-      margin-top: 26px;
+    .filter-btn {
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
     }
 
-    .project-category:first-of-type {
-      margin-top: 0;
-    }
-
-    .project-category-title {
-      margin: 0 0 14px;
-      font-size: 1.15rem;
-      color: #ffd0b4;
-      font-weight: 800;
+    .filter-btn.active {
+      border-color: rgba(255,79,154,0.56);
+      background: linear-gradient(90deg, rgba(131,56,236,0.42), rgba(255,79,154,0.28));
     }
 
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .project-card {
+      border-radius: 18px;
       overflow: hidden;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      transition: transform 0.22s ease, border-color 0.22s ease;
     }
 
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255,255,255,0.18);
-      box-shadow: 0 18px 35px rgba(0,0,0,0.22);
-    }
+    .project-card[hidden] { display: none; }
 
-    body.light-theme .project-card {
-      border: 1px solid rgba(24,32,51,0.10);
-      background: rgba(255,255,255,0.72);
-    }
-
-    .project-image-wrap {
-      position: relative;
-      overflow: hidden;
+    .project-visual {
+      display: grid;
+      place-items: center;
       aspect-ratio: 16 / 10;
-      background: rgba(255,255,255,0.04);
+      padding: 16px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,255,255,0.1), transparent 34%),
+        linear-gradient(135deg, rgba(83,216,255,0.12), rgba(255,79,154,0.12));
+      border-bottom: 1px solid var(--line);
     }
 
-    .project-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.35s ease;
+    .project-visual span {
+      color: transparent;
+      background: linear-gradient(180deg, #fff, #697381);
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-size: clamp(1.25rem, 2vw, 2rem);
+      font-weight: 1000;
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      text-align: center;
+      text-transform: uppercase;
     }
 
-    .project-card:hover .project-image-wrap img {
-      transform: scale(1.04);
+    .project-visual.workflow {
+      padding: 12px;
+      place-items: stretch;
+      background:
+        radial-gradient(circle at 80% 18%, rgba(234,75,113,0.2), transparent 28%),
+        radial-gradient(circle at 12% 78%, rgba(83,216,255,0.12), transparent 30%),
+        linear-gradient(135deg, rgba(13,16,22,0.96), rgba(5,7,12,0.96));
     }
 
-    .project-content {
+    .workflow-shot {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-content: center;
+      min-height: 100%;
+      padding: 18px 12px 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      background:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px),
+        rgba(0,0,0,0.26);
+      background-size: 26px 26px;
+      overflow: hidden;
+    }
+
+    .workflow-shot::before {
+      content: "n8n workflow";
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      color: rgba(255,255,255,0.48);
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .workflow-shot::after {
+      content: "";
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      top: 50%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(234,75,113,0.15), rgba(234,75,113,0.85), rgba(83,216,255,0.7));
+      box-shadow: 0 0 18px rgba(234,75,113,0.45);
+      z-index: 0;
+    }
+
+    .flow-node {
+      position: relative;
+      z-index: 1;
+      min-height: 56px;
+      padding: 10px 9px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      background: rgba(13,17,25,0.94);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.32);
+    }
+
+    .flow-node strong {
+      display: block;
+      color: #fff;
+      font-size: 0.72rem;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .flow-node span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.64rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .flow-node::before {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      margin-bottom: 7px;
+      border-radius: 50%;
+      background: var(--node-color, #ea4b71);
+      box-shadow: 0 0 14px var(--node-color, #ea4b71);
+    }
+
+    .project-body {
       padding: 16px;
     }
 
-    .project-content h4 {
-      margin: 0 0 8px;
-      font-size: 1.02rem;
-    }
-
-    .project-content p {
-      margin: 0;
+    .project-body p {
+      margin: 9px 0 0;
       color: var(--muted);
-      font-size: 0.96rem;
+      line-height: 1.58;
+      font-size: 0.93rem;
     }
 
-    .project-tags {
+    .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
       margin-top: 12px;
     }
 
-    .project-tag {
-      padding: 7px 10px;
+    .tag {
+      padding: 5px 8px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
+      color: #e8edf7;
+      font-size: 0.76rem;
+      font-weight: 900;
     }
 
-    body.light-theme .project-tag {
-      background: rgba(255,255,255,0.9);
-      border: 1px solid rgba(24,32,51,0.10);
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .footer {
-      padding: 34px 0 60px;
+    .contact-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .contact-card span {
+      display: block;
       color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-top: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 36px 0 54px;
+      color: var(--soft);
       text-align: center;
-      font-size: 0.96rem;
+      font-size: 0.9rem;
+      font-weight: 800;
     }
 
-    .quote-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      margin-top: 10px;
-      padding: 12px 20px 0;
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
-    .typing-quote {
-      font-size: 18px;
-      font-style: normal;
-      color: var(--muted);
-      opacity: 0.95;
-      white-space: nowrap;
-      max-width: 100%;
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
     }
 
-    a:hover,
-    button:hover,
-    .btn:hover {
-      cursor: pointer;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .social-icons {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .social-icons img {
-      width: 34px;
-      height: 34px;
-      cursor: pointer;
-      transition: transform 0.2s ease, filter 0.2s ease;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.25);
-      filter: brightness(1.3);
-    }
-
-    @media (max-width: 700px) {
-      .hero-card {
-        grid-template-columns: 1fr;
+    @media (max-width: 900px) {
+      .topbar {
+        grid-template-columns: 1fr auto;
+        border-radius: 18px;
       }
 
-      .photo-wrap {
-        max-width: 220px;
-      }
-
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .typing-quote {
-        font-size: 14px;
-        white-space: normal;
-        border-right: none;
-        animation: none;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .nav-inner {
-        align-items: flex-start;
-        flex-direction: column;
+      .nav {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        overflow-x: auto;
+        gap: 18px;
+        padding-bottom: 2px;
       }
 
       .hero {
-        padding-top: 34px;
+        padding-top: 132px;
       }
 
-      .hero-card,
-      .card {
-        padding: 20px;
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 48px;
       }
 
-      .item-top {
-        flex-direction: column;
+      .hero-title {
+        top: 74px;
+        font-size: clamp(3rem, 16vw, 6.5rem);
       }
 
-      h1 {
-        font-size: 2.25rem;
+      .intro-copy {
+        align-self: start;
+        justify-self: center;
+        margin: 0;
+        max-width: 340px;
+        padding-top: 190px;
       }
 
-      .grid-2,
-      #education .grid-2 {
-        grid-template-columns: 1fr !important;
+      .avatar-wrap {
+        min-height: 360px;
+      }
+
+      .hero-avatar {
+        width: min(350px, 82vw);
+      }
+
+      .hero-cta {
+        justify-self: center;
+        transform: none;
+      }
+
+      .about-grid,
+      .tools-layout,
+      .service-grid,
+      .project-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .fact-grid,
+      .cards-2 {
+        grid-template-columns: 1fr;
       }
     }
+
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 22px, var(--max)); }
+      .top-contact { display: none; }
+      .topbar { grid-template-columns: 1fr; }
+      .brand { text-align: center; }
+      .hero-stage { min-height: 700px; }
+      .intro-copy { padding-top: 165px; }
+      .item-top, .section-head { display: grid; }
+      .date { white-space: normal; }
+      .contact-pill { width: 100%; justify-content: center; }
+      .tool-grid { grid-template-columns: 1fr; }
+    }
   </style>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const themeToggle = document.getElementById('themeToggle');
-      const quoteEl = document.getElementById('typing-quote');
-
-      if (quoteEl) {
-        quoteEl.textContent = '© 2026 Raymart Gomez — Automation & Workflow Solutions.';
-      }
-
-      if (themeToggle) {
-        themeToggle.style.display = 'none';
-      }
-    });
-  </script>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="brand">Raymart Gomez</div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#training">Training</a>
-        <a href="#projects">Projects</a>
-      </div>
-      <button id="themeToggle" class="btn btn-secondary" type="button">Light Mode</button>
-    </div>
-  </nav>
-
-  <header class="hero container">
-    <div class="hero-card">
-      <div class="photo-wrap">
-        <img src="profile.jpg" alt="Raymart Gomez profile photo" />
-      </div>
-
-      <div>
-        <h1>Raymart Gomez</h1>
-        <div class="title">Customer Service Professional • Civil Engineering Graduate • Technical Assistant</div>
-        <p class="summary">
-          Top-performing customer service representative with experience in phone, email, and chat support, plus hands-on construction and technical assistant work. Known for staying calm under pressure, solving problems efficiently, and balancing company goals with customer satisfaction.
-        </p>
-
-<div class="hero-actions">
-  <a class="btn btn-primary" href="mailto:rrgomez0000@gmail.com">Email Me</a>
-  <a class="btn btn-secondary" href="tel:09517255895">Call Me</a>
-  <a class="btn btn-secondary" href="#projects">View Projects</a>
-  <a class="btn btn-secondary" href="Raymart-Gomez-Resume.pdf" download>Download Resume</a>
-
-  <div class="social-icons">
-    <a href="https://wa.me/639517255895" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-    </a>
-
-    <a href="https://www.linkedin.com/in/raymart-gomez-a649b128b/" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
-    </a>
-
-    <a href="https://www.facebook.com/msckie.mackyow" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-    </a>
-  </div>
-</div>
-      </div>
-    </div>
+  <header class="topbar">
+    <a class="brand" href="#home">Raymart Gomez</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#tools">Tools</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="top-contact" href="mailto:rrgomez0000@gmail.com">Contact Me</a>
   </header>
 
-  <main class="container">
-    <section id="about">
-      <div>
-        <div class="card">
-          <h2 class="section-title">Professional Summary</h2>
+  <main>
+    <section id="home" class="hero shell">
+      <div class="hero-stage reveal">
+        <div class="hero-inner">
+          <h1 class="hero-title">Hi, I'm<br />Raymart</h1>
+          <p class="intro-copy">
+            A support professional, civil engineering graduate, and automation builder creating lead tools and workflow systems <span>for real business use.</span>
+          </p>
+          <div class="avatar-wrap" aria-label="3D avatar hero image">
+            <div class="avatar-glow"></div>
+            <img class="hero-avatar" src="raymart-hero-avatar.png" alt="3D avatar representing Raymart Gomez" />
+            <div class="avatar-shadow"></div>
+          </div>
+          <div class="hero-cta">
+            <a class="contact-pill" href="mailto:rrgomez0000@gmail.com">Contact Me</a>
+          </div>
+        </div>
+        <div class="scroll-note">Portfolio Site</div>
+      </div>
+    </section>
+
+    <section id="about" class="section shell reveal">
+      <div class="section-head">
+        <div>
+          <p class="kicker">About</p>
+          <h2>Automation plus support experience.</h2>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="about-grid">
           <p class="muted">
-            Civil Engineering graduate with experience in technical coordination and construction support, now focused on helping businesses generate leads and improve workflow efficiency through automation. I build Python-based scraping tools to collect targeted business data and organize leads for outreach and sales.
+            Civil Engineering graduate with experience in technical coordination and construction support, now focused on helping businesses generate leads and improve workflow efficiency through automation. I build lead scraping tools to collect targeted business data and organize leads for outreach and sales.
           </p>
           <p class="muted">
-            I also create beginner-level automation workflows using Python and n8n to reduce manual work in data collection, lead tracking, and customer interaction. With a strong background in customer service, I am experienced in handling communication across phone, email, chat, and social media, ensuring both technical execution and client satisfaction.
+            I also create beginner-level automation workflows using n8n, APIs, and CRM tools to reduce manual work in data collection, lead tracking, and customer interaction. With a strong background in customer service, I handle communication across phone, email, chat, and social media while keeping client satisfaction front and center.
           </p>
         </div>
-        </div>
-    </section>
-
-    <section id="experience">
-      <div class="card">
-        <h2 class="section-title">Work Experience</h2>
-        <div class="timeline">
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Autocad / Technical Assistant</h3>
-                <p class="company">401 Dev. &amp; Const. Corp. | Construction</p>
-              </div>
-              <div class="date">November 2024 – March 2026</div>
-            </div>
-            <ul>
-              <li>Produced detailed as-built, shop, and structural drawings for construction.</li>
-              <li>Updated existing drawings based on markups, calculations, or feedback from engineers, architects, and site visits.</li>
-              <li>Worked with project teams to interpret briefs and translate verbal or rough sketch instructions into technical plans.</li>
-            </ul>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Line and Grade Engineer</h3>
-                <p class="company">New San Jose Builders Inc. | Construction</p>
-              </div>
-              <div class="date">June 2024 – November 2024</div>
-            </div>
-            <ul>
-              <li>Established building control lines, grid lines, floor elevations, and excavation layouts.</li>
-              <li>Ensured structural elements were installed according to approved plans and required tolerances.</li>
-              <li>Used total stations, levels, and other surveying instruments.</li>
-            </ul>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Line and Grade Engineer</h3>
-                <p class="company">Metro Stonerich Corporation | Construction</p>
-              </div>
-              <div class="date">September 2023 – May 2024</div>
-            </div>
-            <ul>
-              <li>Established building control lines, grid lines, floor elevations, and excavation layouts.</li>
-              <li>Ensured structural elements were installed according to approved plans and required tolerances.</li>
-              <li>Used total stations, levels, and other surveying instruments.</li>
-            </ul>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Support Ambassador</h3>
-                <p class="company">Intouch CX | Airbnb</p>
-              </div>
-              <div class="date">January 2023 – September 2023</div>
-            </div>
-            <ul>
-              <li>Managed customer issues end-to-end, including booking problems, disputes, and safety concerns.</li>
-              <li>Assisted hosts with listings, calendar management, and listing accuracy improvements.</li>
-              <li>Interacted with users through phone, email, chat, and social media platforms.</li>
-              <li>Acted as a mediator between guests and hosts to help reach fair agreements.</li>
-            </ul>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Customer Service Representative</h3>
-                <p class="company">WNS Global Services | Pennymac</p>
-              </div>
-              <div class="date">February 2020 – August 2022</div>
-            </div>
-            <ul>
-              <li>Confirmed applicant information including income, employment history, and financial assets.</li>
-              <li>Reviewed loan files to ensure required documents were complete, accurate, and properly signed.</li>
-              <li>Acted as a liaison between borrowers, loan officers, and underwriters to resolve missing information or issues.</li>
-            </ul>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Customer Service Representative</h3>
-                <p class="company">Sitel | Metlife</p>
-              </div>
-              <div class="date">March 2019 – September 2019</div>
-            </div>
-            <ul>
-              <li>Responded to inquiries via chat, email, and phone while maintaining high satisfaction scores.</li>
-              <li>Analyzed ticket trends, documented solutions, and helped improve workflows.</li>
-              <li>Created user guides and mentored team members on systems and procedures.</li>
-              <li>Helped customers navigate the portal and reset passwords when needed.</li>
-            </ul>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <div>
-                <h3 class="role">Customer Service Representative</h3>
-                <p class="company">Alta Resources | Adidas</p>
-              </div>
-              <div class="date">October 2018 – February 2019</div>
-            </div>
-            <ul>
-              <li>Tracked shipments through carrier websites to support timely delivery.</li>
-              <li>Entered data into logistics systems to maintain accurate package records.</li>
-              <li>Addressed delays, missing items, and damaged package issues proactively.</li>
-              <li>Handled shipping documents such as bills of lading and customs paperwork.</li>
-              <li>Assisted customers with product and service inquiries.</li>
-            </ul>
-          </article>
+        <div class="fact-grid">
+          <div class="fact"><strong>7+</strong><span>years across customer service, drafting, construction, and technical coordination</span></div>
+          <div class="fact"><strong>10</strong><span>portfolio projects covering AutoCAD, n8n, CRM, and lead automation</span></div>
+          <div class="fact"><strong>4</strong><span>support channels handled: phone, email, chat, and social media</span></div>
         </div>
       </div>
     </section>
 
-    <section id="education">
-<div class="grid-2">
-        <div class="card">
-          <h2 class="section-title">Education</h2>
-          <div class="timeline">
-            <div class="item edu-item">
-              <h3>🎓 Bachelor of Science in Civil Engineering</h3>
-              <div class="muted">The University of Manila</div>
-              <div class="muted">2016 – 2022</div>
-            </div>
+    <section id="services" class="section shell reveal">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Services</p>
+          <h2>Automation skills I can build for you.</h2>
+        </div>
+      </div>
+      <div class="service-grid">
+        <article class="service-card">
+          <span class="service-number">01</span>
+          <h3>AI Chat Bot Automation</h3>
+          <p>Build Messenger, Telegram, and WhatsApp chatbot flows that answer common questions, collect customer details, and send leads to the right place.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">02</span>
+          <h3>Booking & Appointment Systems</h3>
+          <p>Create appointment workflows that capture requests, organize schedules, send email or chat confirmations, and log bookings for follow-up.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">03</span>
+          <h3>Lead Capture Workflows</h3>
+          <p>Connect forms, webhooks, Facebook leads, Gmail, Telegram, Google Sheets, and Calendar so every new lead is recorded and routed automatically.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">04</span>
+          <h3>Lead Data Scraping</h3>
+          <p>Collect business names, phone numbers, websites, and lead details from online sources, then organize the data into clean Excel files.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">05</span>
+          <h3>Ticket Routing Automation</h3>
+          <p>Use AI classification to read customer messages, detect the request type, notify the correct team, and send automatic customer replies.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">06</span>
+          <h3>Social Media Posting Flows</h3>
+          <p>Automate content drafting, Telegram approval alerts, scheduled posting, and Facebook Page publishing for consistent social media activity.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">07</span>
+          <h3>Google Sheets & Email Automation</h3>
+          <p>Turn manual tracking into organized Sheets, email notifications, status updates, reminders, and simple dashboards for daily operations.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">08</span>
+          <h3>AI Voice Agent Concepts</h3>
+          <p>Design voice-agent workflows for lead qualification, appointment setting, call routing, and customer follow-up logic.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-number">09</span>
+          <h3>Workflow Cleanup & Documentation</h3>
+          <p>Map repetitive tasks, simplify messy handoffs, document the process, and build beginner-friendly automation that teams can understand.</p>
+        </article>
+      </div>
+    </section>
 
-            <div class="item edu-item">
-              <h3>🛠️ Autocad Drafting Certification</h3>
-              <div class="muted">Marikina Polytechnic College</div>
-              <div class="muted">2014 – 2015</div>
-            </div>
+    <section id="tools" class="section shell reveal">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Tools</p>
+          <h2>Automation tools I can use.</h2>
+        </div>
+      </div>
+      <div class="tool-marquee" aria-label="Moving automation tool logos">
+        <div class="tool-track">
+          <div class="tool-chip"><img class="tool-logo" src="logos/n8n.svg" alt="n8n logo" />n8n</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/telegram.svg" alt="Telegram logo" />Telegram</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/whatsapp.svg" alt="WhatsApp logo" />WhatsApp</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/facebook.svg" alt="Facebook logo" />Facebook</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/gmail.svg" alt="Gmail logo" />Gmail</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/googlesheets.svg" alt="Google Sheets logo" />Sheets</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/googlecalendar.svg" alt="Google Calendar logo" />Calendar</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/openai.svg" alt="OpenAI logo" />OpenAI</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/openrouter.svg" alt="OpenRouter logo" />OpenRouter</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/postman.svg" alt="Postman logo" />Postman</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/airtable.svg" alt="Airtable logo" />Airtable</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/json.svg" alt="JSON logo" />JSON</div>
+          <div class="tool-chip"><img class="tool-logo logo-wide" src="logos/highlevel.png" alt="HighLevel logo" />GoHighLevel</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/n8n.svg" alt="" />n8n</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/telegram.svg" alt="" />Telegram</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/whatsapp.svg" alt="" />WhatsApp</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/facebook.svg" alt="" />Facebook</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/gmail.svg" alt="" />Gmail</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/googlesheets.svg" alt="" />Sheets</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/googlecalendar.svg" alt="" />Calendar</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/openai.svg" alt="" />OpenAI</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/openrouter.svg" alt="" />OpenRouter</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/postman.svg" alt="" />Postman</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/airtable.svg" alt="" />Airtable</div>
+          <div class="tool-chip"><img class="tool-logo" src="logos/json.svg" alt="" />JSON</div>
+          <div class="tool-chip"><img class="tool-logo logo-wide" src="logos/highlevel.png" alt="" />GoHighLevel</div>
+        </div>
+      </div>
 
-            <div class="item edu-item">
-              <h3>🏫 High School Diploma</h3>
-              <div class="muted">San Joaquin-Kalawaan High School</div>
-              <div class="muted">2006 – 2010</div>
-            </div>
-
-            <div class="item edu-item">
-              <h3>🧒 Elementary Education</h3>
-              <div class="muted">San Joaquin Elementary School</div>
-              <div class="muted">2000 – 2006</div>
-            </div>
+      <div class="tools-layout">
+        <div class="panel">
+          <p class="muted">
+            These are the platforms and technical pieces I use for automation work: n8n workflows, GoHighLevel CRM/funnels, chatbot channels, lead capture, API calls, webhooks, Google workspace tools, AI routing, API testing, and data logging.
+          </p>
+          <div class="integration-list">
+            <div class="integration-item"><strong>API Integration</strong><span>Connect apps through HTTP requests, webhooks, JSON payloads, triggers, and routing logic.</span></div>
+            <div class="integration-item"><strong>Lead & Customer Data</strong><span>Capture form/chat/Facebook leads and organize them into Google Sheets, email, Telegram, or calendar workflows.</span></div>
+            <div class="integration-item"><strong>AI Workflow Logic</strong><span>Use AI classification, reply drafting, lead scoring, ticket routing, and automated follow-up messages.</span></div>
+            <div class="integration-item"><strong>GoHighLevel CRM & Funnels</strong><span>Support CRM setup, lead intake, funnel handoffs, appointment flows, and campaign follow-up systems.</span></div>
+            <div class="integration-item"><strong>AI Models & API Testing</strong><span>Connect OpenRouter or AI APIs, test endpoints in Postman, and prepare clean JSON payloads for automation flows.</span></div>
+            <div class="integration-item"><strong>Customer Support Automation</strong><span>Build auto-replies, ticket logs, follow-up reminders, and customer handoff flows based on phone, email, chat, and social media support experience.</span></div>
           </div>
         </div>
-
-        <div class="card" id="skills">
-          <h2 class="section-title">Core Skills</h2>
-          <div class="pill-grid">
-            <span class="pill">Communication Skills</span>
-            <span class="pill">Problem-Solving</span>
-            <span class="pill">Adaptability</span>
-            <span class="pill">Active Listening</span>
-            <span class="pill">Time Management</span>
-            <span class="pill">Phone Support</span>
-            <span class="pill">Email Support</span>
-            <span class="pill">Chat Support</span>
-            <span class="pill">AutoCAD</span>
-            <span class="pill">Technical Drawing</span>
-            <span class="pill">Surveying Tools</span>
-            <span class="pill">Customer Mediation</span>
-            <span class="pill">Messenger Chat Bot</span>
-            <span class="pill">Telegram Chat Bot</span>
-            <span class="pill">WhatsApp Chat Bot</span>
-            <span class="pill">Booking & Appointment Automation</span>
-            <span class="pill">Python Lead Generation Scraper</span>
+        <div class="panel">
+          <div class="tool-grid">
+            <div class="tool-card"><img class="tool-logo" src="logos/n8n.svg" alt="n8n logo" /><strong>n8n</strong><span>workflow automation</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/telegram.svg" alt="Telegram logo" /><strong>Telegram</strong><span>bot notifications</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/whatsapp.svg" alt="WhatsApp logo" /><strong>WhatsApp</strong><span>chat automation</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/facebook.svg" alt="Facebook logo" /><strong>Facebook</strong><span>leads and posting</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/gmail.svg" alt="Gmail logo" /><strong>Gmail</strong><span>email workflows</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/googlesheets.svg" alt="Google Sheets logo" /><strong>Sheets</strong><span>data logging</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/googlecalendar.svg" alt="Google Calendar logo" /><strong>Calendar</strong><span>booking reminders</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/openai.svg" alt="OpenAI logo" /><strong>AI APIs</strong><span>classification and replies</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/openrouter.svg" alt="OpenRouter logo" /><strong>OpenRouter</strong><span>AI model routing</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/postman.svg" alt="Postman logo" /><strong>Postman</strong><span>API testing</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/json.svg" alt="JSON logo" /><strong>JSON</strong><span>payload handling</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/googledrive.svg" alt="Google Drive logo" /><strong>Drive</strong><span>file handoffs</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/googleforms.svg" alt="Google Forms logo" /><strong>Forms</strong><span>lead intake</span></div>
+            <div class="tool-card"><img class="tool-logo logo-wide" src="logos/highlevel.png" alt="HighLevel logo" /><strong>GHL / HighLevel</strong><span>CRM and funnels</span></div>
+            <div class="tool-card"><img class="tool-logo" src="logos/airtable.svg" alt="Airtable logo" /><strong>Airtable</strong><span>lead database</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="training">
-      <div class="card">
-        <h2 class="section-title">Seminars &amp; Training Attended</h2>
-        <ul class="training-list muted">
-          <li>Red Cross 143 (Volunteer), West Rizal Branch, San Mateo</li>
-          <li>Junior Philippines Institute of Civil Engineers, Metro Manila Chapter</li>
-        </ul>
+    <section id="projects" class="section shell reveal">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Projects</p>
+          <h2>Featured builds.</h2>
+        </div>
+        <div class="filters">
+          <button class="filter-btn active" type="button" data-filter="all">All</button>
+          <button class="filter-btn" type="button" data-filter="autocad">AutoCAD</button>
+          <button class="filter-btn" type="button" data-filter="n8n">n8n</button>
+          <button class="filter-btn" type="button" data-filter="data">Data Tools</button>
+        </div>
+      </div>
+      <div class="project-grid">
+        <article class="project-card" data-category="autocad"><div class="project-visual"><span>Construction Drawing</span></div><div class="project-body"><h3>Construction Drawing</h3><p>Layout planning, structure detailing, and clean construction presentation.</p><div class="tags"><span class="tag">AutoCAD</span><span class="tag">Technical Drawing</span></div></div></article>
+        <article class="project-card" data-category="autocad"><div class="project-visual"><span>Drafting Sample</span></div><div class="project-body"><h3>Construction Drawing Sample</h3><p>Drafting sample for layout interpretation and accurate technical plan preparation.</p><div class="tags"><span class="tag">Drafting</span><span class="tag">Layout Planning</span></div></div></article>
+        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#26A5E4"><strong>Chat</strong><span>Messenger / Telegram</span></div><div class="flow-node" style="--node-color:#EA4B71"><strong>AI Reply</strong><span>customer intent</span></div><div class="flow-node" style="--node-color:#34A853"><strong>Save Lead</strong><span>Sheets log</span></div></div></div><div class="project-body"><h3>AI Chat Bot</h3><p>Messenger, Telegram, and WhatsApp response flow for customer details and faster inquiry handling.</p><div class="tags"><span class="tag">n8n</span><span class="tag">Automation</span></div></div></article>
+        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#7248B9"><strong>Form</strong><span>booking request</span></div><div class="flow-node" style="--node-color:#4285F4"><strong>Calendar</strong><span>schedule slot</span></div><div class="flow-node" style="--node-color:#EA4335"><strong>Email</strong><span>confirmation</span></div></div></div><div class="project-body"><h3>Booking Appointment Setter</h3><p>Auto replies, customer capture, Google Sheets updates, email notifications, and follow-up support.</p><div class="tags"><span class="tag">Workflow</span><span class="tag">Booking</span></div></div></article>
+        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#1877F2"><strong>Facebook</strong><span>post idea</span></div><div class="flow-node" style="--node-color:#ffffff"><strong>AI Caption</strong><span>draft content</span></div><div class="flow-node" style="--node-color:#26A5E4"><strong>Telegram</strong><span>approval alert</span></div></div></div><div class="project-body"><h3>n8n Facebook Auto Poster</h3><p>AI caption generation, Telegram updates, and scheduled Facebook Page publishing.</p><div class="tags"><span class="tag">Facebook</span><span class="tag">Telegram</span></div></div></article>
+        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#1877F2"><strong>Lead Ad</strong><span>Facebook webhook</span></div><div class="flow-node" style="--node-color:#EA4B71"><strong>Score</strong><span>AI analysis</span></div><div class="flow-node" style="--node-color:#34A853"><strong>Route</strong><span>Sheets / Gmail</span></div></div></div><div class="project-body"><h3>n8n Facebook Lead Capture</h3><p>Webhook, AI lead analysis, Sheets, Gmail, Telegram, and Calendar routing.</p><div class="tags"><span class="tag">Leads</span><span class="tag">Google Sheets</span></div></div></article>
+        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#EA4335"><strong>Gmail</strong><span>new message</span></div><div class="flow-node" style="--node-color:#ffffff"><strong>AI Classify</strong><span>billing / sales</span></div><div class="flow-node" style="--node-color:#26A5E4"><strong>Notify</strong><span>team routing</span></div></div></div><div class="project-body"><h3>AI Ticket Routing System</h3><p>Classifies customer messages and routes them to Billing, Technical Support, Sales, or General Inquiry.</p><div class="tags"><span class="tag">AI</span><span class="tag">Gmail</span></div></div></article>
+        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#17D94B"><strong>Call</strong><span>voice trigger</span></div><div class="flow-node" style="--node-color:#EA4B71"><strong>Qualify</strong><span>lead logic</span></div><div class="flow-node" style="--node-color:#4285F4"><strong>Follow Up</strong><span>calendar / CRM</span></div></div></div><div class="project-body"><h3>n8n AI Voice Agent</h3><p>Voice workflow concept for lead handling, call routing, appointment setting, and customer responses.</p><div class="tags"><span class="tag">AI Voice</span><span class="tag">Webhook</span></div></div></article>
+        <article class="project-card" data-category="data"><div class="project-visual"><span>Lead Scraper</span></div><div class="project-body"><h3>Lead Generation Scraper</h3><p>Lead scraper that collects business names, phone numbers, websites, and lead data into Excel.</p><div class="tags"><span class="tag">Lead Data</span><span class="tag">Scraping</span></div></div></article>
+        <article class="project-card" data-category="data"><div class="project-visual"><span>Crypto Signals</span></div><div class="project-body"><h3>Telegram Crypto Bot Signals</h3><p>Telegram bot for token monitoring, liquidity checks, market cap, volume, and risk alerts.</p><div class="tags"><span class="tag">Telegram</span><span class="tag">Signals</span></div></div></article>
       </div>
     </section>
 
-    <section id="projects">
-      <div class="card">
-        <div class="project-section-header">
-          <h2 class="section-title" style="margin-bottom:0;">Project Showcase</h2>
+    <section id="contact" class="section shell reveal">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Contact</p>
+          <h2>Ready to work.</h2>
         </div>
-
-        <div class="project-category">
-          <h3 class="project-category-title">AutoCAD Projects</h3>
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="autocad-project1.jpg" alt="AutoCAD toilet layout drawing project" />
-              </div>
-              <div class="project-content">
-                <h4>Construction Drawing</h4>
-                <p>
-                  Sample technical drawing showing layout planning, structure detailing, and clean presentation for a construction project.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">AutoCAD</span>
-                  <span class="project-tag">Technical Drawing</span>
-                  <span class="project-tag">Construction</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="autocad-project2.jpg" alt="AutoCAD construction plan sample project" />
-              </div>
-              <div class="project-content">
-                <h4>Construction Drawing Sample</h4>
-                <p>
-                  Drafting sample created for layout interpretation, coordination, and accurate technical plan preparation.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">AutoCAD</span>
-                  <span class="project-tag">Drafting</span>
-                  <span class="project-tag">Layout Planning</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="project-category">
-          <h3 class="project-category-title">n8n Workflow Projects</h3>
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="n8n-project1.png" alt="n8n workflow automation project 1" />
-              </div>
-              <div class="project-content">
-                <h4>AI chat bot</h4>
-                <p>
-                  • Automated Messenger, Telegram, & WhatsApp response flow for collecting customer details and supporting faster inquiry handling.
-                </p>
-                <p>
-                  • Instant replies using pre-written logic or AI-assisted flows.
-                </p>
-                <p>
-                  • Captures leads and customer details automatically.
-                </p>
-                <p>
-                  • Built to reduce manual response time and improve follow-up.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">n8n</span>
-                  <span class="project-tag">AI chat bot</span>
-                  <span class="project-tag">Automation</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="n8n-project2.png" alt="n8n workflow automation project 2" />
-              </div>
-              <div class="project-content">
-                <h4>Booking appointment setter</h4>
-                <p>
-                  • Sample automation workflow for auto replies, data collection, and simple customer interaction handling.
-                </p>
-                <p>
-                  • Captures customer information through form or chat.
-                </p>
-                <p>
-                  • Sends updates to Google Sheets and email.
-                </p>
-                 <p>
-                  • Supports organized booking and follow-up.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">n8n</span>
-                  <span class="project-tag">Automation</span>
-                  <span class="project-tag">Workflow</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="n8n-facebook-auto-poster.png" alt="n8n Facebook auto poster workflow project" />
-              </div>
-              <div class="project-content">
-                <h4>n8n Facebook Auto Poster</h4>
-                <p>
-                  • Built an automated Facebook posting workflow using n8n, AI caption generation, and HTTP requests.
-                </p>
-                <p>
-                  • Generates post content, sends Telegram updates, and publishes scheduled content to Facebook Pages.
-                </p>
-                <p>
-                  • Designed to reduce manual posting work and support consistent social media activity.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">n8n</span>
-                  <span class="project-tag">Facebook Automation</span>
-                  <span class="project-tag">OpenRouter</span>
-                  <span class="project-tag">Telegram</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-  <div class="project-image-wrap">
-    <img src="n8n-facebook-lead-capture.png" alt="n8n Facebook lead capture workflow project" />
-  </div>
-  <div class="project-content">
-    <h4>n8n Facebook Lead Capture</h4>
-    <p>
-      • Built an automated Facebook lead capture workflow using webhook, AI lead analysis, Google Sheets, Gmail, Telegram, and Google Calendar.
-    </p>
-    <p>
-      • Captures lead details, organizes the information, scores the lead, and routes them based on intent.
-    </p>
-    <p>
-      • Sends follow-up emails, Telegram notifications, appointment reminders, and logs all lead activity into Google Sheets.
-    </p>
-    <div class="project-tags">
-      <span class="project-tag">n8n</span>
-      <span class="project-tag">Facebook Leads</span>
-      <span class="project-tag">Lead Capture</span>
-      <span class="project-tag">Google Sheets</span>
-      <span class="project-tag">Gmail</span>
-      <span class="project-tag">Telegram</span>
-    </div>
-  </div>
-</article>
-            
-            <article class="project-card">
-  <div class="project-image-wrap">
-    <img src="n8n-ai-ticket-routing-system.png" alt="n8n AI ticket routing system workflow project" />
-  </div>
-  <div class="project-content">
-    <h4>AI Ticket Routing System</h4>
-    <p>
-      • Built an AI-powered ticket routing workflow using Gmail Trigger, OpenRouter AI classification, Switch routing, Telegram, Google Sheets, and Gmail.
-    </p>
-    <p>
-      • Automatically analyzes customer messages and routes them to the correct department such as Billing, Technical Support, Sales, or General Inquiry.
-    </p>
-    <p>
-      • Sends internal Telegram notifications, logs tickets into Google Sheets, and sends automatic email replies to customers.
-    </p>
-    <div class="project-tags">
-      <span class="project-tag">n8n</span>
-      <span class="project-tag">AI Ticket Routing</span>
-      <span class="project-tag">Gmail</span>
-      <span class="project-tag">OpenRouter</span>
-      <span class="project-tag">Google Sheets</span>
-      <span class="project-tag">Telegram</span>
-    </div>
-  </div>
-</article>
-
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="n8n-ai-voice-agent.png" alt="n8n AI voice agent workflow project" />
-              </div>
-              <div class="project-content">
-                <h4>n8n AI Voice Agent</h4>
-                <p>
-                  • Created an AI voice agent workflow concept for lead handling, call routing, and automated customer responses.
-                </p>
-                <p>
-                  • Uses webhook logic, conditional routing, and data logging to support real business follow-up workflows.
-                </p>
-                <p>
-                  • Built for appointment setting, lead qualification, and cold-calling support use cases.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">n8n</span>
-                  <span class="project-tag">AI Voice Agent</span>
-                  <span class="project-tag">Webhook</span>
-                  <span class="project-tag">Lead Automation</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="project-category">
-          <h3 class="project-category-title">Python Automation Projects</h3>
-          <div class="project-grid">
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="python-scraper.png" alt="Python lead generation scraper project" />
-              </div>
-              <div class="project-content">
-                <h4>Lead Generation Scraper</h4>
-                <p>
-                  • Built a Python-based scraper to collect business leads from Google Maps and online sources.
-                </p>
-                <p>
-                  • Extracts business name, phone number, website, and other key data.
-                </p>
-                <p>
-                  • Automatically saves leads into organized Excel files for outreach and cold calling.
-                </p>
-                <p>
-                  • Designed to support high-volume lead generation and sales workflows.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">Web Scraping</span>
-                  <span class="project-tag">Lead Generation</span>
-                  <span class="project-tag">Automation</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-image-wrap">
-                <img src="telegram-crypto-signal-bot-python.png" alt="Telegram crypto bot signals Python project" />
-              </div>
-              <div class="project-content">
-                <h4>Telegram Crypto Bot Signals</h4>
-                <p>
-                  • Built a Python crypto signal bot that monitors token activity and sends alerts directly to Telegram.
-                </p>
-                <p>
-                  • Tracks buy/sell pressure, liquidity, market cap, volume, social links, and risk warnings.
-                </p>
-                <p>
-                  • Designed to support fast token monitoring and signal notifications for crypto trading research.
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">Python</span>
-                  <span class="project-tag">Telegram Bot</span>
-                  <span class="project-tag">Crypto Signals</span>
-                  <span class="project-tag">Automation</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
+        <a class="contact-pill" href="Raymart-Gomez-Resume.pdf" download>Download Resume</a>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:rrgomez0000@gmail.com"><span>Email</span><strong>rrgomez0000@gmail.com</strong></a>
+        <a class="contact-card" href="tel:09517255895"><span>Phone</span><strong>0951 725 5895</strong></a>
+        <a class="contact-card" href="https://wa.me/639517255895" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+63 951 725 5895</strong></a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="quote-wrap">
-        <p id="typing-quote" class="typing-quote">All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <footer class="shell">© 2026 Raymart Gomez. Automation & Workflow Solutions.</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.01, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+      observer.observe(element);
+      if (element.getBoundingClientRect().top < window.innerHeight) {
+        element.classList.add('visible');
+      }
+    });
+
+    const toolsSection = document.querySelector('#tools');
+    if (toolsSection) {
+      const toolsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          toolsSection.classList.toggle('tools-visible', entry.isIntersecting);
+        });
+      }, { threshold: 0.18 });
+      toolsObserver.observe(toolsSection);
+    }
+
+    const filterButtons = [...document.querySelectorAll('.filter-btn')];
+    const projectCards = [...document.querySelectorAll('.project-card')];
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.classList.toggle('active', item === button));
+        projectCards.forEach((card) => {
+          card.hidden = filter !== 'all' && card.dataset.category !== filter;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
