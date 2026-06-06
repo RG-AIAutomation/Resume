@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raymart Gomez | Portfolio</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23000000'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='24' font-family='Arial' font-weight='900' fill='%23ffffff'%3ERG%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
     :root {
       --bg: #000;
@@ -1978,6 +1979,306 @@
       color: #f2efe8;
     }
 
+
+
+    /* --- Minimal contact/footer redesign inspired by reference screenshot --- */
+    #contact.contact-section {
+      position: relative;
+      padding: clamp(92px, 12vw, 140px) 0 0;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    #contact.contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 0 50% auto 50%;
+      width: 100vw;
+      height: 100%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(242, 239, 232, 0.08), transparent 24%),
+        radial-gradient(circle at 18% 58%, rgba(95, 46, 27, 0.18), transparent 20%),
+        radial-gradient(circle at 82% 58%, rgba(95, 46, 27, 0.16), transparent 20%),
+        linear-gradient(180deg, rgba(20, 20, 19, 0.32), rgba(2, 4, 3, 0));
+      z-index: -1;
+    }
+
+    #contact .contact-eyebrow {
+      margin: 0 0 20px;
+      color: rgba(201, 192, 180, 0.76);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+    }
+
+    #contact .contact-title {
+      margin: 0;
+      color: #f2efe8 !important;
+      font-size: clamp(2.7rem, 7.4vw, 6.4rem);
+      line-height: 0.9;
+      font-weight: 1000;
+      letter-spacing: -0.055em;
+      text-transform: none;
+      text-shadow: 0 20px 70px rgba(242, 239, 232, 0.08);
+    }
+
+    #contact .contact-intro {
+      width: min(620px, 100%);
+      margin: 28px auto 0;
+      color: rgba(201, 192, 180, 0.84) !important;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    #contact .connect-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(28px, 6vw, 76px);
+      margin-top: clamp(58px, 8vw, 92px);
+    }
+
+    #contact .connect-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 22px;
+      min-height: 96px;
+      padding: 6px 0 22px;
+      border-bottom: 1px solid rgba(242, 239, 232, 0.24);
+      text-align: left;
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    #contact .connect-item:hover {
+      transform: translateY(-3px);
+      border-color: rgba(242, 239, 232, 0.48);
+    }
+
+    #contact .connect-item:last-child {
+      justify-self: end;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    #contact .connect-icon,
+    #contact .connect-cta-icon {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid rgba(242, 239, 232, 0.22);
+      color: #f2efe8;
+      background: rgba(255,255,255,0.025);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 16px 42px rgba(0,0,0,0.34);
+    }
+
+    #contact .connect-icon {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+    }
+
+    #contact .connect-icon svg,
+    #contact .connect-cta-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      fill: none;
+    }
+
+    #contact .connect-meta span {
+      display: block;
+      color: rgba(201, 192, 180, 0.70) !important;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    #contact .connect-meta strong {
+      display: block;
+      margin-top: 10px;
+      color: #f2efe8 !important;
+      font-size: clamp(1rem, 1.7vw, 1.28rem);
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+    }
+
+
+    #contact .connect-meta {
+      min-width: 0;
+    }
+
+    #contact .connect-email {
+      font-size: clamp(0.88rem, 1.18vw, 1.04rem) !important;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+
+    #contact .connect-row {
+      grid-template-columns: minmax(300px, 1fr) auto minmax(260px, 1fr);
+      gap: clamp(22px, 4.5vw, 62px);
+    }
+
+    #contact .connect-item:first-child {
+      min-width: 0;
+    }
+
+    #contact .connect-cta {
+      min-width: min(360px, 78vw);
+      min-height: 76px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      padding: 0 34px;
+      border: 1px solid rgba(242, 239, 232, 0.32);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.018);
+      color: #f2efe8 !important;
+      font-size: 0.9rem;
+      font-weight: 1000;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018), 0 24px 56px rgba(0,0,0,0.36);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    }
+
+    #contact .connect-cta:hover {
+      transform: translateY(-3px);
+      border-color: rgba(242, 239, 232, 0.62);
+      background: rgba(242, 239, 232, 0.045);
+    }
+
+    #contact .connect-cta-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #contact .contact-social-strip {
+      margin-top: clamp(62px, 8vw, 96px);
+      padding: 28px 0 34px;
+      border-top: 1px solid rgba(242, 239, 232, 0.12);
+      border-bottom: 1px solid rgba(242, 239, 232, 0.12);
+    }
+
+    #contact .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    #contact .social-dot {
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(242, 239, 232, 0.15);
+      border-radius: 50%;
+      color: rgba(242, 239, 232, 0.86);
+      background: rgba(255,255,255,0.015);
+      font-size: 0.82rem;
+      font-weight: 1000;
+      letter-spacing: -0.03em;
+      transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+    }
+
+    #contact .social-dot:hover {
+      transform: translateY(-3px);
+      border-color: rgba(242, 239, 232, 0.42);
+      color: #fff;
+    }
+
+    #contact .social-dot i {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    footer.shell.site-footer {
+      padding: 30px 0 58px;
+      color: rgba(201, 192, 180, 0.74) !important;
+      text-align: center;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    footer.shell.site-footer strong {
+      color: #f2efe8 !important;
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      #contact.contact-section {
+        padding-top: 86px;
+      }
+
+      #contact .connect-row {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      #contact .connect-item,
+      #contact .connect-item:last-child {
+        width: min(520px, 100%);
+        max-width: none;
+        justify-self: center;
+      }
+
+      #contact .connect-cta {
+        order: -1;
+        width: min(520px, 100%);
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      #contact .contact-title {
+        font-size: clamp(2.4rem, 15vw, 4.2rem);
+      }
+
+      #contact .connect-item {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+
+
+      #contact .connect-email {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-size: clamp(0.88rem, 4.2vw, 1rem) !important;
+      }
+
+      #contact .connect-cta {
+        min-height: 66px;
+        padding: 0 22px;
+        gap: 14px;
+        letter-spacing: 0.14em;
+      }
+
+      #contact .social-dot {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -1991,7 +2292,7 @@
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="top-contact" href="mailto:rrgomez0000@gmail.com">Contact Me</a>
+    <a class="top-contact" href="mailto:rrgomez0000@gmail.com">Let's Connect</a>
   </header>
 
   <main>
@@ -2008,7 +2309,7 @@
             <div class="avatar-shadow"></div>
           </div>
           <div class="hero-cta">
-            <a class="contact-pill" href="mailto:rrgomez0000@gmail.com">Contact Me</a>
+            <a class="contact-pill" href="mailto:rrgomez0000@gmail.com">Let's Connect</a>
           </div>
         </div>
       </div>
@@ -2353,22 +2654,60 @@
       </div>
     </section>
 
-    <section id="contact" class="section shell reveal">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Contact</p>
-          <h2>Ready to work.</h2>
-        </div>
+    <section id="contact" class="contact-section shell reveal" aria-labelledby="contact-title">
+      <p class="contact-eyebrow">Your project starts here</p>
+      <h2 id="contact-title" class="contact-title">Ready to work.</h2>
+      <p class="contact-intro">Have a project in mind or want to collaborate? Send a message and let’s build something efficient, modern, and useful.</p>
+
+      <div class="connect-row" aria-label="Contact options">
+        <a class="connect-item" href="mailto:rrgomez0000@gmail.com" aria-label="Email Raymart Gomez">
+          <span class="connect-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+          </span>
+          <span class="connect-meta">
+            <span>Email</span>
+            <strong class="connect-email">rrgomez0000@gmail.com</strong>
+          </span>
+        </a>
+
+        <a class="connect-cta" href="mailto:rrgomez0000@gmail.com?subject=Project%20Inquiry%20from%20Portfolio&body=Hi%20Raymart%2C%0A%0AI%27d%20like%20to%20connect%20about%20a%20project.%0A%0AProject%20details%3A%20" aria-label="Send Raymart Gomez an email">
+          <span class="connect-cta-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </span>
+          <strong>Let's Connect</strong>
+        </a>
+
+        <a class="connect-item" href="https://wa.me/639517255895" target="_blank" rel="noreferrer" aria-label="Message Raymart Gomez on WhatsApp">
+          <span class="connect-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.7 7.1L4 20l1.4-4.1A8 8 0 1 1 20 11.5z"/><path d="M9.3 8.7c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c.6 1.1 1.5 2 2.6 2.6l.5-.4c.2-.2.5-.2.7-.1l1.6.7c.3.1.4.3.4.6v.4c0 .4-.1.6-.5.8-.5.3-1.2.4-2 .2-2.9-.7-5.2-3-5.9-5.9-.2-.7-.1-1.4.2-1.9z"/></svg>
+          </span>
+          <span class="connect-meta">
+            <span>WhatsApp</span>
+            <strong>+63 951 725 5895</strong>
+          </span>
+        </a>
       </div>
-      <div class="contact-grid">
-        <a class="contact-card" href="mailto:rrgomez0000@gmail.com"><span>Email</span><strong>rrgomez0000@gmail.com</strong></a>
-        <a class="contact-card" href="tel:09517255895"><span>Phone</span><strong>0951 725 5895</strong></a>
-        <a class="contact-card" href="https://wa.me/639517255895" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+63 951 725 5895</strong></a>
+
+      <div class="contact-social-strip" aria-label="Social links style row">
+        <div class="social-row">
+          <a class="social-dot" href="#" aria-label="Facebook profile" title="Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a class="social-dot" href="#" aria-label="Instagram profile" title="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a class="social-dot" href="#" aria-label="X / Twitter profile" title="X / Twitter">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a class="social-dot" href="#" aria-label="LinkedIn profile" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="shell">© 2026 Raymart Gomez. Automation & Workflow Solutions.</footer>
+  <footer class="shell site-footer">© 2026 <strong>Raymart Gomez</strong>. Automation & Workflow Solutions.</footer>
 
   <script>
     const observer = new IntersectionObserver((entries) => {
