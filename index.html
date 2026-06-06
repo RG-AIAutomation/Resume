@@ -1794,7 +1794,191 @@
       margin: 0 auto 4px !important;
     }
 
-</style>
+
+
+    /* --- Global black + red-orange portfolio theme override --- */
+    :root {
+      --bg: #050505;
+      --text: #f3f3ee;
+      --muted: #b8b2aa;
+      --soft: #7e7770;
+      --line: rgba(255, 42, 0, 0.28);
+      --panel: rgba(255, 255, 255, 0.035);
+      --purple: #ff2a00;
+      --pink: #ff2a00;
+      --orange: #ff3b00;
+      --cyan: #f3f3ee;
+    }
+
+    body {
+      color: var(--text) !important;
+      background: #050505 !important;
+    }
+
+    body::before {
+      background:
+        linear-gradient(90deg, rgba(255,42,0,0.88) 0%, rgba(255,42,0,0.88) 3.5%, transparent 3.5%),
+        radial-gradient(circle at 14% 18%, rgba(255,42,0,0.20), transparent 22%),
+        radial-gradient(circle at 84% 18%, rgba(255,42,0,0.16), transparent 20%),
+        radial-gradient(circle at 18% 78%, rgba(255,42,0,0.13), transparent 24%),
+        linear-gradient(180deg, #111111 0%, #050505 42%, #050505 100%) !important;
+    }
+
+    body::after {
+      opacity: 0.10 !important;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,42,0,0.07) 1px, transparent 1px) !important;
+    }
+
+    .brand,
+    .hero h1,
+    .hero h2,
+    h1, h2, h3, h4, h5, h6,
+    .section-head h2,
+    .service-card h3,
+    .tool-card strong,
+    .benefit-card strong,
+    .contact h2,
+    .footer,
+    .top-contact,
+    .nav a:hover,
+    strong {
+      color: #f3f3ee !important;
+    }
+
+    p, li, .muted, .service-card p, .benefit-card p, .integration-item span,
+    .services-subtitle, .nav a, .tool-card span, .tool-chip span:last-child,
+    .contact-card span, .contact-card a, .service-tags span {
+      color: #b8b2aa !important;
+    }
+
+    .kicker,
+    .services-kicker,
+    .section-head span,
+    #services h2 span,
+    .hero .eyebrow,
+    .hero .accent,
+    .service-link,
+    .topbar .active,
+    .contact .kicker,
+    .project-link,
+    .badge,
+    .contact-note,
+    .highlight,
+    .tool-card em {
+      color: #ff2a00 !important;
+    }
+
+    .topbar {
+      border-color: rgba(255, 42, 0, 0.34) !important;
+      background: rgba(5, 5, 5, 0.84) !important;
+      box-shadow: 0 0 28px rgba(255, 42, 0, 0.14) !important;
+    }
+
+    .top-contact,
+    .hero .cta,
+    .button,
+    .btn,
+    .download-btn,
+    .resume-btn,
+    .chip-active {
+      background: linear-gradient(90deg, #cc2100, #ff2a00, #ff5a1f) !important;
+      border-color: rgba(255,255,255,0.16) !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 24px rgba(255, 42, 0, 0.28) !important;
+    }
+
+    .panel,
+    .tool-card,
+    .service-card,
+    .contact-card,
+    .metric-card,
+    .project-card,
+    .benefit-card,
+    .topbar,
+    .hero-stage,
+    .services-benefits,
+    .tool-chip,
+    .tool-logo,
+    .contact-box,
+    .info-card {
+      border-color: rgba(255, 42, 0, 0.24) !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 18px 34px rgba(0,0,0,0.42) !important;
+    }
+
+    .panel,
+    .tool-card,
+    .service-card,
+    .contact-card,
+    .metric-card,
+    .project-card,
+    .benefit-card,
+    .hero-stage,
+    .services-benefits,
+    .tool-chip,
+    .tool-logo,
+    .contact-box,
+    .info-card {
+      background:
+        radial-gradient(circle at 88% 0%, rgba(255,42,0,0.13), transparent 24%),
+        radial-gradient(circle at 0% 100%, rgba(255,255,255,0.035), transparent 24%),
+        linear-gradient(180deg, rgba(17,17,17,0.97), rgba(5,5,5,0.98)) !important;
+    }
+
+    .service-number,
+    .benefit-icon,
+    .icon-badge,
+    .count-badge,
+    .social-pill,
+    .metric-icon {
+      background: linear-gradient(180deg, #ff2a00, #ff5a1f) !important;
+      color: #ffffff !important;
+      border-color: rgba(255,255,255,0.15) !important;
+      box-shadow: 0 0 18px rgba(255, 42, 0, 0.28) !important;
+    }
+
+    .service-tags span,
+    .service-icons span,
+    .tool-chip,
+    .contact-card,
+    .tool-logo,
+    .kicker,
+    .services-kicker {
+      border-color: rgba(255, 42, 0, 0.28) !important;
+      background-color: rgba(255,42,0,0.045) !important;
+    }
+
+    .tool-marquee .tool-chip,
+    .service-tags span,
+    .service-icons span {
+      color: #f3f3ee !important;
+    }
+
+    .service-link::after,
+    .project-link::after {
+      color: #ff2a00 !important;
+    }
+
+    #services .service-visual,
+    #services .service-visual::before,
+    #services .service-visual::after,
+    #services .service-visual span {
+      filter: hue-rotate(330deg) saturate(1.35) brightness(0.88);
+    }
+
+    .contact .kicker,
+    .section-head .kicker,
+    .services-kicker {
+      letter-spacing: 0.14em;
+    }
+
+    ::selection {
+      background: rgba(255, 42, 0, 0.36);
+      color: #ffffff;
+    }
+
+  </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
