@@ -737,6 +737,66 @@
       line-height: 1.55;
     }
 
+
+
+    /* Self-contained tool badges: no /logos folder needed */
+    .tool-fallback {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.92);
+      color: #080a10;
+      font-size: 0.7rem;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.42));
+    }
+
+    .tool-card .tool-fallback {
+      width: 54px;
+      height: 54px;
+      margin-bottom: 12px;
+      font-size: 0.82rem;
+    }
+
+    .tool-fallback.logo-wide {
+      width: min(96px, 100%);
+      height: 50px;
+      padding: 0 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .project-visual.has-image {
+      padding: 0;
+      overflow: hidden;
+      background: rgba(255,255,255,0.045);
+    }
+
+    .project-visual.has-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.44));
+    }
+
+    .project-visual {
+      position: relative;
+    }
+
     @keyframes logoSlide {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
@@ -1091,7 +1151,7 @@
           </p>
           <div class="avatar-wrap" aria-label="3D avatar hero image">
             <div class="avatar-glow"></div>
-            <img class="hero-avatar" src="raymart-hero-avatar.png" alt="3D avatar representing Raymart Gomez" />
+            <img class="hero-avatar" src="raymart-hero-avatar.png" alt="3D avatar representing Raymart Gomez" onerror="this.onerror=null; this.src='profile.jpg';" />
             <div class="avatar-shadow"></div>
           </div>
           <div class="hero-cta">
@@ -1191,32 +1251,32 @@
       </div>
       <div class="tool-marquee" aria-label="Moving automation tool logos">
         <div class="tool-track">
-          <div class="tool-chip"><img class="tool-logo" src="logos/n8n.svg" alt="n8n logo" />n8n</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/telegram.svg" alt="Telegram logo" />Telegram</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/whatsapp.svg" alt="WhatsApp logo" />WhatsApp</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/facebook.svg" alt="Facebook logo" />Facebook</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/gmail.svg" alt="Gmail logo" />Gmail</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/googlesheets.svg" alt="Google Sheets logo" />Sheets</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/googlecalendar.svg" alt="Google Calendar logo" />Calendar</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/openai.svg" alt="OpenAI logo" />OpenAI</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/openrouter.svg" alt="OpenRouter logo" />OpenRouter</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/postman.svg" alt="Postman logo" />Postman</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/airtable.svg" alt="Airtable logo" />Airtable</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/json.svg" alt="JSON logo" />JSON</div>
-          <div class="tool-chip"><img class="tool-logo logo-wide" src="logos/highlevel.png" alt="HighLevel logo" />GoHighLevel</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/n8n.svg" alt="" />n8n</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/telegram.svg" alt="" />Telegram</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/whatsapp.svg" alt="" />WhatsApp</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/facebook.svg" alt="" />Facebook</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/gmail.svg" alt="" />Gmail</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/googlesheets.svg" alt="" />Sheets</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/googlecalendar.svg" alt="" />Calendar</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/openai.svg" alt="" />OpenAI</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/openrouter.svg" alt="" />OpenRouter</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/postman.svg" alt="" />Postman</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/airtable.svg" alt="" />Airtable</div>
-          <div class="tool-chip"><img class="tool-logo" src="logos/json.svg" alt="" />JSON</div>
-          <div class="tool-chip"><img class="tool-logo logo-wide" src="logos/highlevel.png" alt="" />GoHighLevel</div>
+          <div class="tool-chip"><span class="tool-fallback">n8n</span>n8n</div>
+          <div class="tool-chip"><span class="tool-fallback">TG</span>Telegram</div>
+          <div class="tool-chip"><span class="tool-fallback">WA</span>WhatsApp</div>
+          <div class="tool-chip"><span class="tool-fallback">FB</span>Facebook</div>
+          <div class="tool-chip"><span class="tool-fallback">GM</span>Gmail</div>
+          <div class="tool-chip"><span class="tool-fallback">GS</span>Sheets</div>
+          <div class="tool-chip"><span class="tool-fallback">GC</span>Calendar</div>
+          <div class="tool-chip"><span class="tool-fallback">AI</span>OpenAI</div>
+          <div class="tool-chip"><span class="tool-fallback">OR</span>OpenRouter</div>
+          <div class="tool-chip"><span class="tool-fallback">API</span>Postman</div>
+          <div class="tool-chip"><span class="tool-fallback">AT</span>Airtable</div>
+          <div class="tool-chip"><span class="tool-fallback">{ }</span>JSON</div>
+          <div class="tool-chip"><span class="tool-fallback logo-wide">GHL</span>GoHighLevel</div>
+          <div class="tool-chip"><span class="tool-fallback">n8n</span>n8n</div>
+          <div class="tool-chip"><span class="tool-fallback">TG</span>Telegram</div>
+          <div class="tool-chip"><span class="tool-fallback">WA</span>WhatsApp</div>
+          <div class="tool-chip"><span class="tool-fallback">FB</span>Facebook</div>
+          <div class="tool-chip"><span class="tool-fallback">GM</span>Gmail</div>
+          <div class="tool-chip"><span class="tool-fallback">GS</span>Sheets</div>
+          <div class="tool-chip"><span class="tool-fallback">GC</span>Calendar</div>
+          <div class="tool-chip"><span class="tool-fallback">AI</span>OpenAI</div>
+          <div class="tool-chip"><span class="tool-fallback">OR</span>OpenRouter</div>
+          <div class="tool-chip"><span class="tool-fallback">API</span>Postman</div>
+          <div class="tool-chip"><span class="tool-fallback">AT</span>Airtable</div>
+          <div class="tool-chip"><span class="tool-fallback">{ }</span>JSON</div>
+          <div class="tool-chip"><span class="tool-fallback logo-wide">GHL</span>GoHighLevel</div>
         </div>
       </div>
 
@@ -1236,21 +1296,21 @@
         </div>
         <div class="panel">
           <div class="tool-grid">
-            <div class="tool-card"><img class="tool-logo" src="logos/n8n.svg" alt="n8n logo" /><strong>n8n</strong><span>workflow automation</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/telegram.svg" alt="Telegram logo" /><strong>Telegram</strong><span>bot notifications</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/whatsapp.svg" alt="WhatsApp logo" /><strong>WhatsApp</strong><span>chat automation</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/facebook.svg" alt="Facebook logo" /><strong>Facebook</strong><span>leads and posting</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/gmail.svg" alt="Gmail logo" /><strong>Gmail</strong><span>email workflows</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/googlesheets.svg" alt="Google Sheets logo" /><strong>Sheets</strong><span>data logging</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/googlecalendar.svg" alt="Google Calendar logo" /><strong>Calendar</strong><span>booking reminders</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/openai.svg" alt="OpenAI logo" /><strong>AI APIs</strong><span>classification and replies</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/openrouter.svg" alt="OpenRouter logo" /><strong>OpenRouter</strong><span>AI model routing</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/postman.svg" alt="Postman logo" /><strong>Postman</strong><span>API testing</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/json.svg" alt="JSON logo" /><strong>JSON</strong><span>payload handling</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/googledrive.svg" alt="Google Drive logo" /><strong>Drive</strong><span>file handoffs</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/googleforms.svg" alt="Google Forms logo" /><strong>Forms</strong><span>lead intake</span></div>
-            <div class="tool-card"><img class="tool-logo logo-wide" src="logos/highlevel.png" alt="HighLevel logo" /><strong>GHL / HighLevel</strong><span>CRM and funnels</span></div>
-            <div class="tool-card"><img class="tool-logo" src="logos/airtable.svg" alt="Airtable logo" /><strong>Airtable</strong><span>lead database</span></div>
+            <div class="tool-card"><span class="tool-fallback">n8n</span><strong>n8n</strong><span>workflow automation</span></div>
+            <div class="tool-card"><span class="tool-fallback">TG</span><strong>Telegram</strong><span>bot notifications</span></div>
+            <div class="tool-card"><span class="tool-fallback">WA</span><strong>WhatsApp</strong><span>chat automation</span></div>
+            <div class="tool-card"><span class="tool-fallback">FB</span><strong>Facebook</strong><span>leads and posting</span></div>
+            <div class="tool-card"><span class="tool-fallback">GM</span><strong>Gmail</strong><span>email workflows</span></div>
+            <div class="tool-card"><span class="tool-fallback">GS</span><strong>Sheets</strong><span>data logging</span></div>
+            <div class="tool-card"><span class="tool-fallback">GC</span><strong>Calendar</strong><span>booking reminders</span></div>
+            <div class="tool-card"><span class="tool-fallback">AI</span><strong>AI APIs</strong><span>classification and replies</span></div>
+            <div class="tool-card"><span class="tool-fallback">OR</span><strong>OpenRouter</strong><span>AI model routing</span></div>
+            <div class="tool-card"><span class="tool-fallback">API</span><strong>Postman</strong><span>API testing</span></div>
+            <div class="tool-card"><span class="tool-fallback">{ }</span><strong>JSON</strong><span>payload handling</span></div>
+            <div class="tool-card"><span class="tool-fallback">GD</span><strong>Drive</strong><span>file handoffs</span></div>
+            <div class="tool-card"><span class="tool-fallback">GF</span><strong>Forms</strong><span>lead intake</span></div>
+            <div class="tool-card"><span class="tool-fallback logo-wide">GHL</span><strong>GHL / HighLevel</strong><span>CRM and funnels</span></div>
+            <div class="tool-card"><span class="tool-fallback">AT</span><strong>Airtable</strong><span>lead database</span></div>
           </div>
         </div>
       </div>
@@ -1270,16 +1330,46 @@
         </div>
       </div>
       <div class="project-grid">
-        <article class="project-card" data-category="autocad"><div class="project-visual"><span>Construction Drawing</span></div><div class="project-body"><h3>Construction Drawing</h3><p>Layout planning, structure detailing, and clean construction presentation.</p><div class="tags"><span class="tag">AutoCAD</span><span class="tag">Technical Drawing</span></div></div></article>
-        <article class="project-card" data-category="autocad"><div class="project-visual"><span>Drafting Sample</span></div><div class="project-body"><h3>Construction Drawing Sample</h3><p>Drafting sample for layout interpretation and accurate technical plan preparation.</p><div class="tags"><span class="tag">Drafting</span><span class="tag">Layout Planning</span></div></div></article>
-        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#26A5E4"><strong>Chat</strong><span>Messenger / Telegram</span></div><div class="flow-node" style="--node-color:#EA4B71"><strong>AI Reply</strong><span>customer intent</span></div><div class="flow-node" style="--node-color:#34A853"><strong>Save Lead</strong><span>Sheets log</span></div></div></div><div class="project-body"><h3>AI Chat Bot</h3><p>Messenger, Telegram, and WhatsApp response flow for customer details and faster inquiry handling.</p><div class="tags"><span class="tag">n8n</span><span class="tag">Automation</span></div></div></article>
-        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#7248B9"><strong>Form</strong><span>booking request</span></div><div class="flow-node" style="--node-color:#4285F4"><strong>Calendar</strong><span>schedule slot</span></div><div class="flow-node" style="--node-color:#EA4335"><strong>Email</strong><span>confirmation</span></div></div></div><div class="project-body"><h3>Booking Appointment Setter</h3><p>Auto replies, customer capture, Google Sheets updates, email notifications, and follow-up support.</p><div class="tags"><span class="tag">Workflow</span><span class="tag">Booking</span></div></div></article>
-        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#1877F2"><strong>Facebook</strong><span>post idea</span></div><div class="flow-node" style="--node-color:#ffffff"><strong>AI Caption</strong><span>draft content</span></div><div class="flow-node" style="--node-color:#26A5E4"><strong>Telegram</strong><span>approval alert</span></div></div></div><div class="project-body"><h3>n8n Facebook Auto Poster</h3><p>AI caption generation, Telegram updates, and scheduled Facebook Page publishing.</p><div class="tags"><span class="tag">Facebook</span><span class="tag">Telegram</span></div></div></article>
-        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#1877F2"><strong>Lead Ad</strong><span>Facebook webhook</span></div><div class="flow-node" style="--node-color:#EA4B71"><strong>Score</strong><span>AI analysis</span></div><div class="flow-node" style="--node-color:#34A853"><strong>Route</strong><span>Sheets / Gmail</span></div></div></div><div class="project-body"><h3>n8n Facebook Lead Capture</h3><p>Webhook, AI lead analysis, Sheets, Gmail, Telegram, and Calendar routing.</p><div class="tags"><span class="tag">Leads</span><span class="tag">Google Sheets</span></div></div></article>
-        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#EA4335"><strong>Gmail</strong><span>new message</span></div><div class="flow-node" style="--node-color:#ffffff"><strong>AI Classify</strong><span>billing / sales</span></div><div class="flow-node" style="--node-color:#26A5E4"><strong>Notify</strong><span>team routing</span></div></div></div><div class="project-body"><h3>AI Ticket Routing System</h3><p>Classifies customer messages and routes them to Billing, Technical Support, Sales, or General Inquiry.</p><div class="tags"><span class="tag">AI</span><span class="tag">Gmail</span></div></div></article>
-        <article class="project-card" data-category="n8n"><div class="project-visual workflow"><div class="workflow-shot"><div class="flow-node" style="--node-color:#17D94B"><strong>Call</strong><span>voice trigger</span></div><div class="flow-node" style="--node-color:#EA4B71"><strong>Qualify</strong><span>lead logic</span></div><div class="flow-node" style="--node-color:#4285F4"><strong>Follow Up</strong><span>calendar / CRM</span></div></div></div><div class="project-body"><h3>n8n AI Voice Agent</h3><p>Voice workflow concept for lead handling, call routing, appointment setting, and customer responses.</p><div class="tags"><span class="tag">AI Voice</span><span class="tag">Webhook</span></div></div></article>
-        <article class="project-card" data-category="data"><div class="project-visual"><span>Lead Scraper</span></div><div class="project-body"><h3>Lead Generation Scraper</h3><p>Lead scraper that collects business names, phone numbers, websites, and lead data into Excel.</p><div class="tags"><span class="tag">Lead Data</span><span class="tag">Scraping</span></div></div></article>
-        <article class="project-card" data-category="data"><div class="project-visual"><span>Crypto Signals</span></div><div class="project-body"><h3>Telegram Crypto Bot Signals</h3><p>Telegram bot for token monitoring, liquidity checks, market cap, volume, and risk alerts.</p><div class="tags"><span class="tag">Telegram</span><span class="tag">Signals</span></div></div></article>
+        <article class="project-card" data-category="autocad">
+          <div class="project-visual has-image"><img class="project-image" src="autocad-project1.jpg" alt="Construction drawing project preview" /></div>
+          <div class="project-body"><h3>Construction Drawing</h3><p>Layout planning, structure detailing, and clean construction presentation.</p><div class="tags"><span class="tag">AutoCAD</span><span class="tag">Technical Drawing</span></div></div>
+        </article>
+        <article class="project-card" data-category="autocad">
+          <div class="project-visual has-image"><img class="project-image" src="autocad-project2.jpg" alt="Drafting sample project preview" /></div>
+          <div class="project-body"><h3>Construction Drawing Sample</h3><p>Drafting sample for layout interpretation and accurate technical plan preparation.</p><div class="tags"><span class="tag">Drafting</span><span class="tag">Layout Planning</span></div></div>
+        </article>
+        <article class="project-card" data-category="n8n">
+          <div class="project-visual has-image"><img class="project-image" src="n8n-project1.png" alt="AI chatbot automation project preview" /></div>
+          <div class="project-body"><h3>AI Chat Bot</h3><p>Messenger, Telegram, and WhatsApp response flow for customer details and faster inquiry handling.</p><div class="tags"><span class="tag">n8n</span><span class="tag">Automation</span></div></div>
+        </article>
+        <article class="project-card" data-category="n8n">
+          <div class="project-visual has-image"><img class="project-image" src="n8n-project2.png" alt="Booking appointment setter workflow preview" /></div>
+          <div class="project-body"><h3>Booking Appointment Setter</h3><p>Auto replies, customer capture, Google Sheets updates, email notifications, and follow-up support.</p><div class="tags"><span class="tag">Workflow</span><span class="tag">Booking</span></div></div>
+        </article>
+        <article class="project-card" data-category="n8n">
+          <div class="project-visual has-image"><img class="project-image" src="n8n-facebook-auto-poster.png" alt="n8n Facebook auto poster project preview" /></div>
+          <div class="project-body"><h3>n8n Facebook Auto Poster</h3><p>AI caption generation, Telegram updates, and scheduled Facebook Page publishing.</p><div class="tags"><span class="tag">Facebook</span><span class="tag">Telegram</span></div></div>
+        </article>
+        <article class="project-card" data-category="n8n">
+          <div class="project-visual has-image"><img class="project-image" src="n8n-facebook-lead-capture.png" alt="n8n Facebook lead capture project preview" /></div>
+          <div class="project-body"><h3>n8n Facebook Lead Capture</h3><p>Webhook, AI lead analysis, Sheets, Gmail, Telegram, and Calendar routing.</p><div class="tags"><span class="tag">Leads</span><span class="tag">Google Sheets</span></div></div>
+        </article>
+        <article class="project-card" data-category="n8n">
+          <div class="project-visual has-image"><img class="project-image" src="n8n-ai-ticket-routing-system.png" alt="AI ticket routing system project preview" /></div>
+          <div class="project-body"><h3>AI Ticket Routing System</h3><p>Classifies customer messages and routes them to Billing, Technical Support, Sales, or General Inquiry.</p><div class="tags"><span class="tag">AI</span><span class="tag">Gmail</span></div></div>
+        </article>
+        <article class="project-card" data-category="n8n">
+          <div class="project-visual has-image"><img class="project-image" src="n8n-ai-voice-agent.png" alt="n8n AI voice agent project preview" /></div>
+          <div class="project-body"><h3>n8n AI Voice Agent</h3><p>Voice workflow concept for lead handling, call routing, appointment setting, and customer responses.</p><div class="tags"><span class="tag">AI Voice</span><span class="tag">Webhook</span></div></div>
+        </article>
+        <article class="project-card" data-category="data">
+          <div class="project-visual has-image"><img class="project-image" src="python-scraper.png" alt="Lead generation scraper project preview" /></div>
+          <div class="project-body"><h3>Lead Generation Scraper</h3><p>Lead scraper that collects business names, phone numbers, websites, and lead data into Excel.</p><div class="tags"><span class="tag">Lead Data</span><span class="tag">Scraping</span></div></div>
+        </article>
+        <article class="project-card" data-category="data">
+          <div class="project-visual has-image"><img class="project-image" src="telegram-crypto-signal-bot-python.png" alt="Telegram crypto bot signals project preview" /></div>
+          <div class="project-body"><h3>Telegram Crypto Bot Signals</h3><p>Telegram bot for token monitoring, liquidity checks, market cap, volume, and risk alerts.</p><div class="tags"><span class="tag">Telegram</span><span class="tag">Signals</span></div></div>
+        </article>
       </div>
     </section>
 
