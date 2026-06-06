@@ -2466,6 +2466,33 @@
       color: #b36c4c;
     }
 
+    .hero-mini-tags.typewriter-text {
+      min-width: 315px;
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      padding: 0 16px;
+    }
+
+    .hero-mini-tags.typewriter-text strong {
+      display: inline-block;
+      color: rgba(242, 239, 232, 0.88) !important;
+      font: inherit;
+      white-space: nowrap;
+    }
+
+    #typedText::after {
+      content: "|";
+      margin-left: 5px;
+      color: #b36c4c;
+      animation: blinkCursor 0.8s infinite;
+    }
+
+    @keyframes blinkCursor {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
     .hero-build-line {
       max-width: 360px;
       margin: 22px 0 0;
@@ -3251,7 +3278,9 @@
           <h1 class="hero-title">Hi, I'm<br />Raymart</h1>
           <div class="hero-left-stack">
             <div class="hero-status-badge">Available for Remote Work</div>
-            <div class="hero-mini-tags">Automation <span>•</span> Support <span>•</span> Civil Engineering</div>
+            <div class="hero-mini-tags typewriter-text" aria-label="Portfolio focus">
+              <strong id="typedText">AUTOMATING TASKS</strong>
+            </div>
             <p class="intro-copy">
               A support professional, civil engineering graduate, and automation builder creating lead tools and workflow systems <span>for real business use.</span>
             </p>
@@ -3715,6 +3744,44 @@
         });
       });
     });
+
+    const typedText = document.getElementById('typedText');
+    const phrases = [
+      'AUTOMATING TASKS',
+      'SUPPORTING OPERATIONS',
+      'BUILDING SYSTEMS'
+    ];
+
+    if (typedText) {
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+          typedText.textContent = currentPhrase.substring(0, charIndex--);
+        } else {
+          typedText.textContent = currentPhrase.substring(0, charIndex++);
+        }
+
+        let speed = isDeleting ? 48 : 86;
+
+        if (!isDeleting && charIndex === currentPhrase.length + 1) {
+          speed = 1200;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          speed = 320;
+        }
+
+        setTimeout(typeEffect, speed);
+      }
+
+      typeEffect();
+    }
   </script>
 </body>
 </html>
