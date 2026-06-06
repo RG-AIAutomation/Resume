@@ -2825,6 +2825,409 @@
     }
 
 
+  
+    /* --- FINAL CLEAN HERO FIX: desktop layout like reference, no overlap --- */
+    @media (min-width: 901px) {
+      .hero.shell {
+        width: min(1240px, calc(100% - 10px));
+      }
+
+      .hero {
+        min-height: 100svh;
+        padding: 0;
+        align-items: center;
+      }
+
+      .hero-stage {
+        min-height: min(680px, calc(100svh - 10px));
+        border-radius: 6px;
+      }
+
+      .hero-inner {
+        display: block;
+        position: relative;
+        min-height: inherit;
+        padding: 0;
+      }
+
+      .hero-title {
+        top: clamp(76px, 12vh, 110px);
+        left: clamp(34px, 4.2vw, 62px);
+        right: auto;
+        width: min(720px, 64vw);
+        font-size: clamp(5rem, 8.9vw, 7rem);
+        line-height: 0.78;
+        letter-spacing: -0.055em;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-left-stack {
+        position: absolute;
+        left: clamp(34px, 4.2vw, 62px);
+        top: clamp(260px, 42vh, 288px);
+        z-index: 6;
+        width: 350px;
+        max-width: 350px;
+        margin: 0;
+        align-self: auto;
+      }
+
+      .hero-left-stack .intro-copy {
+        max-width: 312px;
+        margin: 18px 0 0;
+        font-size: 0.82rem;
+        line-height: 1.48;
+        color: rgba(242,239,232,0.86);
+      }
+
+      .hero-status-badge {
+        min-height: 34px;
+        padding: 0 16px;
+        background: rgba(47, 116, 68, 0.22);
+      }
+
+      .hero-mini-tags {
+        min-height: 30px;
+        padding: 0 15px;
+      }
+
+      .hero-build-line {
+        max-width: 340px;
+        margin-top: 22px;
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .hero-metric-row {
+        width: 342px;
+        max-width: 342px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .hero-metric-card {
+        min-height: 88px;
+        padding: 14px 12px;
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .hero-metric-card strong {
+        font-size: 1.42rem;
+      }
+
+      .hero-metric-card span:not(.hero-metric-icon) {
+        font-size: 0.72rem;
+      }
+
+      .avatar-wrap {
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+        width: min(450px, 42vw);
+        min-height: 520px;
+        z-index: 4;
+      }
+
+      .avatar-wrap::before {
+        width: min(300px, 28vw);
+        height: min(390px, 38vw);
+        transform: translateY(42px);
+      }
+
+      .avatar-wrap::after {
+        width: min(240px, 22vw);
+        height: min(320px, 32vw);
+        transform: translateY(42px);
+      }
+
+      .avatar-glow {
+        width: min(430px, 39vw);
+        transform: translateY(52px);
+      }
+
+      .hero-avatar {
+        width: min(430px, 40vw);
+        transform: translateY(54px);
+        animation: float 5s ease-in-out infinite;
+      }
+
+      .avatar-shadow {
+        bottom: 8px;
+      }
+
+      .hero-cta {
+        position: absolute;
+        right: clamp(34px, 4vw, 58px);
+        top: clamp(150px, 25vh, 188px);
+        z-index: 6;
+        width: 320px;
+        min-width: 0;
+        display: grid;
+        justify-items: start;
+        gap: 20px;
+        transform: none;
+      }
+
+      .hero-role-copy {
+        max-width: 292px;
+      }
+
+      .hero-role-copy span {
+        color: #c56d42;
+      }
+
+      .hero-role-copy p {
+        max-width: 278px;
+        font-size: 1rem;
+      }
+
+      .contact-pill {
+        min-height: 54px;
+        padding: 0 30px;
+        font-size: 0.78rem;
+      }
+
+      .hero-socials {
+        gap: 12px;
+        margin-top: 0;
+      }
+
+      .hero-socials a {
+        width: 43px;
+        height: 43px;
+      }
+
+      .hero-focus-card {
+        width: 316px;
+        margin-top: 26px;
+        padding: 20px;
+      }
+
+      .hero-logo-cloud {
+        z-index: 2;
+        opacity: 0.92;
+      }
+
+      .hero-logo-cloud::before {
+        left: 55%;
+        top: 45%;
+        width: min(610px, 54vw);
+        height: min(250px, 23vw);
+        transform: translate(-50%, -50%) rotate(7deg);
+      }
+
+      .hero-logo-cloud::after {
+        left: 54%;
+        top: 55%;
+        width: min(540px, 49vw);
+        height: min(210px, 20vw);
+        transform: translate(-50%, -50%) rotate(-13deg);
+      }
+
+      .hero-logo-badge {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+      }
+
+      .hero-logo-badge img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .hero-logo-badge.logo-wide img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .hero-logo-badge .hero-logo-label {
+        display: none;
+      }
+
+      .hero-logo-badge.logo-n8n { left: 50%; top: 15%; }
+      .hero-logo-badge.logo-openai { left: 67%; top: 21%; }
+      .hero-logo-badge.logo-sheets { left: 40%; top: 40%; }
+      .hero-logo-badge.logo-gmail { left: 36%; top: 54%; }
+      .hero-logo-badge.logo-telegram { left: 37%; top: 68%; }
+      .hero-logo-badge.logo-openrouter { left: 66%; top: 51%; }
+      .hero-logo-badge.logo-gohighlevel { left: 67%; top: 64%; }
+
+      .scroll-note {
+        bottom: 18px;
+        z-index: 7;
+      }
+    }
+
+    /* --- FINAL CLEAN HERO FIX: tablet/mobile, stacked and readable --- */
+    @media (max-width: 900px) {
+      .hero-stage {
+        min-height: 1040px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: start;
+        padding: 42px 18px 82px;
+      }
+
+      .hero-title {
+        top: 78px;
+        left: 18px;
+        right: 18px;
+        width: auto;
+        font-size: clamp(3.7rem, 16vw, 5.4rem);
+        line-height: 0.8;
+        z-index: 1;
+      }
+
+      .hero-left-stack {
+        position: relative;
+        z-index: 6;
+        justify-self: center;
+        width: min(360px, 100%);
+        max-width: min(360px, 100%);
+        padding-top: 235px;
+        margin: 0;
+        text-align: center;
+      }
+
+      .hero-left-stack .intro-copy {
+        max-width: 100%;
+        margin: 16px auto 0;
+      }
+
+      .hero-build-line {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-metric-row {
+        width: min(360px, 100%);
+        max-width: min(360px, 100%);
+        grid-template-columns: 1fr;
+      }
+
+      .avatar-wrap {
+        justify-self: center;
+        width: min(390px, 90vw);
+        min-height: 430px;
+        margin-top: 4px;
+      }
+
+      .hero-avatar {
+        width: min(360px, 86vw);
+        transform: translateY(38px);
+      }
+
+      .hero-cta {
+        justify-self: center;
+        justify-items: center;
+        width: min(360px, 100%);
+        min-width: 0;
+        transform: none;
+        margin-top: 18px;
+        text-align: center;
+      }
+
+      .hero-role-copy {
+        text-align: center;
+      }
+
+      .hero-focus-card {
+        width: min(340px, 100%);
+        margin-top: 10px;
+      }
+
+      .hero-logo-cloud {
+        opacity: 0.5;
+        z-index: 2;
+      }
+
+      .hero-logo-cloud::before,
+      .hero-logo-cloud::after,
+      .hero-logo-badge .hero-logo-label {
+        display: none;
+      }
+
+      .hero-logo-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+      }
+
+      .hero-logo-badge img,
+      .hero-logo-badge.logo-wide img {
+        width: 23px;
+        height: 23px;
+      }
+
+      .hero-logo-badge.logo-n8n { left: 50%; top: 38%; }
+      .hero-logo-badge.logo-openai { left: 76%; top: 42%; }
+      .hero-logo-badge.logo-sheets { left: 14%; top: 45%; }
+      .hero-logo-badge.logo-gmail { left: 10%; top: 57%; }
+      .hero-logo-badge.logo-telegram { left: 18%; top: 70%; }
+      .hero-logo-badge.logo-openrouter { left: 78%; top: 58%; }
+      .hero-logo-badge.logo-gohighlevel { left: 70%; top: 72%; }
+
+      .scroll-note {
+        bottom: 16px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-stage {
+        min-height: 1100px;
+      }
+
+      .hero-title {
+        top: 82px;
+        font-size: clamp(3.2rem, 15vw, 4.3rem);
+      }
+
+      .hero-left-stack {
+        padding-top: 235px;
+      }
+
+      .hero-status-badge {
+        width: min(300px, 100%);
+        justify-content: center;
+      }
+
+      .hero-mini-tags {
+        width: min(300px, 100%);
+        justify-content: center;
+      }
+
+      .contact-pill {
+        width: auto;
+        min-width: 220px;
+      }
+
+      .hero-logo-cloud {
+        opacity: 0.38;
+      }
+    }
+
+  
+
+    /* removed per request */
+    .hero-logo-cloud,
+    .hero-metric-row {
+      display: none !important;
+    }
+
+    @media (min-width: 901px) {
+      .hero-left-stack {
+        top: clamp(270px, 43vh, 300px) !important;
+      }
+    }
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -2846,15 +3249,6 @@
       <div class="hero-stage reveal">
         <div class="hero-inner">
           <h1 class="hero-title">Hi, I'm<br />Raymart</h1>
-          <div class="hero-logo-cloud" aria-hidden="true">
-            <div class="hero-logo-badge logo-n8n"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo" /><span class="hero-logo-label">n8n</span></div>
-            <div class="hero-logo-badge logo-openai"><img src="https://cdn.simpleicons.org/openai/FFFFFF" alt="OpenAI logo" /><span class="hero-logo-label">OpenAI</span></div>
-            <div class="hero-logo-badge logo-sheets"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo" /><span class="hero-logo-label">Sheets</span></div>
-            <div class="hero-logo-badge logo-gmail"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo" /><span class="hero-logo-label">Gmail</span></div>
-            <div class="hero-logo-badge logo-telegram"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo" /><span class="hero-logo-label">Telegram</span></div>
-            <div class="hero-logo-badge logo-openrouter logo-wide"><img src="data:image/png;base64,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UABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAlyj/wFfT2OL9L4C0AAAAABJRU5ErkJggg==" alt="OpenRouter logo" /><span class="hero-logo-label">OpenRouter</span></div>
-            <div class="hero-logo-badge logo-gohighlevel logo-wide"><img src="data:image/png;base64,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" alt="GoHighLevel logo" /><span class="hero-logo-label">GoHighLevel</span></div>
-          </div>
           <div class="hero-left-stack">
             <div class="hero-status-badge">Available for Remote Work</div>
             <div class="hero-mini-tags">Automation <span>•</span> Support <span>•</span> Civil Engineering</div>
@@ -2862,11 +3256,7 @@
               A support professional, civil engineering graduate, and automation builder creating lead tools and workflow systems <span>for real business use.</span>
             </p>
             <p class="hero-build-line"><strong>I build:</strong> Lead capture systems <span>•</span> CRM workflows <span>•</span> Email automations <span>•</span> Business dashboards</p>
-            <div class="hero-metric-row" aria-label="Portfolio highlights">
-              <div class="hero-metric-card"><span class="hero-metric-icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span><div><strong>3+</strong><span>Automation Projects Built</span></div></div>
-              <div class="hero-metric-card"><span class="hero-metric-icon"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i></span><div><strong>Civil Eng.</strong><span>Technical Background</span></div></div>
-              <div class="hero-metric-card"><span class="hero-metric-icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span><div><strong>24/7 Style</strong><span>Workflow Systems</span></div></div>
-            </div>
+          </div>
           </div>
           <div class="avatar-wrap" aria-label="3D avatar hero image">
             <div class="avatar-glow"></div>
