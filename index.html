@@ -216,6 +216,32 @@
       min-height: 510px;
     }
 
+    .avatar-wrap::before {
+      content: "";
+      position: absolute;
+      width: min(270px, 58vw);
+      height: min(360px, 72vw);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 191, 92, 0.42);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03) inset,
+        0 0 40px rgba(255, 162, 67, 0.18),
+        0 18px 50px rgba(0,0,0,0.42);
+      transform: translateY(40px);
+    }
+
+    .avatar-wrap::after {
+      content: "";
+      position: absolute;
+      width: min(210px, 46vw);
+      height: min(280px, 58vw);
+      border-radius: 22px;
+      background: radial-gradient(circle at 50% 18%, rgba(255,184,81,0.14), transparent 55%);
+      transform: translateY(38px);
+      filter: blur(12px);
+    }
+
     .avatar-glow {
       position: absolute;
       width: min(440px, 78vw);
@@ -291,14 +317,31 @@
     .scroll-note {
       position: absolute;
       left: 50%;
-      bottom: 20px;
+      bottom: 18px;
       transform: translateX(-50%);
       z-index: 5;
-      color: var(--soft);
+      color: rgba(242,239,232,0.8);
       font-size: 0.68rem;
       font-weight: 900;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .scroll-note-arrow {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(242,239,232,0.32);
+      display: grid;
+      place-items: center;
+      font-size: 0.88rem;
+      color: rgba(242,239,232,0.9);
+      background: rgba(255,255,255,0.025);
     }
 
     @keyframes float {
@@ -2279,6 +2322,509 @@
       }
     }
 
+
+    /* --- Hero add-ons: logo cloud, status, metrics, socials, focus card --- */
+    .hero-inner {
+      isolation: isolate;
+    }
+
+    .hero-logo-cloud {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-logo-cloud::before,
+    .hero-logo-cloud::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      width: min(660px, 58vw);
+      height: min(270px, 25vw);
+      border: 1px dashed rgba(242, 239, 232, 0.12);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(8deg);
+      opacity: 0.8;
+    }
+
+    .hero-logo-cloud::after {
+      width: min(560px, 50vw);
+      height: min(210px, 21vw);
+      transform: translate(-50%, -44%) rotate(-14deg);
+      opacity: 0.55;
+    }
+
+    .hero-logo-badge {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(242, 239, 232, 0.12);
+      border-radius: 16px;
+      background: rgba(20, 20, 19, 0.68);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025), 0 18px 38px rgba(0,0,0,0.42);
+      backdrop-filter: blur(12px);
+      opacity: 0.9;
+      animation: heroLogoFloat 6s ease-in-out infinite;
+    }
+
+    .hero-logo-badge img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.36));
+    }
+
+    .hero-logo-badge.logo-wide img {
+      width: 34px;
+      height: 34px;
+    }
+
+    .hero-logo-badge .hero-logo-label {
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      transform: translateX(-50%);
+      color: rgba(242, 239, 232, 0.72);
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      text-shadow: 0 8px 20px rgba(0,0,0,0.65);
+    }
+
+    .hero-logo-badge.logo-n8n { left: 51%; top: 19%; animation-delay: 0s; }
+    .hero-logo-badge.logo-openai { left: 68%; top: 26%; animation-delay: -1.2s; }
+    .hero-logo-badge.logo-sheets { left: 39%; top: 42%; animation-delay: -2.1s; }
+    .hero-logo-badge.logo-gmail { left: 37%; top: 56%; animation-delay: -3.1s; }
+    .hero-logo-badge.logo-telegram { left: 41%; top: 72%; animation-delay: -4s; }
+    .hero-logo-badge.logo-openrouter { left: 70%; top: 55%; animation-delay: -2.7s; }
+    .hero-logo-badge.logo-gohighlevel { left: 72%; top: 72%; animation-delay: -4.8s; }
+
+    .hero-left-stack {
+      position: relative;
+      z-index: 4;
+      align-self: end;
+      max-width: 372px;
+      margin-bottom: 36px;
+    }
+
+    .hero-left-stack .intro-copy {
+      max-width: 268px;
+      margin: 22px 0 0;
+      align-self: auto;
+    }
+
+    .hero-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 15px;
+      border: 1px solid rgba(94, 193, 128, 0.28);
+      border-radius: 999px;
+      background: rgba(16, 62, 36, 0.18);
+      color: #81f0a5;
+      font-size: 0.68rem;
+      font-weight: 1000;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(94, 193, 128, 0.08);
+    }
+
+    .hero-status-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6ee78f;
+      box-shadow: 0 0 14px rgba(110, 231, 143, 0.7);
+    }
+
+    .hero-mini-tags {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 30px;
+      margin-top: 10px;
+      padding: 0 14px;
+      border: 1px solid rgba(242, 239, 232, 0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.025);
+      color: rgba(242, 239, 232, 0.82);
+      font-size: 0.64rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-mini-tags span {
+      color: #b36c4c;
+    }
+
+    .hero-build-line {
+      max-width: 360px;
+      margin: 22px 0 0;
+      color: rgba(242, 239, 232, 0.88) !important;
+      font-size: 0.86rem;
+      line-height: 1.6;
+      font-weight: 700;
+    }
+
+    .hero-build-line strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #b36c4c !important;
+      font-size: 0.72rem;
+      font-weight: 1000;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-build-line span {
+      color: #b36c4c;
+      font-weight: 900;
+    }
+
+    .hero-metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .hero-metric-card {
+      min-height: 76px;
+      padding: 12px 12px 11px;
+      border: 1px solid rgba(242, 239, 232, 0.12);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.035);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018), 0 16px 32px rgba(0,0,0,0.24);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .hero-metric-icon {
+      width: 30px;
+      height: 30px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.035);
+      color: #8f4cff;
+      font-size: 1rem;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.045);
+      margin-top: 2px;
+    }
+
+    .hero-metric-card:nth-child(2) .hero-metric-icon {
+      color: #2ca0ff;
+    }
+
+    .hero-metric-card:nth-child(3) .hero-metric-icon {
+      color: #55e49f;
+    }
+
+    .hero-metric-card strong {
+      display: block;
+      color: #f2efe8 !important;
+      font-size: 1.32rem;
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-metric-card span {
+      display: block;
+      margin-top: 7px;
+      color: rgba(201, 192, 180, 0.84) !important;
+      font-size: 0.72rem;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .hero-cta {
+      display: grid;
+      justify-items: start;
+      gap: 18px;
+      min-width: 238px;
+    }
+
+    .hero-role-copy {
+      max-width: 270px;
+      text-align: left;
+    }
+
+    .hero-role-copy span {
+      display: block;
+      color: #b36c4c;
+      font-size: 0.72rem;
+      font-weight: 1000;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-role-copy p {
+      margin: 10px 0 0;
+      color: rgba(242, 239, 232, 0.86) !important;
+      font-size: 0.96rem;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .hero-socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .hero-socials a {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(242, 239, 232, 0.14);
+      border-radius: 50%;
+      color: rgba(242, 239, 232, 0.88);
+      background: rgba(255,255,255,0.025);
+      transition: transform 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+    }
+
+    .hero-socials a:hover {
+      transform: translateY(-3px);
+      border-color: rgba(242, 239, 232, 0.4);
+      color: #fff;
+    }
+
+    .hero-focus-card {
+      width: min(278px, 100%);
+      margin-top: 40px;
+      padding: 18px;
+      border: 1px solid rgba(242, 239, 232, 0.12);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 16% 20%, rgba(95,46,27,0.24), transparent 30%),
+        rgba(255,255,255,0.03);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018), 0 20px 42px rgba(0,0,0,0.34);
+    }
+
+    .hero-focus-card strong {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f2efe8 !important;
+      font-size: 0.72rem;
+      font-weight: 1000;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-focus-icon {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #7c4dff;
+      border: 1px solid rgba(124,77,255,0.28);
+      background: rgba(124,77,255,0.08);
+      font-size: 0.92rem;
+    }
+
+    .hero-focus-card p {
+      margin: 10px 0 0;
+      color: rgba(201, 192, 180, 0.88) !important;
+      font-size: 0.86rem;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    @keyframes heroLogoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-metric-row {
+        grid-template-columns: 1fr;
+        max-width: 245px;
+      }
+
+      .hero-focus-card {
+        margin-top: 18px;
+      }
+
+      .hero-logo-badge.logo-sheets { left: 36%; }
+      .hero-logo-badge.logo-gmail { left: 35%; }
+      .hero-logo-badge.logo-telegram { left: 38%; }
+      .hero-logo-badge.logo-openai { left: 72%; }
+      .hero-logo-badge.logo-openrouter { left: 73%; }
+      .hero-logo-badge.logo-gohighlevel { left: 74%; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-title {
+        top: 72px;
+        font-size: clamp(3rem, 15vw, 5.4rem);
+      }
+
+      .hero-left-stack {
+        justify-self: center;
+        align-self: start;
+        max-width: min(460px, 100%);
+        margin: 0;
+        padding-top: 228px;
+        text-align: center;
+      }
+
+      .hero-left-stack .intro-copy {
+        max-width: 360px;
+        margin: 18px auto 0;
+        padding-top: 0 !important;
+      }
+
+      .hero-build-line {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-metric-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: none;
+      }
+
+      .hero-cta {
+        justify-self: center;
+        justify-items: center;
+        min-width: 0;
+        width: min(460px, 100%);
+        text-align: center;
+      }
+
+      .hero-role-copy {
+        text-align: center;
+      }
+
+      .hero-focus-card {
+        margin-top: 6px;
+      }
+
+      .hero-logo-cloud {
+        opacity: 0.72;
+      }
+
+      .hero-logo-cloud::before,
+      .hero-logo-cloud::after {
+        top: 56%;
+        width: min(520px, 96vw);
+        height: 190px;
+      }
+
+      .hero-logo-badge {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+      }
+
+      .hero-logo-badge img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .hero-logo-badge .hero-logo-label {
+        display: none;
+      }
+
+      .hero-logo-badge.logo-n8n { left: 49%; top: 42%; }
+      .hero-logo-badge.logo-openai { left: 73%; top: 50%; }
+      .hero-logo-badge.logo-sheets { left: 22%; top: 52%; }
+      .hero-logo-badge.logo-gmail { left: 18%; top: 68%; }
+      .hero-logo-badge.logo-telegram { left: 30%; top: 82%; }
+      .hero-logo-badge.logo-openrouter { left: 78%; top: 68%; }
+      .hero-logo-badge.logo-gohighlevel { left: 66%; top: 84%; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-stage {
+        min-height: 980px;
+      }
+
+      .hero-title {
+        top: 84px;
+        left: 18px;
+        right: 18px;
+        font-size: clamp(2.9rem, 14vw, 4.7rem);
+        line-height: 0.82;
+      }
+
+      .hero-left-stack {
+        padding-top: 276px;
+        max-width: min(340px, 100%);
+      }
+
+      .hero-left-stack .intro-copy {
+        max-width: 100%;
+      }
+
+      .hero-status-badge,
+      .hero-mini-tags {
+        justify-content: center;
+      }
+
+      .hero-metric-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-metric-card {
+        min-height: 64px;
+      }
+
+      .scroll-note {
+        bottom: 16px;
+      }
+
+      .hero-logo-cloud {
+        opacity: 0.88;
+      }
+
+      .hero-logo-cloud::before,
+      .hero-logo-cloud::after {
+        display: none;
+      }
+
+      .hero-logo-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+      }
+
+      .hero-logo-badge img {
+        width: 22px;
+        height: 22px;
+      }
+
+      .hero-logo-badge.logo-wide img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .hero-logo-badge.logo-n8n { left: 54%; top: 43%; }
+      .hero-logo-badge.logo-openai { right: 8%; left: auto; top: 49%; }
+      .hero-logo-badge.logo-sheets { left: 9%; top: 51%; }
+      .hero-logo-badge.logo-gmail { left: 8%; top: 63%; }
+      .hero-logo-badge.logo-telegram { left: 12%; top: 75%; }
+      .hero-logo-badge.logo-openrouter { right: 8%; left: auto; top: 66%; }
+      .hero-logo-badge.logo-gohighlevel { right: 10%; left: auto; top: 78%; }
+    }
+
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -2300,17 +2846,51 @@
       <div class="hero-stage reveal">
         <div class="hero-inner">
           <h1 class="hero-title">Hi, I'm<br />Raymart</h1>
-          <p class="intro-copy">
-            A support professional, civil engineering graduate, and automation builder creating lead tools and workflow systems <span>for real business use.</span>
-          </p>
+          <div class="hero-logo-cloud" aria-hidden="true">
+            <div class="hero-logo-badge logo-n8n"><img src="https://cdn.simpleicons.org/n8n/EA4B71" alt="n8n logo" /><span class="hero-logo-label">n8n</span></div>
+            <div class="hero-logo-badge logo-openai"><img src="https://cdn.simpleicons.org/openai/FFFFFF" alt="OpenAI logo" /><span class="hero-logo-label">OpenAI</span></div>
+            <div class="hero-logo-badge logo-sheets"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets logo" /><span class="hero-logo-label">Sheets</span></div>
+            <div class="hero-logo-badge logo-gmail"><img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail logo" /><span class="hero-logo-label">Gmail</span></div>
+            <div class="hero-logo-badge logo-telegram"><img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram logo" /><span class="hero-logo-label">Telegram</span></div>
+            <div class="hero-logo-badge logo-openrouter logo-wide"><img src="data:image/png;base64,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UABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAigBgUqAABSoAAVQAgKVAAEoQAEKUABSoAAFKMABFKAABShAAQpQgAIUoAAFKEABClCAAlyj/wFfT2OL9L4C0AAAAABJRU5ErkJggg==" alt="OpenRouter logo" /><span class="hero-logo-label">OpenRouter</span></div>
+            <div class="hero-logo-badge logo-gohighlevel logo-wide"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAADSCAYAAADaB1suAAAP8ElEQVR4nO3d628c13nH8d85Z2Z2VxdLXFLWhTfJkk1xSVGSachyHEu2qShsGduhGiuxCxR9F6BAgf4DRYECRV/GQRS7Ql70ZYvKtbgC2qJoEaCogZiBnESxq4ZqAhRF4wRuTV0q8TZzztMXu0NRzK65S+5czszzeWkjnCH4zZnznB2TgGXoJ3icPsb36IfoT/peGGuIZtFNP8U/0c9BdAPv0yz2JX1PLB4y6RtoFc2iGyX8DQo4h/sACngeRbzHsWZfeW6qVyR9E62gj1GGxrso4iUsrvkXRQDL+AGWcEE8i18ndX8sOuW5qV5HYCb1KyrNorthpACwBKCA53hlzaby3FSvKzAjC+qZVIdKs+hGEVcaRhriWDOprx6pKKhnaEkjtY/+liJdK9wGKFwQo7wNsNnq474eKYB0hroaaQEvYamN/2ERwBI+gINpjtVOfXNTvf6alTSUukf/IytpO5ECtW1AEaeh8R59zNsA25RvTPY1ihRIWahtP+4bCfesHKtVem9M9jkldbVRpECKHv0diXQtPrqyRnluqteVmBFe40iBlIRKN9ENfxN70o3wnjX1+uamev0NIgVSEGpkkYaKAFbwASTHmjblialeR2JGbhApkPAelWYjjhSo7Vk9nEaAq3Qd+yO6CmtT+cZknytQbSVSIMEVteN70o2EK+sKLohn8KsYrsiaKN+a7HPhzIiCHG8lUiChFbX+gkltJY0jUuDhyurhPV5Zk9N7Y7LPEepqO5ECCayoiUS6Fu9ZE1O+MdnnbnOuCk+29LhfK9ZQ6Sa6sYJ3UcSLke1JW8Gxxq7V6b6Z2B79dB09CHAl8UiBh9sAwwNWHMq3Jvt8IaqbjRSIKVS6iW64uAIvwum+XbxnjUX51mSf0+bg1EjkodbPSZN/3DfCsUYqnO7lFiMFIg61fk76Lgp4MZHBqRUcayR6N3EE9XkiG6ZWV9JCClfSRnjA6pjNnJNuJJIVla6jx6pIAR6wOqR8o/ORAhGsqHQdPXBxxapI16q9dTULH9P8CVZ7em9N9gURRAp0eEW1PlIgfJ/1Wbi8srajfGuyzydVjSJSoIMr6iPTfVoHp3bwytqyKPak63VkRbVium9XuLLyacDn6vR038yWV1Trpvt28VtXTZVvTfa50pkRbrSRAltcUesfi2Y3UuDhaQDvWR9RvjXZ58QUKbCFUFcHJy/DkYYebgM4VoSPe1WVMUUKbDJUuo4eOCn9WDQqtZU196cB5VvTfQFUVRTU03FFCmwi1DWRns3M4NSqtUdXN/MXa9dH5/td6c/EHSnQ5jBVH5z+FgWczc1K2khtwJrFSn6Org58dL5fF9xEIgXaCLW+J30395GGcnTOWq7vSZOKFGgx1Ece9xzpQ+HK6mBaVLIZa+1j0WQjBVrYo66upBzpbwoHLB8zWdyzHvjofH8aIgU2CJUjbUFtwDqFAFfpQxxI+nY6pSvhPel6TR/9vCdtU4a2AV0fne/3UhQp0CRUjnSTMhBr0tN9M7/x6OdItyDcs1r664PS9rhf65EVlSPtkHBl9XFBjOOTpG+nFWldSUOrodKPsAcKVzjSDqmds/4QAabTHmvaIwXqoT4y3eftY9EoWRBr13+81u9RkOpIAUDQT3AIwF+jC6diXUl9AAEAhXh/sZCsXzMOBKAE4C4+ho9pMY6fx3TllnT/7CtHHUkzcrc3FGektGIATYAj0OoP3wHwRUh8iHl8EOndrSfxhcCI8Q9+sH353n0pXFX7uUZ6SQnq7vJvnjyx+D5MxBcLLQIowIXBc0T4hRCRf5ut+RNIh/RzcNT39fzKP8Z6bYEJoWnE//e7yzBoqdXkfj/qj/Gn2IE//s+feebqtS7M33Gk61CkP0XPEXiwJL79Z1f++48ivAzbwN5bU38hiuqby7P/G6z8y/8I0iQ3+ozUiefWGnJhgINPrMjf+93PzNXqbvPLX3nSdaNL1XGAUtEk+T0zAES1h773dNmRj3lm+Z9/DVrUAqr5upn8n+/xge6eQL5xcV48eXhJ+37if1aAxSUgOE/ulMVXe0nsdA1080Uq+VABIAC27zDia9O35YmxBeMHApSOnRyLmm+gDpRkaboX8vGiQdD4B5+OUAFAA55H4pXfviO/+Ox9rbUgjjUnAoIsF2Tp1V6hBrfpRrGmJ1QAMIAUwMTEPfnlc3cJAjBxTecsWZogtjuiONUrncpjBoF5pNZ0hQrUzqgMxLOnH8jXpu4YzyWjNe9bc8EQhCdE8dw+4Y6XDTStHgOlL1SgFqsPjB5blK9fuI2dO7QJONZ8qJ2risKZx5V3Zg8BIJi0hhrygUOHl+Ubr89jT9k3QcCx5gIBMARvvCyL5/ca4QpKd6gA4AN79/vyza/Pi8H+ZcPHVzlBqB1fDe9Sxa8csCBUAAiAXbu1uPg7t0Xl6CKfteZJQFCD26UdoQKABkolI6ZfuyNPjT/QfsDHV7kRUMr3qOsZwFEkfuv8XfnyC/cMEX8wkBd2hQqg/taTeOHMfTX15TtGCRg+a80++0IF6htt4OT4gpz+6m0Ui0R81pptdoYa8oGho0vyG1/7jHY/FvDxVYbZHSoA+EDfgC/f/MY89u9bIT4RyCb7QwUevir4+jyOPJHtVwVHvkv9Q+8sHkz6PuKWjVABIAB27DTi9Qv1VwUzGGvlrYUBI/XfC7j/8OTbi08kfT9xyk6owNpXBcXzp+/rQGfn+Kry1sKAKRZm4KhR4aijjnCreYo1W6EC4auC4tzEPXX+5bsGANl+fFW5TAOm4FalI0+SH4D8AHDUaJ5izV6oQPiqIE6ffiC/OnXHuC6RNnZuBSqXacCYoCpd54RZCVb/OfkBRI5izWaowOpZ68jYoro4fRs7tmmjLTu+CiMV6yINmRytrNkNNeQDh44sizcufoaebh/Ly3Z8y5XLNGBIzwjHOUENIg2F2wAp3OqTb1NmY7Xjp7ZVPrBvfyC/fnEe48fvp368qlxeGDBGV4VSJ8lvHmmI/ADSUaOO1JmNNR+hAkAA7OwJ8Nord1P9/K+8tTBgjFcVjjrRSqQh8gNAhbFmbxuQn1CB2gstrf/sYzd8aWHQFLyqdNuLNPQw1uztWfMVaooNX1oYJOXNCFc1HJxaRX4AodSoEs61YxnaBnCoKbA20s8bnFpl/ADCcUZ8BNeOfHvxcAduMXEcasJWI3U6E2mI/ADCdUYcz6lmIVYONUGPrKSb2JNuhOorq1twZ2zfBnCoCalcpoEoVtL1wgErsPzoikNNwPClhUFj9Kan+3aFsSqhrR2wONSYdWq6b1f9Q4ERX+hrNq6sHGqMOj3dt6t2GqBGlNDWnQZwqDGJarpvV/2tqxHHs+vdAA41BlFP9+2iNSvriCUrK4caseFLC4Mk3WrSK+l6Yazac604Z+VQIxRGKj3neBpW0vXCAcvx3GraV1YONSLDl6i2knrO8Tin+3aZeqxpX1k51AjUVtKgKlzneJoe982YNQNWWldWDrXDHg5O6XzcN/PonpVSFyuH2kGrg1NKpvt2PTy60qlbWTnUDqlF6lnzuG8mracBHGoH1AYnryo9ZdXjvpk0ngZwqFs0fIkGydFV4alUT/ftCgcs7brXRlKwZ+VQt2DoW4sHydFVoZTVj/tmai9fq4p2g2sjl5ONlUPdpOFLNChK7oxQ2XjcN1P/LwUq2uhqkrFyqJtQ25PqqnCyHWlodcBKMFYOtU2re1I3m4/7ZlZjJVNNYs/KobYh3JPKnKyk65EfQCo5ol0d+4DFobZo6J3Fg6LoVIWTrem+XSYcsAo61gGLQ23B0DuLB4VwZ4TjjOXpcd9M/ZdcVLTW1yqXFo/EcU0OdQOrkWZ8um9XeHRlHLcaR6wc6ucYvkSDtZWUI20kXFmNjD5WDrWJoW8tHiQVXJMZPczvlLhWVg61gdrg5Fal64wZXkk3VDsNiDZWDnWdoXcWDwq4VeGqsTxP9+0y4TYgolg51DVqkTpV4Sie7jchyj0rh1q3GqnrjPHgtHlR7Vk5VKx93PM5aSdQBNsApxNfxGYjl+mwNroqPTVifIKQKvJrEgAYDQgBIOY/KSBELFckTZCuqhDh74beplfn/kDMbeXr5TrU0e/R3sD3L0OpA2bJ/xSoRxQxElACokzLC0TaNxBxPdgECa94D0LqOK5mNAAl94D05aHv0Jtzfyg+2ezXynWoBYP/W/Ld39cr9/3tMV1TejtoifxBSPF9WlnYtnjzfUNL9yWiXsmFAIiWVVf/K7tGzv7CrNyPZSl/4ANKSHdb17a7W/k6uQ71w2+KBQALcV+38hYVjeuT3L1XlkbOuEv/9q9kFm5LyAh/HEKASCvzy7lPf/rdFz+N7kLR4GEqAYGEAgDSBnJnjyie+BLU7n0EHfUgJ6ALxeg34RHgUJNmNGRxuywem4B6/JCG4VOHRjjUNDAGwvFEqfKCdHuHDYymeMY6e3CoaUEGkFIUnjotvUNPGxARiGMNcahpQgQQwTt0XBWGvkAQkkAm6btKBQ41dQgwGu6BIVkcPWuEUzAwHCuHmlYmgLNnUBXHJiCKO0zt9Dy/ONQ00wHUrr2ydOIc5M4eyvOJAIeadiaA3LZblo5PQHX3a4r8rDWdOFQbGA3hlURx5Kx09x8xeVxZOVRbGAOhXFE8+rx0B8Y0jM7V8RWHahMygBAoHB6XhSOnCEBuYuVQbUMEkBHu4KgsVF4wUI7Jw1krh2orHcDd+4QqHXsJwtuW+eMrDtVmRkOVe2VxbAJy++5Mx8qh2k4HUDu7ZWnsnJC79mb2RIBDzQKjIUo7ROnYy0LtOWiif681fhxqVhgD4RZEaeSMdPoqOmuvCnKoWUIGEBLFp05J79DJTL0qyKFmDRFAEN6hE6rw1HMGQmTiVUEONZPqrwr2HlXF0RdJOAWy/VVBDjXLTACnZ1AWx14mUdxONh9fcahZZ+qvCo6dE+qxPQbL95K+o03hUPPAaKgdXSgdmxCF4xNJ382mcKg5QcZAeAVR6BlO+lY2hUPNEyIAy0nfxaZwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzAofKrMChMitwqMwKHCqzgpPYlQUEJOL9v4qsXzcFCBC1W4nrdgRA6fjeNyO5UA18aCwhzj/PqQEQVmK8YkMUQEgFJaQASMVzUQGQgaIgBbESFBwBOK3fSnKhSnwHC/grEOL7g/KLEPAxH9v1mljpwieFJXxJERTgx3NRciEJ5p4p/Fc8F2zOuObPZUB/KQK7/+I1Y4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjLB/+H5e6QOaWAxgJAAAAAElFTkSuQmCC" alt="GoHighLevel logo" /><span class="hero-logo-label">GoHighLevel</span></div>
+          </div>
+          <div class="hero-left-stack">
+            <div class="hero-status-badge">Available for Remote Work</div>
+            <div class="hero-mini-tags">Automation <span>•</span> Support <span>•</span> Civil Engineering</div>
+            <p class="intro-copy">
+              A support professional, civil engineering graduate, and automation builder creating lead tools and workflow systems <span>for real business use.</span>
+            </p>
+            <p class="hero-build-line"><strong>I build:</strong> Lead capture systems <span>•</span> CRM workflows <span>•</span> Email automations <span>•</span> Business dashboards</p>
+            <div class="hero-metric-row" aria-label="Portfolio highlights">
+              <div class="hero-metric-card"><span class="hero-metric-icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span><div><strong>3+</strong><span>Automation Projects Built</span></div></div>
+              <div class="hero-metric-card"><span class="hero-metric-icon"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i></span><div><strong>Civil Eng.</strong><span>Technical Background</span></div></div>
+              <div class="hero-metric-card"><span class="hero-metric-icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span><div><strong>24/7 Style</strong><span>Workflow Systems</span></div></div>
+            </div>
+          </div>
           <div class="avatar-wrap" aria-label="3D avatar hero image">
             <div class="avatar-glow"></div>
             <img class="hero-avatar" src="raymart-hero-avatar.png" alt="3D avatar representing Raymart Gomez" onerror="this.onerror=null; this.src='profile.jpg';" />
             <div class="avatar-shadow"></div>
           </div>
           <div class="hero-cta">
+            <div class="hero-role-copy">
+              <span>Automation Specialist</span>
+              <p>Building practical workflow systems for businesses.</p>
+            </div>
             <a class="contact-pill" href="mailto:rrgomez0000@gmail.com">Let's Connect</a>
+            <div class="hero-socials" aria-label="Quick contact links">
+              <a href="mailto:rrgomez0000@gmail.com" aria-label="Email Raymart Gomez" title="Email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+              <a href="https://wa.me/639517255895" target="_blank" rel="noreferrer" aria-label="Message on WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+              <a href="#contact" aria-label="LinkedIn link" title="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+              <a href="#contact" aria-label="GitHub link" title="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+            </div>
+            <div class="hero-focus-card">
+              <strong><span class="hero-focus-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>Current Focus</strong>
+              <p>Simpro workflows, lead capture systems, AI automation, and business process automation.</p>
+            </div>
           </div>
+          <div class="scroll-note">Explore My Work<span class="scroll-note-arrow"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></span></div>
         </div>
       </div>
     </section>
