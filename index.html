@@ -3777,10 +3777,76 @@
       color: #000;
     }
 
+  
+    /* --- Smooth Astronaut Background Animation Canvas & Layering --- */
+    #canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      pointer-events: none;
+      z-index: -2;
+      background-color: #020403;
+    }
+
+    body {
+      background: transparent !important;
+      background-color: #020403 !important;
+    }
+
+    body::before {
+      z-index: -1 !important;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(95, 46, 27, 0.22), transparent 24%),
+        radial-gradient(circle at 84% 16%, rgba(95, 46, 27, 0.18), transparent 22%),
+        radial-gradient(circle at 20% 78%, rgba(26, 35, 36, 0.45), transparent 24%),
+        radial-gradient(circle at 82% 80%, rgba(20, 20, 19, 0.45), transparent 22%),
+        linear-gradient(180deg, rgba(20, 20, 19, 0.45) 0%, rgba(2, 4, 3, 0.65) 42%, rgba(2, 4, 3, 0.75) 100%) !important;
+    }
+
+    body::after {
+      z-index: -1 !important;
+      opacity: 0.10 !important;
+    }
+
+    .hero-stage {
+      background:
+        radial-gradient(circle at 88% 0%, rgba(95,46,27,0.15), transparent 24%),
+        radial-gradient(circle at 0% 100%, rgba(26,35,36,0.22), transparent 28%),
+        linear-gradient(180deg, rgba(26,35,36,0.65), rgba(20,20,19,0.75)) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+
+    .panel,
+    .tool-card,
+    .service-card,
+    .contact-card,
+    .metric-card,
+    .project-card,
+    .benefit-card,
+    .services-benefits,
+    .tool-chip,
+    .contact-box,
+    .info-card,
+    .cert-card {
+      background:
+        radial-gradient(circle at 88% 0%, rgba(95,46,27,0.15), transparent 24%),
+        radial-gradient(circle at 0% 100%, rgba(26,35,36,0.22), transparent 28%),
+        linear-gradient(180deg, rgba(26,35,36,0.72), rgba(20,20,19,0.80)) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+
   </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <!-- Smooth Astronaut Scroll Background Canvas -->
+  <canvas id="canvas"></canvas>
+
   <header class="topbar">
     <a class="brand" href="#home">Raymart Gomez</a>
     <nav class="nav" aria-label="Primary navigation">
@@ -4533,5 +4599,138 @@
     });
 
   </script>
+
+  <!-- Smooth Astronaut Scroll Animation Engine -->
+  <script>
+    (() => {
+      'use strict';
+      const TOTAL_FRAMES = 120;
+      const LERP_FACTOR = 0.085;
+
+      const canvas = document.getElementById('canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: false });
+
+      const images = new Array(TOTAL_FRAMES);
+      let targetProgress = 0;
+      let currentProgress = 0;
+      let lastRenderedIndex = -1;
+
+      function getFrameSrc(index) {
+        const num = String(index + 1).padStart(3, '0');
+        return 'ezgif-frame-' + num + '.jpg';
+      }
+
+      function resizeCanvas() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = window.innerWidth || document.documentElement.clientWidth || 1280;
+        const h = window.innerHeight || document.documentElement.clientHeight || 720;
+
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        render(lastRenderedIndex >= 0 ? lastRenderedIndex : 0, true);
+      }
+
+      function drawImageCover(img) {
+        if (!img || !img.complete || !img.naturalWidth) return;
+
+        const cw = canvas.width;
+        const ch = canvas.height;
+        if (!cw || !ch) return;
+
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+
+        const scale = Math.max(cw / iw, ch / ih);
+        const nw = iw * scale;
+        const nh = ih * scale;
+        const nx = (cw - nw) * 0.5;
+        const ny = (ch - nh) * 0.5;
+
+        ctx.drawImage(img, 0, 0, iw, ih, nx, ny, nw, nh);
+      }
+
+      function getLoadedFrame(targetIndex) {
+        if (images[targetIndex] && images[targetIndex].complete && images[targetIndex].naturalWidth > 0) {
+          return images[targetIndex];
+        }
+        for (let i = targetIndex - 1; i >= 0; i--) {
+          if (images[i] && images[i].complete && images[i].naturalWidth > 0) return images[i];
+        }
+        for (let i = targetIndex + 1; i < TOTAL_FRAMES; i++) {
+          if (images[i] && images[i].complete && images[i].naturalWidth > 0) return images[i];
+        }
+        return null;
+      }
+
+      function render(index, force = false) {
+        const frameIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
+        if (!force && frameIndex === lastRenderedIndex) return;
+
+        const img = getLoadedFrame(frameIndex);
+        if (img) {
+          drawImageCover(img);
+          lastRenderedIndex = frameIndex;
+        }
+      }
+
+      function getScrollFraction() {
+        const doc = document.documentElement;
+        const body = document.body;
+        const scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+        const scrollHeight = Math.max(doc.scrollHeight, body.scrollHeight);
+        const clientHeight = window.innerHeight || doc.clientHeight || body.clientHeight;
+        const maxScroll = scrollHeight - clientHeight;
+
+        if (maxScroll <= 0) return 0;
+        return Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+      }
+
+      for (let i = 0; i < TOTAL_FRAMES; i++) {
+        const img = new Image();
+        img.onload = () => {
+          if (i === 0 || lastRenderedIndex === -1) {
+            render(0, true);
+          }
+        };
+        img.src = getFrameSrc(i);
+
+        if (img.complete && img.naturalWidth > 0) {
+          if (i === 0 || lastRenderedIndex === -1) {
+            requestAnimationFrame(() => render(0, true));
+          }
+        }
+        images[i] = img;
+      }
+
+      function loop() {
+        targetProgress = getScrollFraction();
+
+        const diff = targetProgress - currentProgress;
+        if (Math.abs(diff) > 0.0001) {
+          currentProgress += diff * LERP_FACTOR;
+        } else {
+          currentProgress = targetProgress;
+        }
+
+        const frameIndex = Math.min(
+          TOTAL_FRAMES - 1,
+          Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
+        );
+
+        render(frameIndex);
+        requestAnimationFrame(loop);
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      requestAnimationFrame(loop);
+    })();
+  </script>
+
 </body>
 </html>
