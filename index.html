@@ -3778,10 +3778,80 @@
     }
 
   
-    </style>
+    
+    /* --- Smooth 242-Frame Scroll Background --- */
+    #bgImg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      z-index: -5;
+      pointer-events: none;
+      opacity: 0.88;
+      filter: contrast(1.1) brightness(0.95);
+    }
+
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      z-index: -4;
+      pointer-events: none;
+      opacity: 0.88;
+      filter: contrast(1.1) brightness(0.95);
+    }
+
+    .bg-canvas-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(2, 4, 3, 0.2) 0%, rgba(2, 4, 3, 0.65) 100%);
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    body {
+      background: transparent !important;
+    }
+
+    body::before {
+      z-index: -6 !important;
+      opacity: 0.3 !important;
+    }
+
+    body::after {
+      z-index: -2 !important;
+      opacity: 0.08 !important;
+    }
+
+    .hero-stage {
+      background:
+        radial-gradient(circle at 50% 40%, rgba(95,46,27,0.12), transparent 45%),
+        linear-gradient(180deg, rgba(16, 20, 19, 0.45), rgba(8, 10, 9, 0.65)) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    .hero-avatar {
+      object-fit: contain;
+    }
+
+  </style>
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+
+  <!-- 242-Frame Smooth Scroll Background -->
+  <img id="bgImg" src="ezgif-frame-001.jpg" alt="Scroll Animation Frame" />
+  <canvas id="bgCanvas"></canvas>
+  <div class="bg-canvas-overlay"></div>
+
   
   
 
@@ -4540,6 +4610,147 @@
 
   
   
+
+
+  <!-- 242-Frame Smooth Scroll Animation Engine -->
+  <script>
+    (function () {
+      'use strict';
+      const TOTAL_FRAMES = 242;
+      const canvas = document.getElementById('bgCanvas');
+      const fallbackImg = document.getElementById('bgImg');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const images = new Array(TOTAL_FRAMES + 1);
+      const isLoaded = new Array(TOTAL_FRAMES + 1).fill(false);
+
+      let targetProgress = 0;
+      let currentProgress = 0;
+      let lastRenderedFrame = 1;
+      const LERP_FACTOR = 0.085;
+
+      const getFrameSrc = (idx) => 'ezgif-frame-' + String(idx).padStart(3, '0') + '.jpg';
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        render(lastRenderedFrame, true);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      function drawCover(img) {
+        if (!img || !img.complete || img.naturalWidth === 0) return;
+        const cw = canvas.width;
+        const ch = canvas.height;
+        const iw = img.naturalWidth;
+        const ih = img.naturalHeight;
+        const scale = Math.max(cw / iw, ch / ih);
+        const dw = iw * scale;
+        const dh = ih * scale;
+        const dx = (cw - dw) * 0.5;
+        const dy = (ch - dh) * 0.5;
+
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.drawImage(img, dx, dy, dw, dh);
+      }
+
+      function getAvailableFrame(targetIdx) {
+        if (isLoaded[targetIdx] && images[targetIdx] && images[targetIdx].naturalWidth > 0) {
+          return images[targetIdx];
+        }
+        for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+          const prev = targetIdx - offset;
+          if (prev >= 1 && isLoaded[prev] && images[prev] && images[prev].naturalWidth > 0) return images[prev];
+          const next = targetIdx + offset;
+          if (next <= TOTAL_FRAMES && isLoaded[next] && images[next] && images[next].naturalWidth > 0) return images[next];
+        }
+        return (isLoaded[1] && images[1] && images[1].naturalWidth > 0) ? images[1] : null;
+      }
+
+      function render(frameIdx, force) {
+        if (frameIdx === lastRenderedFrame && !force) return;
+        lastRenderedFrame = frameIdx;
+
+        if (fallbackImg) {
+          fallbackImg.src = getFrameSrc(frameIdx);
+        }
+
+        const img = getAvailableFrame(frameIdx);
+        if (img) {
+          drawCover(img);
+        }
+      }
+
+      function updateScroll() {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        targetProgress = docH > 0 ? Math.min(Math.max(window.scrollY / docH, 0), 1) : 0;
+      }
+
+      window.addEventListener('scroll', updateScroll, { passive: true });
+
+      function animate() {
+        updateScroll();
+        const delta = targetProgress - currentProgress;
+        currentProgress += delta * LERP_FACTOR;
+
+        if (Math.abs(delta) < 0.00002) {
+          currentProgress = targetProgress;
+        }
+
+        const rawFrame = 1 + currentProgress * (TOTAL_FRAMES - 1);
+        const frameIdx = Math.min(TOTAL_FRAMES, Math.max(1, Math.round(rawFrame)));
+
+        render(frameIdx, false);
+        requestAnimationFrame(animate);
+      }
+
+      function loadImg(i) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = getFrameSrc(i);
+          const done = () => {
+            images[i] = img;
+            isLoaded[i] = true;
+            resolve(img);
+          };
+          img.onload = done;
+          img.onerror = done;
+        });
+      }
+
+      async function preload() {
+        await loadImg(1);
+        render(1, true);
+
+        // Preload key frames first
+        const keySteps = [20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240];
+        await Promise.all(keySteps.map(loadImg));
+
+        // Preload rest in batches
+        const batchSize = 10;
+        for (let i = 2; i <= TOTAL_FRAMES; i += batchSize) {
+          const batch = [];
+          for (let j = i; j < i + batchSize && j <= TOTAL_FRAMES; j++) {
+            if (!isLoaded[j]) batch.push(loadImg(j));
+          }
+          await Promise.all(batch);
+        }
+      }
+
+      updateScroll();
+      currentProgress = targetProgress;
+      preload();
+      requestAnimationFrame(animate);
+    })();
+  </script>
 
 </body>
 </html>
